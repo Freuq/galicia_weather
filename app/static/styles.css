@@ -1,0 +1,146 @@
+/* === Fondo general === */
+body, .stApp {
+    background-color: #003366 !important;
+    color: #f0f8ff !important;
+}
+
+/* Contenedor principal del contenido Streamlit */
+section.main > div {
+    background-color: #155ea6 !important; /* fondo azul clarito */
+    color: #ffffff !important; /* texto azul oscuro */
+    padding: 2rem !important;
+    border-radius: 15px !important;
+}
+
+
+/* === Títulos === */
+h1, h2, h3 {
+    color: #ffffff !important;
+    text-align: center;
+}
+
+/* === Sidebar === */
+[data-testid="stSidebar"] {
+    background-color: #052b51 !important;
+    color: white !important;
+}
+
+/* === Selectbox en la sidebar (con los años y meses) === */
+.stSelectbox select {
+    background-color: #003366 !important; /* Fondo azul oscuro */
+    color: white !important; /* Texto blanco */
+    border: 2px solid #ffffff !important; /* Borde blanco */
+    border-radius: 5px !important;
+}
+
+/* Cambiar el borde y fondo cuando está en foco o seleccionado */
+.stSelectbox select:focus, .stSelectbox select:active {
+    background-color: #001f33 !important; /* Un azul más oscuro */
+    border: 2px solid #66ccff !important; /* Borde azul claro cuando está activo */
+    color: white !important;
+}
+
+/* === Filtros de la sidebar === */
+.stSlider > label, .stSelectbox > label, .stTextInput > label {
+    color: white !important;
+}
+
+/* === Botones del sidebar y menú (emergente y desplegable) === */
+.css-1d391kg button:active, .css-1d391kg button:focus,
+.css-1lcbmhc button:active, .css-1lcbmhc button:focus {
+    background-color: #003366 !important;
+    color: white !important;
+}
+
+/* === Botones principales === */
+button:active, button:focus {
+    background-color: #003366 !important;
+    color: white !important;
+}
+
+/* === Gráficas === */
+.stTextInput > label, .stSelectbox > label, .stSlider > label {
+    color: white;
+}
+
+
+/* Estilos para el div específico del selectbox en la sidebar */
+div.st-an.st-ao.st-ap.st-aq.st-ak.st-ar.st-am.st-as.st-at.st-au.st-av.st-aw.st-ax.st-ay.st-az.st-b0.st-b1.st-b2.st-b3.st-b4.st-b5.st-b6.st-cr.st-cs.st-ct.st-cu.st-bb.st-bc {
+    background-color: #003366 !important; /* Fondo azul oscuro */
+    color: white !important; /* Texto blanco */
+    border: 2px solid #ffffff !important; /* Borde blanco */
+    border-radius: 5px !important;
+}
+
+/* Estilos cuando el selectbox está activo o en foco dentro del mismo div */
+div.st-an.st-ao.st-ap.st-aq.st-ak.st-ar.st-am.st-as.st-at.st-au.st-av.st-aw.st-ax.st-ay.st-az.st-b0.st-b1.st-b2.st-b3.st-b4.st-b5.st-b6.st-cr.st-cs.st-ct.st-cu.st-bb.st-bc:focus {
+    background-color: #001f33 !important; /* Azul más oscuro */
+    border: 2px solid #66ccff !important; /* Borde azul claro cuando está activo */
+    color: white !important;
+}
+
+/* Estilo para el icono dentro del selectbox */
+div.st-an.st-ao.st-ap.st-aq.st-ak.st-ar.st-am.st-as.st-at.st-au.st-av.st-aw.st-ax.st-ay.st-az.st-b0.st-b1.st-b2.st-b3.st-b4.st-b5.st-b6.st-cr.st-cs.st-ct.st-cu.st-bb.st-bc svg {
+    fill: white !important; /* Color blanco para el icono */
+}
+
+/* Estilo para el contenedor del desplegable del selectbox */
+div[data-baseweb="popover"] {
+    background-color: #003366 !important;  /* Fondo azul oscuro */
+    border-radius: 8px !important;  /* Bordes redondeados */
+}
+
+/* Estilo para las opciones dentro del selectbox */
+ul[data-testid="stSelectboxVirtualDropdown"] li {
+    background-color: #003366 !important;  /* Fondo azul oscuro */
+    color: white !important;  /* Texto blanco */
+    padding: 10px 15px;  /* Espaciado alrededor del texto */
+    border-radius: 5px !important;
+}
+
+/* Estilo al pasar el ratón sobre las opciones (hover) */
+ul[data-testid="stSelectboxVirtualDropdown"] li:hover {
+    background-color: #66ccff !important;  /* Azul claro */
+    color: white !important;  /* Texto blanco */
+}
+
+/* Estilo para el ítem seleccionado */
+ul[data-testid="stSelectboxVirtualDropdown"] li[aria-selected="true"] {
+    background-color: #66ccff !important;  /* Azul claro cuando está seleccionado */
+    color: white !important;  /* Texto blanco */
+}
+
+
+/* IMAGENES 
+Esta comentado porque hace un doble contenedor en las imagenes de plotly, tendría que cambiarse el contenedor de abajo
+*/
+/*
+.plot-container {
+    background-color: #003366;
+    padding: 1rem;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+    margin-bottom: 1.5rem;
+}
+*/
+
+
+/* Estilo para los contenedores de gráficos de Plotly */
+.element-container:has(.js-plotly-plot) {
+    background-color: #003366;
+    border-radius: 15px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+    padding: 20px;
+    width: 100% !important;
+    height: 100% !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* METRICAS */
+.metric-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
