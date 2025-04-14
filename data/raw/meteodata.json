@@ -1,0 +1,6 @@
+{
+    "exception": {
+        "code": "213",
+        "message": "Time period cannot start before today."
+    }
+}

@@ -22,21 +22,21 @@ variables = {
 }
 
 # Rango de fechas
-start_date = "2023-01-01T00:00:00Z"
-end_date = "2025-01-01T00:00:00Z"
+start_date = "2023-01-01T00:00:00"
+end_date = "2025-01-01T00:00:00"
 
 # URL de la API de MeteoSIX (ajústala según el endpoint exacto)
-url = "http://servizos.meteogalicia.es/apiv4/getWeatherInfo"
+url = "http://servizos.meteogalicia.es/apiv2/getWeatherInfo"
 
 params = {
     "API_KEY": API_KEY,
-    #"location": "santiago",
-    #"coords" : (lon,lat),
-    "variables": "TmedDia,HmedDia,PmedDia",
-    "lang" : "es",
-    "from": start_date,
-    "to": end_date,
-    "format": "json"
+    #"locationIds": "71938",
+    "coord" : "-8.5434,42.88187",
+    "variables": "temperature, precipitation_amount, relative_humidity",
+    #"lang" : "es",
+    "startTime": start_date,
+    "endTime": end_date,
+    #"format": "json"
 }
 
 response = requests.get(url, params=params)
@@ -44,7 +44,7 @@ response = requests.get(url, params=params)
 if response.status_code == 200:
     data = response.json()
     # Guardar el JSON si quieres inspeccionarlo
-    with open("src/data/raw/meteodata.json", "w") as f:
+    with open("data/raw/meteodata.json", "w") as f:
         json.dump(data, f, indent=4)
 
     print("✅ Datos descargados correctamente")

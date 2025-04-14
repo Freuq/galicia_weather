@@ -34,10 +34,12 @@ for place in ['santiago', 'a coru', 'lugo', 'pontevedra', 'ourense', 'vigo']:
         province = data['features'][i]['properties']['province'].lower()
         if  name == municipality or name == province:
             coors = data['features'][i]['geometry']['coordinates']
+            id = data['features'][i]['properties']['id']
             city = data['features'][i]['properties']['name']
-    print(city, coors)
-    tupla_city = (city,coors)
-    place_coors.append(tupla_city)    
+            
+    list_city = (city,id,coors)
+    print(list_city)
+    place_coors.append(list_city)    
 
 # Guardar las coordenadas de las ciudades en un archivo JSON
 with open("data/raw/city_coordinates.json", "w") as f:
