@@ -1,0 +1,402 @@
+{
+    "type": "FeatureCollection",
+    "crs": {
+        "type": "name",
+        "properties": {
+            "name": "urn:ogc:def:crs:OGC:1.3:CRS84"
+        }
+    },
+    "features": [
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -8.66453,
+                    42.81225
+                ]
+            },
+            "properties": {
+                "id": "43766",
+                "name": "Coruxido",
+                "municipality": "BRI\u00d3N",
+                "province": "A Coru\u00f1a",
+                "type": "locality"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -8.34246,
+                    43.2716
+                ]
+            },
+            "properties": {
+                "id": "44085",
+                "name": "Coruxos",
+                "municipality": "CAMBRE",
+                "province": "A Coru\u00f1a",
+                "type": "locality"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -8.34324,
+                    43.34686
+                ]
+            },
+            "properties": {
+                "id": "48159",
+                "name": "Coruxo de Abaixo",
+                "municipality": "OLEIROS",
+                "province": "A Coru\u00f1a",
+                "type": "locality"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -8.34347,
+                    43.34328
+                ]
+            },
+            "properties": {
+                "id": "48160",
+                "name": "Coruxo de Arriba",
+                "municipality": "OLEIROS",
+                "province": "A Coru\u00f1a",
+                "type": "locality"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -8.35081,
+                    43.06155
+                ]
+            },
+            "properties": {
+                "id": "48239",
+                "name": "Coruxo",
+                "municipality": "ORDES",
+                "province": "A Coru\u00f1a",
+                "type": "locality"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -7.78252,
+                    43.67557
+                ]
+            },
+            "properties": {
+                "id": "48496",
+                "name": "Coruxo Novo",
+                "municipality": "ORTIGUEIRA",
+                "province": "A Coru\u00f1a",
+                "type": "locality"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -7.77973,
+                    43.6807
+                ]
+            },
+            "properties": {
+                "id": "48497",
+                "name": "Coruxo Vello",
+                "municipality": "ORTIGUEIRA",
+                "province": "A Coru\u00f1a",
+                "type": "locality"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -8.07801,
+                    43.54175
+                ]
+            },
+            "properties": {
+                "id": "50368",
+                "name": "Coruxa",
+                "municipality": "SAN SADURNI\u00d1O",
+                "province": "A Coru\u00f1a",
+                "type": "locality"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -8.62376,
+                    43.01492
+                ]
+            },
+            "properties": {
+                "id": "51877",
+                "name": "A Coru\u00f1a",
+                "municipality": "VAL DO DUBRA",
+                "province": "A Coru\u00f1a",
+                "type": "locality"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -8.15868,
+                    43.34793
+                ]
+            },
+            "properties": {
+                "id": "52265",
+                "name": "Coruxo",
+                "municipality": "VILARMAIOR",
+                "province": "A Coru\u00f1a",
+                "type": "locality"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -7.3741,
+                    43.42624
+                ]
+            },
+            "properties": {
+                "id": "57075",
+                "name": "As Coruxeiras",
+                "municipality": "MONDO\u00f1EDO",
+                "province": "Lugo",
+                "type": "locality"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -7.59896,
+                    43.49971
+                ]
+            },
+            "properties": {
+                "id": "57646",
+                "name": "Os Coruxos",
+                "municipality": "MURAS",
+                "province": "Lugo",
+                "type": "locality"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -6.92878,
+                    42.91394
+                ]
+            },
+            "properties": {
+                "id": "57695",
+                "name": "Coruxedo",
+                "municipality": "NAVIA DE SUARNA",
+                "province": "Lugo",
+                "type": "locality"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -7.8503,
+                    42.23393
+                ]
+            },
+            "properties": {
+                "id": "62284",
+                "name": "A Coruxeira",
+                "municipality": "ALLARIZ",
+                "province": "Ourense",
+                "type": "locality"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -7.60423,
+                    42.29509
+                ]
+            },
+            "properties": {
+                "id": "63935",
+                "name": "Coruxas",
+                "municipality": "MACEDA",
+                "province": "Ourense",
+                "type": "locality"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -8.22111,
+                    42.25188
+                ]
+            },
+            "properties": {
+                "id": "64088",
+                "name": "O Coruxal",
+                "municipality": "MEL\u00d3N",
+                "province": "Ourense",
+                "type": "locality"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -7.8957,
+                    42.43337
+                ]
+            },
+            "properties": {
+                "id": "65721",
+                "name": "O Coruxal",
+                "municipality": "VILAMAR\u00cdN",
+                "province": "Ourense",
+                "type": "locality"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -8.33165,
+                    42.10112
+                ]
+            },
+            "properties": {
+                "id": "65923",
+                "name": "Coruxa",
+                "municipality": "ARBO",
+                "province": "Pontevedra",
+                "type": "locality"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -8.85913,
+                    41.90915
+                ]
+            },
+            "properties": {
+                "id": "68097",
+                "name": "O Coruto Vello",
+                "municipality": "GUARDA (A)",
+                "province": "Pontevedra",
+                "type": "locality"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -8.67687,
+                    42.44119
+                ]
+            },
+            "properties": {
+                "id": "69719",
+                "name": "Coruxa",
+                "municipality": "POIO",
+                "province": "Pontevedra",
+                "type": "locality"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -8.64057,
+                    42.36408
+                ]
+            },
+            "properties": {
+                "id": "71636",
+                "name": "Coruxeiro",
+                "municipality": "VILABOA",
+                "province": "Pontevedra",
+                "type": "locality"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -8.76158,
+                    42.57842
+                ]
+            },
+            "properties": {
+                "id": "71816",
+                "name": "O Coruxo",
+                "municipality": "VILAGARC\u00cdA DE AROUSA",
+                "province": "Pontevedra",
+                "type": "locality"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -8.3949,
+                    43.34986
+                ]
+            },
+            "properties": {
+                "id": "71933",
+                "name": "A Coru\u00f1a",
+                "municipality": "CORU\u00d1A (A)",
+                "province": "A Coru\u00f1a",
+                "type": "locality"
+            }
+        }
+    ]
+}

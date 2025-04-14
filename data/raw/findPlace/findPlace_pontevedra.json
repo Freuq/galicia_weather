@@ -1,0 +1,45 @@
+{
+    "type": "FeatureCollection",
+    "crs": {
+        "type": "name",
+        "properties": {
+            "name": "urn:ogc:def:crs:OGC:1.3:CRS84"
+        }
+    },
+    "features": [
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -8.76873,
+                    42.88524
+                ]
+            },
+            "properties": {
+                "id": "47995",
+                "name": "Pontevedra",
+                "municipality": "NEGREIRA",
+                "province": "A Coru\u00f1a",
+                "type": "locality"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -8.62686,
+                    42.42331
+                ]
+            },
+            "properties": {
+                "id": "71954",
+                "name": "Pontevedra",
+                "municipality": "PONTEVEDRA",
+                "province": "Pontevedra",
+                "type": "locality"
+            }
+        }
+    ]
+}

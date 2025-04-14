@@ -1,0 +1,249 @@
+{
+    "type": "FeatureCollection",
+    "crs": {
+        "type": "name",
+        "properties": {
+            "name": "urn:ogc:def:crs:OGC:1.3:CRS84"
+        }
+    },
+    "features": [
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -8.18142,
+                    43.46164
+                ]
+            },
+            "properties": {
+                "id": "45781",
+                "name": "Santiago",
+                "municipality": "FENE",
+                "province": "A Coru\u00f1a",
+                "type": "locality"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -8.21906,
+                    43.121
+                ]
+            },
+            "properties": {
+                "id": "46994",
+                "name": "Santiago",
+                "municipality": "MES\u00cdA",
+                "province": "A Coru\u00f1a",
+                "type": "locality"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -7.84124,
+                    43.66605
+                ]
+            },
+            "properties": {
+                "id": "48529",
+                "name": "Santiago",
+                "municipality": "ORTIGUEIRA",
+                "province": "A Coru\u00f1a",
+                "type": "locality"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -7.16979,
+                    43.54422
+                ]
+            },
+            "properties": {
+                "id": "53216",
+                "name": "Santiago de Reinante",
+                "municipality": "BARREIROS",
+                "province": "Lugo",
+                "type": "locality"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -7.59099,
+                    42.97599
+                ]
+            },
+            "properties": {
+                "id": "56808",
+                "name": "Estrada Santiago",
+                "municipality": "LUGO",
+                "province": "Lugo",
+                "type": "locality"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -7.18856,
+                    43.24908
+                ]
+            },
+            "properties": {
+                "id": "59871",
+                "name": "Santiago",
+                "municipality": "RIBEIRA DE PIQU\u00edN",
+                "province": "Lugo",
+                "type": "locality"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -7.27605,
+                    43.37741
+                ]
+            },
+            "properties": {
+                "id": "59944",
+                "name": "O Vilar de Santiago",
+                "municipality": "RIOTORTO",
+                "province": "Lugo",
+                "type": "locality"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -7.74263,
+                    43.37108
+                ]
+            },
+            "properties": {
+                "id": "61842",
+                "name": "Santiago",
+                "municipality": "VILALBA",
+                "province": "Lugo",
+                "type": "locality"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -7.81639,
+                    41.90839
+                ]
+            },
+            "properties": {
+                "id": "62807",
+                "name": "Santiago",
+                "municipality": "CALVOS DE RAND\u00cdN",
+                "province": "Ourense",
+                "type": "locality"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -7.46438,
+                    42.32632
+                ]
+            },
+            "properties": {
+                "id": "64214",
+                "name": "Santiago da Medorra",
+                "municipality": "MONTEDERRAMO",
+                "province": "Ourense",
+                "type": "locality"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -8.69137,
+                    42.58814
+                ]
+            },
+            "properties": {
+                "id": "66196",
+                "name": "O Cruceiro de Santiago",
+                "municipality": "CALDAS DE REIS",
+                "province": "Pontevedra",
+                "type": "locality"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -8.3614,
+                    42.23369
+                ]
+            },
+            "properties": {
+                "id": "66865",
+                "name": "Santiago de Covelo",
+                "municipality": "COVELO",
+                "province": "Pontevedra",
+                "type": "locality"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -8.5434,
+                    42.88187
+                ]
+            },
+            "properties": {
+                "id": "71938",
+                "name": "Santiago de Compostela",
+                "municipality": "SANTIAGO DE COMPOSTELA",
+                "province": "A Coru\u00f1a",
+                "type": "locality"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -7.61651,
+                    43.6697
+                ]
+            },
+            "properties": {
+                "id": "71950",
+                "name": "Viveiro (Santa Mar\u00eda e Santiago)",
+                "municipality": "VIVEIRO",
+                "province": "Lugo",
+                "type": "locality"
+            }
+        }
+    ]
+}

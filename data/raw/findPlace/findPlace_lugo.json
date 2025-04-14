@@ -1,0 +1,45 @@
+{
+    "type": "FeatureCollection",
+    "crs": {
+        "type": "name",
+        "properties": {
+            "name": "urn:ogc:def:crs:OGC:1.3:CRS84"
+        }
+    },
+    "features": [
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -7.56418,
+                    43.05817
+                ]
+            },
+            "properties": {
+                "id": "56898",
+                "name": "O Porto de Lugo",
+                "municipality": "LUGO",
+                "province": "Lugo",
+                "type": "locality"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -7.5562,
+                    43.01375
+                ]
+            },
+            "properties": {
+                "id": "71940",
+                "name": "Lugo",
+                "municipality": "LUGO",
+                "province": "Lugo",
+                "type": "locality"
+            }
+        }
+    ]
+}

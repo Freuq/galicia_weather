@@ -1,0 +1,657 @@
+{
+    "type": "FeatureCollection",
+    "crs": {
+        "type": "name",
+        "properties": {
+            "name": "urn:ogc:def:crs:OGC:1.3:CRS84"
+        }
+    },
+    "features": [
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -8.55424,
+                    43.2612
+                ]
+            },
+            "properties": {
+                "id": "42897",
+                "name": "Vigo",
+                "municipality": "ARTEIXO",
+                "province": "A Coru\u00f1a",
+                "type": "locality"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -8.81591,
+                    42.9864
+                ]
+            },
+            "properties": {
+                "id": "43295",
+                "name": "Vigob\u00f3",
+                "municipality": "BA\u00d1A (A)",
+                "province": "A Coru\u00f1a",
+                "type": "locality"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -8.36212,
+                    43.30716
+                ]
+            },
+            "properties": {
+                "id": "45515",
+                "name": "Vigovid\u00edn",
+                "municipality": "CULLEREDO",
+                "province": "A Coru\u00f1a",
+                "type": "locality"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -8.69518,
+                    42.71499
+                ]
+            },
+            "properties": {
+                "id": "45669",
+                "name": "Vigo",
+                "municipality": "DODRO",
+                "province": "A Coru\u00f1a",
+                "type": "locality"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -9.25921,
+                    42.93744
+                ]
+            },
+            "properties": {
+                "id": "45958",
+                "name": "Vigo",
+                "municipality": "FISTERRA",
+                "province": "A Coru\u00f1a",
+                "type": "locality"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -8.84662,
+                    43.30918
+                ]
+            },
+            "properties": {
+                "id": "46586",
+                "name": "Vigo",
+                "municipality": "MALPICA DE BERGANTI\u00d1OS",
+                "province": "A Coru\u00f1a",
+                "type": "locality"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -8.14552,
+                    43.32482
+                ]
+            },
+            "properties": {
+                "id": "47131",
+                "name": "Vigo",
+                "municipality": "MI\u00d1O",
+                "province": "A Coru\u00f1a",
+                "type": "locality"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -8.0095,
+                    43.53497
+                ]
+            },
+            "properties": {
+                "id": "47216",
+                "name": "Campos de Vigo",
+                "municipality": "MOECHE",
+                "province": "A Coru\u00f1a",
+                "type": "locality"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -8.01772,
+                    43.53497
+                ]
+            },
+            "properties": {
+                "id": "47245",
+                "name": "Vigo",
+                "municipality": "MOECHE",
+                "province": "A Coru\u00f1a",
+                "type": "locality"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -8.13319,
+                    43.27114
+                ]
+            },
+            "properties": {
+                "id": "49048",
+                "name": "Vigo",
+                "municipality": "PADERNE",
+                "province": "A Coru\u00f1a",
+                "type": "locality"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -8.6452,
+                    42.80541
+                ]
+            },
+            "properties": {
+                "id": "49088",
+                "name": "Vigo",
+                "municipality": "PADR\u00d3N",
+                "province": "A Coru\u00f1a",
+                "type": "locality"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -7.66192,
+                    43.17994
+                ]
+            },
+            "properties": {
+                "id": "53392",
+                "name": "Vigo",
+                "municipality": "BEGONTE",
+                "province": "Lugo",
+                "type": "locality"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -7.38095,
+                    42.90446
+                ]
+            },
+            "properties": {
+                "id": "54258",
+                "name": "Vigo",
+                "municipality": "O CORGO",
+                "province": "Lugo",
+                "type": "locality"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -7.80763,
+                    42.64359
+                ]
+            },
+            "properties": {
+                "id": "54775",
+                "name": "Vigo",
+                "municipality": "CHANTADA",
+                "province": "Lugo",
+                "type": "locality"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -7.27843,
+                    43.54662
+                ]
+            },
+            "properties": {
+                "id": "55276",
+                "name": "Vigo",
+                "municipality": "FOZ",
+                "province": "Lugo",
+                "type": "locality"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -7.90274,
+                    43.12101
+                ]
+            },
+            "properties": {
+                "id": "55913",
+                "name": "Vig\u00f3n",
+                "municipality": "GUITIRIZ",
+                "province": "Lugo",
+                "type": "locality"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -7.83112,
+                    43.20219
+                ]
+            },
+            "properties": {
+                "id": "55996",
+                "name": "Vigo",
+                "municipality": "GUITIRIZ",
+                "province": "Lugo",
+                "type": "locality"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -7.58352,
+                    42.87932
+                ]
+            },
+            "properties": {
+                "id": "56166",
+                "name": "Vigo de Mosteiro",
+                "municipality": "GUNT\u00edN",
+                "province": "Lugo",
+                "type": "locality"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -7.65359,
+                    42.88714
+                ]
+            },
+            "properties": {
+                "id": "56235",
+                "name": "Vigo",
+                "municipality": "GUNT\u00edN",
+                "province": "Lugo",
+                "type": "locality"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -7.30569,
+                    42.82055
+                ]
+            },
+            "properties": {
+                "id": "56480",
+                "name": "Vigo de Galegos",
+                "municipality": "LANCARA",
+                "province": "Lugo",
+                "type": "locality"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -7.70176,
+                    42.97352
+                ]
+            },
+            "properties": {
+                "id": "56705",
+                "name": "Vigo",
+                "municipality": "LUGO",
+                "province": "Lugo",
+                "type": "locality"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -7.66444,
+                    42.99692
+                ]
+            },
+            "properties": {
+                "id": "56996",
+                "name": "Vigo",
+                "municipality": "LUGO",
+                "province": "Lugo",
+                "type": "locality"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -7.33232,
+                    43.44713
+                ]
+            },
+            "properties": {
+                "id": "57117",
+                "name": "Vigo",
+                "municipality": "MONDO\u00f1EDO",
+                "province": "Lugo",
+                "type": "locality"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -7.62065,
+                    43.59022
+                ]
+            },
+            "properties": {
+                "id": "57953",
+                "name": "Vigo",
+                "municipality": "OUROL",
+                "province": "Lugo",
+                "type": "locality"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -7.60018,
+                    43.56533
+                ]
+            },
+            "properties": {
+                "id": "57987",
+                "name": "Vigo",
+                "municipality": "OUROL",
+                "province": "Lugo",
+                "type": "locality"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -7.57342,
+                    43.10793
+                ]
+            },
+            "properties": {
+                "id": "58103",
+                "name": "Vigo",
+                "municipality": "OUTEIRO DE REI",
+                "province": "Lugo",
+                "type": "locality"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -7.53534,
+                    42.81272
+                ]
+            },
+            "properties": {
+                "id": "58905",
+                "name": "Vigo",
+                "municipality": "O PARAMO",
+                "province": "Lugo",
+                "type": "locality"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -7.50369,
+                    42.83824
+                ]
+            },
+            "properties": {
+                "id": "58961",
+                "name": "Vigo",
+                "municipality": "O PARAMO",
+                "province": "Lugo",
+                "type": "locality"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -7.37897,
+                    43.0931
+                ]
+            },
+            "properties": {
+                "id": "59311",
+                "name": "Vigo",
+                "municipality": "POL",
+                "province": "Lugo",
+                "type": "locality"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -7.64572,
+                    42.85522
+                ]
+            },
+            "properties": {
+                "id": "59541",
+                "name": "Vigo",
+                "municipality": "PORTOMAR\u00edN",
+                "province": "Lugo",
+                "type": "locality"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -7.75175,
+                    42.83037
+                ]
+            },
+            "properties": {
+                "id": "59549",
+                "name": "Vigo",
+                "municipality": "PORTOMAR\u00edN",
+                "province": "Lugo",
+                "type": "locality"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -7.28673,
+                    42.73946
+                ]
+            },
+            "properties": {
+                "id": "60059",
+                "name": "Vigo do Real",
+                "municipality": "SAMOS",
+                "province": "Lugo",
+                "type": "locality"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -7.40582,
+                    42.76015
+                ]
+            },
+            "properties": {
+                "id": "60165",
+                "name": "Vigo",
+                "municipality": "SARRIA",
+                "province": "Lugo",
+                "type": "locality"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -7.40335,
+                    42.77623
+                ]
+            },
+            "properties": {
+                "id": "60336",
+                "name": "Vigo de Sarria",
+                "municipality": "SARRIA",
+                "province": "Lugo",
+                "type": "locality"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -7.66031,
+                    42.59244
+                ]
+            },
+            "properties": {
+                "id": "60440",
+                "name": "Vigo",
+                "municipality": "O SAVI\u00f1AO",
+                "province": "Lugo",
+                "type": "locality"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -7.667,
+                    43.38993
+                ]
+            },
+            "properties": {
+                "id": "61900",
+                "name": "Vigo",
+                "municipality": "VILALBA",
+                "province": "Lugo",
+                "type": "locality"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -7.75157,
+                    42.00469
+                ]
+            },
+            "properties": {
+                "id": "62609",
+                "name": "Ouvigo",
+                "municipality": "BLANCOS (OS)",
+                "province": "Ourense",
+                "type": "locality"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -8.74281,
+                    42.21245
+                ]
+            },
+            "properties": {
+                "id": "71956",
+                "name": "Vigo",
+                "municipality": "VIGO",
+                "province": "Pontevedra",
+                "type": "locality"
+            }
+        }
+    ]
+}
