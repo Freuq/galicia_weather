@@ -47,16 +47,31 @@ df = pd.read_csv("data/processed/weather_santiago.csv", parse_dates=["fecha"])
 # Aplicar filtros desde el archivo utils/filters.py
 df_filtrado, año, mes = aplicar_filtros(df)
 
+
+df_filtrado["llovio"] = df_filtrado["precipitacion"] > 0
+conteo = df_filtrado["llovio"].value_counts().rename({True: "Días con lluvia 🌧️", False: "Días sin lluvia ☀️"}).reset_index()
+conteo.columns = ["Tipo de día", "Cantidad"]
+
+# Agrupamos por mes y sumamos las precipitaciones
+precipitaciones_mes = df_filtrado.groupby('mes_nombre')['precipitacion'].sum()
+
+# Encontramos el mes con más lluvia
+mes_mas_lluvioso = precipitaciones_mes.idxmax()
+lluvia_mas = precipitaciones_mes.max()
+
+# Encontramos el mes con menos lluvia
+mes_menos_lluvioso = precipitaciones_mes.idxmin()
+lluvia_menos = precipitaciones_mes.min()
+
+# Contamos el número total de meses (con datos)
+total_meses = len(df_filtrado.groupby('mes_num')['precipitacion'].sum())
+
 ################# PRECIPITACIÓN
 # Lluvia en Santiago
 st.markdown(
     "<h3 style='text-align: center;'>☔ Lluvia en Santiago de compostela</h3>",
     unsafe_allow_html=True
 )
-
-df_filtrado["llovio"] = df_filtrado["precipitacion"] > 0
-conteo = df_filtrado["llovio"].value_counts().rename({True: "Días con lluvia 🌧️", False: "Días sin lluvia ☀️"}).reset_index()
-conteo.columns = ["Tipo de día", "Cantidad"]
 
 fig_pie = px.pie(conteo, title="         Cantidad y porcentaje de días con y sin lluvia en Santiago", names="Tipo de día", values="Cantidad", hole=0.4)
 fig_pie.update_traces(
@@ -101,9 +116,9 @@ with col2:
         
     with subcol3:
         st.markdown("<h4 style='text-align: center;'>En meses</h4>", unsafe_allow_html=True)
-        st.markdown("<div class='custom-container'><h5 style='padding-bottom: 0.1px;';'>Meses totales</h5><h2 >{}</h2></div>".format(len(df_filtrado)), unsafe_allow_html=True)
-        st.markdown("<div class='custom-container'><h5 style='padding-bottom: 0.1px;';'>Mes más llovido</h5><h2 >{}</h2></div>".format((df_filtrado["precipitacion"] > 0).sum()), unsafe_allow_html=True)
-        st.markdown("<div class='custom-container'><h5 style='padding-bottom: 0.1px;';'>Mes menos llovido</h5><h2 >{}</h2></div>".format((df_filtrado["precipitacion"] == 0).sum()), unsafe_allow_html=True)
+        st.markdown("<div class='custom-container'><h5 style='padding-bottom: 0.1px;';'>Meses totales</h5><h2 >{}</h2></div>".format(total_meses), unsafe_allow_html=True)
+        st.markdown("<div class='custom-container'><h5 style='padding-bottom: 0.1px;';'>Mes más lluvioso</h5><h2 >{}</h2></div>".format(mes_mas_lluvioso), unsafe_allow_html=True)
+        st.markdown("<div class='custom-container'><h5 style='padding-bottom: 0.1px;';'>Mes menos lluvioso</h5><h2 >{}</h2></div>".format(mes_menos_lluvioso), unsafe_allow_html=True)
 
 
 
