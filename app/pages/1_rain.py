@@ -16,11 +16,14 @@ df = pd.read_csv("data/processed/weather_santiago.csv", parse_dates=["fecha"])
 
 # Pie chart días con y sin lluvia
 df["llovio"] = df["precipitacion"] > 0
-conteo = df["llovio"].value_counts().rename({True: "Día con lluvia", False: "Día sin lluvia"}).reset_index()
+conteo = df["llovio"].value_counts().rename({True: "Días con lluvia", False: "Días sin lluvia"}).reset_index()
 conteo.columns = ["Tipo de día", "Cantidad"]
 
-fig_pie = px.pie(conteo, title="Días con y sin lluvia en Santiago de Compostela", names="Tipo de día", values="Cantidad", hole=0.4)
-fig_pie.update_traces(textinfo="percent+label")
+fig_pie = px.pie(conteo, title="         Cantidad y porcentaje de días con y sin lluvia en Santiago", names="Tipo de día", values="Cantidad", hole=0.4)
+fig_pie.update_traces(
+    textinfo="percent+label+value", 
+    marker=dict(
+        colors=['#4FC3F7', '#FFEB3B']))
 fig_pie.update_layout(
     plot_bgcolor='rgba(0, 0, 0, 0)',  # Fondo de la gráfica transparente
     paper_bgcolor='rgba(0, 0, 0, 0)',  # Fondo del paper transparente
@@ -36,10 +39,9 @@ fig_pie.update_layout(
 )
 st.plotly_chart(fig_pie, use_container_width=True)
 
-# Visualización: lluvia diaria
-fig = px.bar(df, x="fecha", y="precipitacion", title="Lluvia diaria")
-fig.update_xaxes(dtick="M1", tickformat="%b %Y")
-fig.update_layout(
+# Lluvia diaria
+fig_rain = px.bar(df, x="fecha", y="precipitacion", title="         Precipitación diaria en Santiago de Compostela")
+fig_rain.update_layout(
     plot_bgcolor='rgba(0, 0, 0, 0)',  # Fondo de la gráfica transparente
     paper_bgcolor='rgba(0, 0, 0, 0)',  # Fondo del paper transparente
     font=dict(color='white'),
@@ -52,6 +54,8 @@ fig.update_layout(
     autosize=True,
     margin=dict(l=20, r=20, t=40, b=40)
 )
-st.plotly_chart(fig, use_container_width=True)
+
+
+st.plotly_chart(fig_rain, use_container_width=True)
 
 
