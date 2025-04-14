@@ -156,3 +156,11 @@ header[data-testid="stHeader"] {
 div[data-testid="stDecoration"] {
     display: none !important;
 }
+
+/* CONTENEDOR */
+.block-container {
+    background-color: #155ea6;
+    color: white;
+    padding: 2rem;
+    border-radius: 10px;
+}

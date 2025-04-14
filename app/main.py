@@ -11,17 +11,6 @@ def cargar_css(path: str):
 # Llama a la función
 cargar_css("app/static/styles.css")
 
-st.markdown("""
-    <style>
-    /* Fondo azul oscuro para el contenido principal */
-    .block-container {
-        background-color: #155ea6;
-        color: white;
-        padding: 2rem;
-        border-radius: 10px;
-    }
-    </style>
-""", unsafe_allow_html=True)
 
 st.title("⛅ Resumen Climático")
 st.subheader("📍 Localización: Santiago de Compostela")
