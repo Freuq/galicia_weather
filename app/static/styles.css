@@ -144,3 +144,15 @@ Esta comentado porque hace un doble contenedor en las imagenes de plotly, tendr�
     justify-content: center;
     align-items: center;
 }
+
+/* DECORACIÓN */
+
+/* Cambiar color de fondo del header */
+header[data-testid="stHeader"] {
+    background-color: #05284a !important; /* Azul oscuro */
+}
+
+/* Cambiar la línea de decoración dentro del header a blanco */
+div[data-testid="stDecoration"] {
+    display: none !important;
+}

@@ -21,11 +21,37 @@ conteo.columns = ["Tipo de día", "Cantidad"]
 
 fig_pie = px.pie(conteo, names="Tipo de día", values="Cantidad", hole=0.4)
 fig_pie.update_traces(textinfo="percent+label")
+fig_pie.update_layout(
+    plot_bgcolor='rgba(0, 0, 0, 0)',  # Fondo de la gráfica transparente
+    paper_bgcolor='rgba(0, 0, 0, 0)',  # Fondo del paper transparente
+    font=dict(color='white'),
+    title_font=dict(color='white'),
+    legend=dict(font=dict(color='white')),
+    xaxis=dict(title='Fecha', color='white'),
+    yaxis=dict(title='Precipitación (L/m²)',
+        color='white', 
+        gridcolor='rgba(255, 255, 255, 0.4)'),
+    autosize=True,
+    margin=dict(l=20, r=20, t=40, b=40)
+)
 st.plotly_chart(fig_pie, use_container_width=True)
 
 # Visualización: lluvia diaria
 fig = px.bar(df, x="Fecha", y="lluvia", title="Lluvia diaria (mm)")
 fig.update_xaxes(dtick="M1", tickformat="%b %Y")
+fig.update_layout(
+    plot_bgcolor='rgba(0, 0, 0, 0)',  # Fondo de la gráfica transparente
+    paper_bgcolor='rgba(0, 0, 0, 0)',  # Fondo del paper transparente
+    font=dict(color='white'),
+    title_font=dict(color='white'),
+    legend=dict(font=dict(color='white')),
+    xaxis=dict(title='Fecha', color='white'),
+    yaxis=dict(title='Precipitación (L/m²)',
+        color='white', 
+        gridcolor='rgba(255, 255, 255, 0.4)'),
+    autosize=True,
+    margin=dict(l=20, r=20, t=40, b=40)
+)
 st.plotly_chart(fig, use_container_width=True)
 
 
