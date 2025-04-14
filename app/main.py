@@ -179,21 +179,3 @@ col1.markdown("<div style='text-align: center;'><h5 style='padding-bottom: 0.1px
 col2.markdown("<div style='text-align: center;'><h5 style='padding-bottom: 0.1px;';'>Humedad max (%)</h5><h2 >{}</h2></div>".format(df_filtrado['humedad'].max()), unsafe_allow_html=True)
 col3.markdown("<div style='text-align: center;'><h5 style='padding-bottom: 0.1px;';'>Humedad min (%)</h5><h2 >{:.1f}</h2></div>".format(df_filtrado['humedad'].min()), unsafe_allow_html=True)
 
-# Temperatura diaria
-
-fig_hum = px.line(df_filtrado, x="fecha", y="humedad", title="         Humedad Relativa diaria en Santiago")
-fig_hum.update_layout(
-    plot_bgcolor='rgba(0, 0, 0, 0)',  # Fondo de la gráfica transparente
-    paper_bgcolor='rgba(0, 0, 0, 0)',  # Fondo del paper transparente
-    font=dict(color='white'),
-    title_font=dict(color='white'),
-    legend=dict(font=dict(color='white')),
-    xaxis=dict(title='Fecha', color='white'),
-    yaxis=dict(title='Temperatura (ºC)',
-        color='white', 
-        gridcolor='rgba(255, 255, 255, 0.4)'),
-    autosize=True,
-    margin=dict(l=20, r=20, t=40, b=40)
-)
-
-st.plotly_chart(fig_hum, use_container_width=True)
