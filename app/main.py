@@ -4,20 +4,16 @@ import plotly.express as px
 import folium
 import streamlit.components.v1 as components
 import tempfile
-from utils.filters import aplicar_filtros
+from utils.filters import *
 
 st.set_page_config(layout="wide")
-
-def cargar_css(path: str):
-    with open(path) as f:
-        st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
 
 # Llama a la función
 cargar_css("app/static/styles.css")
 
 st.title("⛅ Resumen Climático")
 st.subheader("📍 Localización: Santiago de Compostela")
-st.markdown("<br>", unsafe_allow_html=True)
+#st.markdown("<br>", unsafe_allow_html=True)
 
 # Crear el mapa
 m = folium.Map(location=[42.8782, -8.5448], zoom_start=13, control_scale=False)
@@ -69,11 +65,11 @@ total_meses = len(df_filtrado.groupby('mes_num')['precipitacion'].sum())
 ################# PRECIPITACIÓN
 # Lluvia en Santiago
 st.markdown(
-    "<h3 style='text-align: center;'>☔ Lluvia en Santiago de compostela</h3>",
+    "<h3 style='text-align: center;'>☔ Lluvia en Santiago de Compostela</h3>",
     unsafe_allow_html=True
 )
 
-fig_pie = px.pie(conteo, title="         Cantidad y porcentaje de días con y sin lluvia en Santiago", names="Tipo de día", values="Cantidad", hole=0.4)
+fig_pie = px.pie(conteo, title="         Cantidad y porcentaje de días con y sin lluvia en Santiago", names="Tipo de día", values="Cantidad")
 fig_pie.update_traces(
     textinfo="percent+label+value", 
     marker=dict(
