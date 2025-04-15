@@ -12,7 +12,7 @@ def cargar_css(path: str):
 cargar_css("app/static/styles.css")
 
 # Cargar datos
-df = pd.read_csv("data/processed/weather_santiago.csv", parse_dates=["fecha"])
+df = pd.read_csv("data/processed/santiago.csv", parse_dates=["fecha"])
 
 # Pie chart días con y sin lluvia
 df["llovio"] = df["precipitacion"] > 0
