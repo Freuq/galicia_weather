@@ -44,7 +44,9 @@ def coors(localizacion):
     if localizacion == 'galicia':
         coors = [-7.54389, 42.452515]
     else:
-        path = f'data/processed/place_coords.json'
+        base_path = os.path.dirname(os.path.abspath(__file__))  # directorio del script actual
+        project_root = os.path.abspath(os.path.join(base_path, '..', '..'))  # sube hasta 'galizia_weather'
+        path = os.path.join(project_root, 'data', 'processed', 'place_coords.json')  # archivo JSON directamente
 
         with open(path, "r") as f:
             data = json.load(f)

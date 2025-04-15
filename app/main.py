@@ -15,21 +15,22 @@ st.title("⛅Morriña en Galicia")
 
 localidades = ["Galicia", "Santiago", "Coruña", "Lugo", "Ourense", "Pontevedra", "Vigo"]
 localizacion = st.sidebar.selectbox("Clima en:", localidades)
-
+st.subheader(f"📍 Localización: {localizacion}")
+localizacion = localizacion.lower().replace('ñ', 'n')
 
 # Cargar datos
-df = cargar_df(localizacion.lower().replace('ñ', 'n'))
+df = cargar_df(localizacion)
 
 # Aplicar filtros desde el archivo utils/filters.py
 df_filtrado, año, mes = aplicar_filtros(df)
 
 
-st.subheader(f"📍 Localización: {localizacion}")
+
 #st.markdown("<br>", unsafe_allow_html=True)
 
 lon, lat = coors(localizacion)
 
-zoom = 8 if localizacion.lower() == 'galicia' else 13
+zoom = 8 if localizacion.lower() == 'galicia' else 12
 
 # Crear el mapa
 m = folium.Map(location=[lat, lon], zoom_start=zoom, control_scale=False)
