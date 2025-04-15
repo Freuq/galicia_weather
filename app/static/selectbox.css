@@ -1,0 +1,30 @@
+/* Aplica estilo general al selectbox */
+div[data-baseweb="select"] {
+    background-color: #003366; /* fondo */
+    color: white; /* texto */
+    border-radius: 10px;
+    padding: 5px;
+}
+
+/* Estilo al texto del selectbox (las opciones) */
+div[data-baseweb="select"] > div {
+    color: white;
+}
+
+/* Opciones cuando se despliegan */
+ul[role="listbox"] {
+    background-color: #003366;
+    color: white;
+}
+
+/* Opciones individuales */
+li[role="option"] {
+    background-color: #003366;
+    color: white;
+}
+
+/* Opción seleccionada */
+li[aria-selected="true"] {
+    background-color: #005599;
+}
+

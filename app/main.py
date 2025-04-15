@@ -4,15 +4,27 @@ import plotly.express as px
 import folium
 import streamlit.components.v1 as components
 import tempfile
+import os
 from utils.filters import *
 
+# Diseño de la página
 st.set_page_config(layout="wide")
-
-# Llama a la función
 cargar_css("app/static/styles.css")
 
-st.title("⛅ Resumen Climático")
-st.subheader("📍 Localización: Santiago de Compostela")
+st.title("⛅Morriña en Galicia")
+
+localidades = ["Galicia", "Santiago", "A Coruña", "Lugo", "Ourense", "Pontevedra", "Vigo"]
+localizacion = st.sidebar.selectbox("Clima en:", localidades)
+
+
+# Cargar datos
+df = cargar_df(localizacion)
+
+# Aplicar filtros desde el archivo utils/filters.py
+df_filtrado, año, mes = aplicar_filtros(df)
+
+
+st.subheader(f"📍 Localización: {localizacion}")
 #st.markdown("<br>", unsafe_allow_html=True)
 
 # Crear el mapa
@@ -37,16 +49,13 @@ st.components.v1.html(f"""
 """, height=520)
 
 
-# Cargar datos
-df = pd.read_csv("data/processed/weather_santiago.csv", parse_dates=["fecha"])
-
-# Aplicar filtros desde el archivo utils/filters.py
-df_filtrado, año, mes = aplicar_filtros(df)
-
-
 df_filtrado["llovio"] = df_filtrado["precipitacion"] > 0
 conteo = df_filtrado["llovio"].value_counts().rename({True: "Días con lluvia 🌧️", False: "Días sin lluvia ☀️"}).reset_index()
 conteo.columns = ["Tipo de día", "Cantidad"]
+if conteo.iloc[0][0] == 'Días sin lluvia ☀️':
+    colores = ['#FFEB3B', '#4FC3F7']
+else:
+    colores = ['#4FC3F7', '#FFEB3B']
 
 # Agrupamos por mes y sumamos las precipitaciones
 precipitaciones_mes = df_filtrado.groupby('mes_nombre')['precipitacion'].sum()
@@ -65,7 +74,7 @@ total_meses = len(df_filtrado.groupby('mes_num')['precipitacion'].sum())
 ################# PRECIPITACIÓN
 # Lluvia en Santiago
 st.markdown(
-    "<h3 style='text-align: center;'>☔ Lluvia en Santiago de Compostela</h3>",
+    "<h3 style='text-align: center;'>☔ Choiva en Santiago de Compostela</h3>",
     unsafe_allow_html=True
 )
 
@@ -73,7 +82,7 @@ fig_pie = px.pie(conteo, title="         Cantidad y porcentaje de días con y si
 fig_pie.update_traces(
     textinfo="percent+label+value", 
     marker=dict(
-        colors=['#4FC3F7', '#FFEB3B']))
+        colors=colores))
 fig_pie.update_layout(
     plot_bgcolor='rgba(0, 0, 0, 0)',  # Fondo de la gráfica transparente
     paper_bgcolor='rgba(0, 0, 0, 0)',  # Fondo del paper transparente
@@ -170,7 +179,7 @@ st.plotly_chart(fig_temp, use_container_width=True)
 ################ HUMEDAD RELATIVA
 # Visualización: lluvia y temperatura
 st.markdown(
-    "<h3 style='text-align: center;'>🌫️ Humedad Relativa en Santiago</h3>",
+    "<h3 style='text-align: center;'>🌫️ Humidade Relativa en Santiago de compostela</h3>",
     unsafe_allow_html=True
 )
 
