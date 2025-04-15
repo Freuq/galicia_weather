@@ -81,7 +81,7 @@ st.markdown(
     unsafe_allow_html=True
 )
 
-fig_pie = px.pie(df_conteo, title="         Cantidad y porcentaje de días con y sin lluvia en Santiago", names="Tipo de día", values="Cantidad")
+fig_pie = px.pie(df_conteo, title="         Porcentaje de días con y sin lluvia en Santiago", names="Tipo de día", values="Cantidad")
 fig_pie.update_traces(
     textinfo="percent+label+value", 
     marker=dict(
@@ -112,15 +112,15 @@ with col2:
     
     with subcol1:
         st.markdown("<h4 style='text-align: center;'>Recuento en días</h4>", unsafe_allow_html=True)
-        st.markdown("<div class='custom-container'><h5 style='padding-bottom: 0.1px;';'>Días totales</h5><h2 >{}</h2></div>".format(len(df_filtrado)), unsafe_allow_html=True)
-        st.markdown("<div class='custom-container'><h5 style='padding-bottom: 0.1px;';'>Días con lluvia</h5><h2 >{}</h2></div>".format((df_filtrado["precipitacion"] > 0).sum()), unsafe_allow_html=True)
-        st.markdown("<div class='custom-container'><h5 style='padding-bottom: 0.1px;';'>Días sin lluvia</h5><h2 >{}</h2></div>".format((df_filtrado["precipitacion"] == 0).sum()), unsafe_allow_html=True)
+        st.markdown("<div class='custom-container'><h5 style='padding-bottom: 0.1px;';'>Días totales</h5><h2 >{}</h2></div>".format(len(df_grouped)), unsafe_allow_html=True)
+        st.markdown("<div class='custom-container'><h5 style='padding-bottom: 0.1px;';'>Días con lluvia</h5><h2 >{}</h2></div>".format((df_grouped["precipitacion"] > 0).sum()), unsafe_allow_html=True)
+        st.markdown("<div class='custom-container'><h5 style='padding-bottom: 0.1px;';'>Días sin lluvia</h5><h2 >{}</h2></div>".format((df_grouped["precipitacion"] == 0).sum()), unsafe_allow_html=True)
     
     with subcol2:
         st.markdown("<h4 style='text-align: center;'>Cantidad (L/m2)</h4>", unsafe_allow_html=True)
-        st.markdown("<div class='custom-container'><h5 style='padding-bottom: 0.1px;';'>Total</h5><h2 >{:.1f}</h2></div>".format(df_filtrado['precipitacion'].sum()), unsafe_allow_html=True)
-        st.markdown("<div class='custom-container'><h5 style='padding-bottom: 0.1px;';'>Promedio</h5><h2 >{}</h2></div>".format(round(df_filtrado['precipitacion'].mean(), 2)), unsafe_allow_html=True)
-        st.markdown("<div class='custom-container'><h5 style='padding-bottom: 0.1px;';'>Maximo</h5><h2 >{}</h2></div>".format((df_filtrado["precipitacion"]).max()), unsafe_allow_html=True)
+        st.markdown("<div class='custom-container'><h5 style='padding-bottom: 0.1px;';'>Total</h5><h2 >{:.1f}</h2></div>".format(df_grouped['precipitacion'].sum()), unsafe_allow_html=True)
+        st.markdown("<div class='custom-container'><h5 style='padding-bottom: 0.1px;';'>Promedio</h5><h2 >{}</h2></div>".format(round(df_grouped['precipitacion'].mean(), 2)), unsafe_allow_html=True)
+        st.markdown("<div class='custom-container'><h5 style='padding-bottom: 0.1px;';'>Maximo</h5><h2 >{}</h2></div>".format((df_grouped["precipitacion"]).max()), unsafe_allow_html=True)
         
     with subcol3:
         st.markdown("<h4 style='text-align: center;'>En meses</h4>", unsafe_allow_html=True)
@@ -156,9 +156,9 @@ st.markdown(
 )
 
 col1, col2, col3 = st.columns(3)
-col1.markdown("<div style='text-align: center;'><h5 style='padding-bottom: 0.1px;';'>Promedio (ºC)</h5><h2 >{}</h2></div>".format(round(df_filtrado['temperatura'].mean(), 2)), unsafe_allow_html=True)
-col2.markdown("<div style='text-align: center;'><h5 style='padding-bottom: 0.1px;';'>T máxima (ºC)</h5><h2 >{}</h2></div>".format(df_filtrado['temperatura'].max()), unsafe_allow_html=True)
-col3.markdown("<div style='text-align: center;'><h5 style='padding-bottom: 0.1px;';'>T mínima (ºC)</h5><h2 >{:.1f}</h2></div>".format(df_filtrado['temperatura'].min()), unsafe_allow_html=True)
+col1.markdown("<div style='text-align: center;'><h5 style='padding-bottom: 0.1px;';'>T máxima (ºC)</h5><h2 >{}</h2></div>".format(round(df_grouped['temperatura'].max(), 2)), unsafe_allow_html=True)
+col2.markdown("<div style='text-align: center;'><h5 style='padding-bottom: 0.1px;';'>Promedio (ºC)</h5><h2 >{}</h2></div>".format(round(df_grouped['temperatura'].mean(), 2)), unsafe_allow_html=True)
+col3.markdown("<div style='text-align: center;'><h5 style='padding-bottom: 0.1px;';'>T mínima (ºC)</h5><h2 >{:.1f}</h2></div>".format(df_grouped['temperatura'].min()), unsafe_allow_html=True)
 
 # Temperatura diaria
 
@@ -187,9 +187,9 @@ st.markdown(
 )
 
 col1, col2, col3 = st.columns(3)
-col1.markdown("<div style='text-align: center;'><h5 style='padding-bottom: 0.1px;';'>Humedad prom (%)</h5><h2 >{}</h2></div>".format(round(df_filtrado['humedad'].mean(), 2)), unsafe_allow_html=True)
-col2.markdown("<div style='text-align: center;'><h5 style='padding-bottom: 0.1px;';'>Humedad max (%)</h5><h2 >{}</h2></div>".format(df_filtrado['humedad'].max()), unsafe_allow_html=True)
-col3.markdown("<div style='text-align: center;'><h5 style='padding-bottom: 0.1px;';'>Humedad min (%)</h5><h2 >{:.1f}</h2></div>".format(df_filtrado['humedad'].min()), unsafe_allow_html=True)
+col1.markdown("<div style='text-align: center;'><h5 style='padding-bottom: 0.1px;';'>Humedad max (%)</h5><h2 >{}</h2></div>".format(round(df_grouped['humedad'].max(), 2)), unsafe_allow_html=True)
+col2.markdown("<div style='text-align: center;'><h5 style='padding-bottom: 0.1px;';'>Humedad prom (%)</h5><h2 >{}</h2></div>".format(round(df_grouped['humedad'].mean(), 2)), unsafe_allow_html=True)
+col3.markdown("<div style='text-align: center;'><h5 style='padding-bottom: 0.1px;';'>Humedad min (%)</h5><h2 >{:.1f}</h2></div>".format(df_grouped['humedad'].min()), unsafe_allow_html=True)
 
 fig_hum = px.line(df_grouped, x="fecha", y="humedad", title=f"         Humedad media diaria en {localizacion}")
 fig_hum.update_layout(
