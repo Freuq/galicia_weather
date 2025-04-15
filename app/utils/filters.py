@@ -1,5 +1,6 @@
 # utils/filters.py
 import os
+import json
 import pandas as pd
 import streamlit as st
 
@@ -31,14 +32,24 @@ def df_galicia():
             if archivo.endswith('.csv'):
                 path_archivo = os.path.join(folder, archivo)
                 df = pd.read_csv(path_archivo, index_col=0)
-                #df['archivo'] = archivo  # columna con nombre del archivo
+                df['archivo'] = archivo  # columna con nombre del archivo
                 dataframes.append(df)
     df_final = pd.concat(dataframes, ignore_index=True)
-    df = df_final.groupby('fecha').mean().round(2).reset_index()
+    df = df_final[['fecha','humedad','precipitacion','temperatura']].groupby('fecha').mean().round(2).reset_index()
     df["fecha"] = pd.to_datetime(df["fecha"])
     return df
 
-#def coors(localizacion):   
+def coors(localizacion):
+    localizacion = localizacion.lower()
+    if localizacion == 'galicia':
+        coors = [-7.54389, 42.452515]
+    else:
+        path = f'data/processed/place_coords.json'
+
+        with open(path, "r") as f:
+            data = json.load(f)
+        coors = data[f'{localizacion}']['coors']
+    return coors
 
 def aplicar_filtros(df):
     # Asegúrate de que las columnas necesarias existan

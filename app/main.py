@@ -13,12 +13,12 @@ cargar_css("app/static/styles.css")
 
 st.title("⛅Morriña en Galicia")
 
-localidades = ["Galicia", "Santiago", "A Coruña", "Lugo", "Ourense", "Pontevedra", "Vigo"]
+localidades = ["Galicia", "Santiago", "Coruña", "Lugo", "Ourense", "Pontevedra", "Vigo"]
 localizacion = st.sidebar.selectbox("Clima en:", localidades)
 
 
 # Cargar datos
-df = cargar_df(localizacion)
+df = cargar_df(localizacion.lower().replace('ñ', 'n'))
 
 # Aplicar filtros desde el archivo utils/filters.py
 df_filtrado, año, mes = aplicar_filtros(df)
@@ -27,10 +27,12 @@ df_filtrado, año, mes = aplicar_filtros(df)
 st.subheader(f"📍 Localización: {localizacion}")
 #st.markdown("<br>", unsafe_allow_html=True)
 
+lon, lat = coors(localizacion)
 
+zoom = 8 if localizacion.lower() == 'galicia' else 13
 
 # Crear el mapa
-m = folium.Map(location=[42.8782, -8.5448], zoom_start=13, control_scale=False)
+m = folium.Map(location=[lat, lon], zoom_start=zoom, control_scale=False)
 
 # Agregar marcador con emoji y popup en una sola línea
 folium.Marker(
