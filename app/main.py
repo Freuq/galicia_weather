@@ -16,31 +16,19 @@ st.title("⛅Morriña en Galicia")
 localidades = ["Galicia", "Santiago", "Coruña", "Lugo", "Ourense", "Pontevedra", "Vigo"]
 localizacion = st.sidebar.selectbox("Clima en:", localidades)
 st.subheader(f"📍 Localización: {localizacion}")
-localizacion = localizacion.lower().replace('ñ', 'n')
+localizacion_var = localizacion.lower().replace('ñ', 'n')
 
 # Cargar datos
-df = cargar_df(localizacion)
+df = cargar_df(localizacion_var)
 
 # Aplicar filtros desde el archivo utils/filters.py
 df_filtrado, año, mes = aplicar_filtros(df)
 
-
-
-#st.markdown("<br>", unsafe_allow_html=True)
-
-lon, lat = coors(localizacion)
-
-zoom = 8 if localizacion.lower() == 'galicia' else 12
-
 # Crear el mapa
+lon, lat = coors(localizacion_var)
+zoom = 7.5 if localizacion_var.lower() == 'galicia' else 12
+
 m = folium.Map(location=[lat, lon], zoom_start=zoom, control_scale=False)
-
-# Agregar marcador con emoji y popup en una sola línea
-folium.Marker(
-    [42.8782, -8.5448],
-    icon=folium.DivIcon(html='<div style="font-size:24px;">📍</div>')
-).add_to(m)
-
 # Guardar como archivo temporal
 with tempfile.NamedTemporaryFile(mode='w+', delete=False, suffix='.html') as f:
     m.save(f.name)
@@ -53,8 +41,6 @@ st.components.v1.html(f"""
     </div>
 """, height=520)
 
-
-df_filtrado["llovio"] = df_filtrado["precipitacion"] > 0
 conteo = df_filtrado["llovio"].value_counts().rename({True: "Días con lluvia 🌧️", False: "Días sin lluvia ☀️"}).reset_index()
 conteo.columns = ["Tipo de día", "Cantidad"]
 if conteo.iloc[0][0] == 'Días sin lluvia ☀️':
@@ -79,7 +65,7 @@ total_meses = len(df_filtrado.groupby('mes_num')['precipitacion'].sum())
 ################# PRECIPITACIÓN
 # Lluvia en Santiago
 st.markdown(
-    "<h3 style='text-align: center;'>☔ Choiva en Santiago de Compostela</h3>",
+    f"<h3 style='text-align: center;'>☔ Choiva en {localizacion}</h3>",
     unsafe_allow_html=True
 )
 
@@ -133,7 +119,7 @@ with col2:
 
 
 # Lluvia diaria
-fig_rain = px.bar(df_filtrado, x="fecha", y="precipitacion", title="         Precipitación diaria en Santiago de Compostela")
+fig_rain = px.bar(df_filtrado, x="fecha", y="precipitacion", color='ciudad', title=f"         Precipitación diaria en {localizacion}")
 fig_rain.update_layout(
     plot_bgcolor='rgba(0, 0, 0, 0)',  # Fondo de la gráfica transparente
     paper_bgcolor='rgba(0, 0, 0, 0)',  # Fondo del paper transparente
@@ -153,7 +139,7 @@ st.plotly_chart(fig_rain, use_container_width=True)
 
 ############### TEMPERATURA
 st.markdown(
-    "<h3 style='text-align: center;'>🌡️ Temperatura en Santiago</h3>",
+    f"<h3 style='text-align: center;'>🌡️ Temperatura en {localizacion}</h3>",
     unsafe_allow_html=True
 )
 
@@ -164,7 +150,7 @@ col3.markdown("<div style='text-align: center;'><h5 style='padding-bottom: 0.1px
 
 # Temperatura diaria
 
-fig_temp = px.line(df_filtrado, x="fecha", y="temperatura", title="         Temperatura media diaria en Santiago")
+fig_temp = px.bar(df_filtrado, x="fecha", y="temperatura", color='ciudad', title=f"         Temperatura media diaria en {localizacion}")
 fig_temp.update_layout(
     plot_bgcolor='rgba(0, 0, 0, 0)',  # Fondo de la gráfica transparente
     paper_bgcolor='rgba(0, 0, 0, 0)',  # Fondo del paper transparente
@@ -184,7 +170,7 @@ st.plotly_chart(fig_temp, use_container_width=True)
 ################ HUMEDAD RELATIVA
 # Visualización: lluvia y temperatura
 st.markdown(
-    "<h3 style='text-align: center;'>🌫️ Humidade Relativa en Santiago de compostela</h3>",
+    f"<h3 style='text-align: center;'>🌫️ Humidade Relativa en {localizacion}</h3>",
     unsafe_allow_html=True
 )
 
@@ -192,4 +178,21 @@ col1, col2, col3 = st.columns(3)
 col1.markdown("<div style='text-align: center;'><h5 style='padding-bottom: 0.1px;';'>Humedad prom (%)</h5><h2 >{}</h2></div>".format(round(df_filtrado['humedad'].mean(), 2)), unsafe_allow_html=True)
 col2.markdown("<div style='text-align: center;'><h5 style='padding-bottom: 0.1px;';'>Humedad max (%)</h5><h2 >{}</h2></div>".format(df_filtrado['humedad'].max()), unsafe_allow_html=True)
 col3.markdown("<div style='text-align: center;'><h5 style='padding-bottom: 0.1px;';'>Humedad min (%)</h5><h2 >{:.1f}</h2></div>".format(df_filtrado['humedad'].min()), unsafe_allow_html=True)
+
+fig_hum = px.line(df_filtrado, x="fecha", y="humedad", color='ciudad', title=f"         Humedad media diaria en {localizacion}")
+fig_hum.update_layout(
+    plot_bgcolor='rgba(0, 0, 0, 0)',  # Fondo de la gráfica transparente
+    paper_bgcolor='rgba(0, 0, 0, 0)',  # Fondo del paper transparente
+    font=dict(color='white'),
+    title_font=dict(color='white'),
+    legend=dict(font=dict(color='white')),
+    xaxis=dict(title='Fecha', color='white'),
+    yaxis=dict(title='Humedad (%)',
+        color='white', 
+        gridcolor='rgba(255, 255, 255, 0.4)'),
+    autosize=True,
+    margin=dict(l=20, r=20, t=40, b=40)
+)
+st.plotly_chart(fig_hum, use_container_width=True)
+
 
