@@ -27,6 +27,8 @@ df_filtrado, año, mes = aplicar_filtros(df)
 st.subheader(f"📍 Localización: {localizacion}")
 #st.markdown("<br>", unsafe_allow_html=True)
 
+
+
 # Crear el mapa
 m = folium.Map(location=[42.8782, -8.5448], zoom_start=13, control_scale=False)
 
