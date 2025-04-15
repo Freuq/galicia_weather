@@ -17,25 +17,21 @@ def cargar_df(localizacion):
     return df
     
 def df_galicia():
-    # project directory
-    current_directory = os.getcwd()
-    folder = current_directory.split("\\")[-1]
-    if folder != 'galizia_weather':
-        os.chdir('..')
-        print(os.getcwd()) 
-    else:
-        print(os.getcwd())
+    # Ruta absoluta desde el archivo actual
+    base_path = os.path.dirname(os.path.abspath(__file__))  # directorio del script actual
+    project_root = os.path.abspath(os.path.join(base_path, '..', '..'))  # sube hasta 'galizia_weather'
+    folder = os.path.join(project_root, 'data', 'processed')
 
-    folder = 'data/processed'
+    print(f"📁 Ruta usada: {folder}")
+
     dataframes = []
-    for archivo in os.listdir(folder):
+
+    if os.path.exists(folder):
+        for archivo in os.listdir(folder):
             if archivo.endswith('.csv'):
-                path_folder = os.path.join(folder, archivo)
-                df = pd.read_csv(path_folder, index_col=0)
-                # Agregar columna con el nombre del archivo (sin extensión)
-                #nombre_ciudad = os.path.splitext(archivo)[0]
-                #df['ciudad'] = nombre_ciudad
-            
+                path_archivo = os.path.join(folder, archivo)
+                df = pd.read_csv(path_archivo, index_col=0)
+                #df['archivo'] = archivo  # columna con nombre del archivo
                 dataframes.append(df)
     df_final = pd.concat(dataframes, ignore_index=True)
     df = df_final.groupby('fecha').mean().round(2).reset_index()
