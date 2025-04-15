@@ -41,12 +41,24 @@ st.components.v1.html(f"""
     </div>
 """, height=520)
 
-conteo = df_filtrado["llovio"].value_counts().rename({True: "Días con lluvia 🌧️", False: "Días sin lluvia ☀️"}).reset_index()
-conteo.columns = ["Tipo de día", "Cantidad"]
-if conteo.iloc[0][0] == 'Días sin lluvia ☀️':
-    colores = ['#FFEB3B', '#4FC3F7']
-else:
-    colores = ['#4FC3F7', '#FFEB3B']
+df_grouped = df_filtrado.groupby('fecha').agg({
+    'temperatura': 'mean',
+    'precipitacion': 'sum',
+    'humedad': 'mean'
+}).reset_index()
+
+df_grouped['llovio'] = df_grouped['precipitacion'] > 0
+conteo_con = df_grouped["llovio"].sum()
+conteo_sin = len(df_grouped) - conteo_con
+conteo = [conteo_con, conteo_sin]
+conteo = [conteo_con, conteo_sin]
+etiquetas = ['Días con lluvia 🌧️', 'Días sin lluvia ☀️']
+
+df_conteo = pd.DataFrame({
+    'Tipo de día': etiquetas,
+    'Cantidad': conteo
+})
+colores = ['#4FC3F7', '#FFEB3B']
 
 # Agrupamos por mes y sumamos las precipitaciones
 precipitaciones_mes = df_filtrado.groupby('mes_nombre')['precipitacion'].sum()
@@ -69,7 +81,7 @@ st.markdown(
     unsafe_allow_html=True
 )
 
-fig_pie = px.pie(conteo, title="         Cantidad y porcentaje de días con y sin lluvia en Santiago", names="Tipo de día", values="Cantidad")
+fig_pie = px.pie(df_conteo, title="         Cantidad y porcentaje de días con y sin lluvia en Santiago", names="Tipo de día", values="Cantidad")
 fig_pie.update_traces(
     textinfo="percent+label+value", 
     marker=dict(
@@ -119,7 +131,7 @@ with col2:
 
 
 # Lluvia diaria
-fig_rain = px.bar(df_filtrado, x="fecha", y="precipitacion", color='ciudad', title=f"         Precipitación diaria en {localizacion}")
+fig_rain = px.bar(df_grouped, x="fecha", y="precipitacion", title=f"         Precipitación diaria en {localizacion}")
 fig_rain.update_layout(
     plot_bgcolor='rgba(0, 0, 0, 0)',  # Fondo de la gráfica transparente
     paper_bgcolor='rgba(0, 0, 0, 0)',  # Fondo del paper transparente
@@ -150,7 +162,7 @@ col3.markdown("<div style='text-align: center;'><h5 style='padding-bottom: 0.1px
 
 # Temperatura diaria
 
-fig_temp = px.bar(df_filtrado, x="fecha", y="temperatura", color='ciudad', title=f"         Temperatura media diaria en {localizacion}")
+fig_temp = px.bar(df_filtrado, x="fecha", y="temperatura", title=f"         Temperatura media diaria en {localizacion}")
 fig_temp.update_layout(
     plot_bgcolor='rgba(0, 0, 0, 0)',  # Fondo de la gráfica transparente
     paper_bgcolor='rgba(0, 0, 0, 0)',  # Fondo del paper transparente
@@ -179,7 +191,7 @@ col1.markdown("<div style='text-align: center;'><h5 style='padding-bottom: 0.1px
 col2.markdown("<div style='text-align: center;'><h5 style='padding-bottom: 0.1px;';'>Humedad max (%)</h5><h2 >{}</h2></div>".format(df_filtrado['humedad'].max()), unsafe_allow_html=True)
 col3.markdown("<div style='text-align: center;'><h5 style='padding-bottom: 0.1px;';'>Humedad min (%)</h5><h2 >{:.1f}</h2></div>".format(df_filtrado['humedad'].min()), unsafe_allow_html=True)
 
-fig_hum = px.line(df_filtrado, x="fecha", y="humedad", color='ciudad', title=f"         Humedad media diaria en {localizacion}")
+fig_hum = px.line(df_grouped, x="fecha", y="humedad", title=f"         Humedad media diaria en {localizacion}")
 fig_hum.update_layout(
     plot_bgcolor='rgba(0, 0, 0, 0)',  # Fondo de la gráfica transparente
     paper_bgcolor='rgba(0, 0, 0, 0)',  # Fondo del paper transparente
