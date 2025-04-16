@@ -1,6 +1,8 @@
 import streamlit as st
 import pandas as pd
+import seaborn as sns
 import plotly.express as px
+import plotly.graph_objects as go
 import folium
 import streamlit.components.v1 as components
 import tempfile
@@ -147,7 +149,6 @@ fig_rain.update_layout(
     margin=dict(l=20, r=20, t=40, b=40)
 )
 
-
 st.plotly_chart(fig_rain, use_container_width=True)
 
 ############### TEMPERATURA
@@ -163,8 +164,6 @@ col3.markdown("<div style='text-align: center;'><h5 style='padding-bottom: 0.1px
 
 
 # LINEA DE TEMPERATURA DIARIA: Muestra la evolución temporal y diferencias entre ciudades
-
-
 def plot_temp_line(df_filtrado, localizacion):
 
     if 'ciudad' in df_filtrado.columns:
@@ -217,7 +216,6 @@ def plot_temp_boxplot(df_filtrado, localizacion):
 
 fig_temp_boxplot = plot_temp_boxplot(df_filtrado, localizacion)
 st.plotly_chart(fig_temp_boxplot, use_container_width=True)
-
 
 # MEDIA MENSUAL POR CIUDAD (LINEA O BARRAS):  Buena para ver estacionalidad y comparaciones regionales
 def plot_temp_monthly_avg(df_filtrado, localizacion):
@@ -289,9 +287,7 @@ fig_humidity_line = plot_humidity_line(df_filtrado, localizacion)
 st.plotly_chart(fig_humidity_line, use_container_width=True)
 
 # DISTRIBUCIÓN DE HUMEDAD (HISTOGRAMA O UN KDE): Te dice en qué rango de humedad se mueven la mayoría de los días
-import plotly.graph_objects as go
-import seaborn as sns
-import numpy as np
+
 
 def plot_humidity_kde_line(df_filtrado, localizacion):
     fig = go.Figure()
@@ -382,6 +378,11 @@ def plot_humidity_heatmap(df_filtrado, localizacion):
 fig_humidity_heatmap = plot_humidity_heatmap(df_filtrado, localizacion)
 st.plotly_chart(fig_humidity_heatmap, use_container_width=True)
 ############ COMPARATIVAS
+st.markdown(
+    f"<h3 style='text-align: center;'>Temperatura vs Humidade en {localizacion}</h3>",
+    unsafe_allow_html=True
+)
+
 # SCATTER PLOT ENTRE TEMP Y HUMEDAD: Para ver correlaciones o agrupaciones
 def plot_temp_vs_humidity(df_filtrado, localizacion):
     if 'ciudad' in df_filtrado.columns and df_filtrado['ciudad'].nunique() > 1:
@@ -409,8 +410,6 @@ fig_temp_vs_humidity = plot_temp_vs_humidity(df_filtrado, localizacion)
 st.plotly_chart(fig_temp_vs_humidity, use_container_width=True)
 
 # LINEA CON DOBLE EJE Y: Útil para ver cómo cambian juntas en el tiempo
-import plotly.graph_objects as go
-
 def plot_temp_humidity_dual_axis(df_filtrado, localizacion):
     fig = go.Figure()
 
