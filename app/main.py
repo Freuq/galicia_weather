@@ -114,40 +114,50 @@ with col2:
     subcol1, subcol2, subcol3 = st.columns(3)
     
     with subcol1:
-        st.markdown("<h4 style='text-align: center;'>Recuento en días</h4>", unsafe_allow_html=True)
+        st.markdown("<h4 style='text-align: center;'>En días</h4>", unsafe_allow_html=True)
         st.markdown("<div class='custom-container'><h5 style='padding-bottom: 0.1px;';'>Días totales</h5><h2 >{}</h2></div>".format(len(df_grouped)), unsafe_allow_html=True)
-        st.markdown("<div class='custom-container'><h5 style='padding-bottom: 0.1px;';'>Días con lluvia</h5><h2 >{}</h2></div>".format((df_grouped["precipitacion"] > 0).sum()), unsafe_allow_html=True)
-        st.markdown("<div class='custom-container'><h5 style='padding-bottom: 0.1px;';'>Días sin lluvia</h5><h2 >{}</h2></div>".format((df_grouped["precipitacion"] == 0).sum()), unsafe_allow_html=True)
+        st.markdown("<div class='custom-container'><h5 style='padding-bottom: 0.1px;';'>Con lluvia</h5><h2 >{}</h2></div>".format((df_grouped["precipitacion"] > 0).sum()), unsafe_allow_html=True)
+        st.markdown("<div class='custom-container'><h5 style='padding-bottom: 0.1px;';'>Sin lluvia</h5><h2 >{}</h2></div>".format((df_grouped["precipitacion"] == 0).sum()), unsafe_allow_html=True)
     
     with subcol2:
         st.markdown("<h4 style='text-align: center;'>Cantidad (L/m2)</h4>", unsafe_allow_html=True)
-        st.markdown("<div class='custom-container'><h5 style='padding-bottom: 0.1px;';'>Total</h5><h2 >{:.1f}</h2></div>".format(df_grouped['precipitacion'].sum()), unsafe_allow_html=True)
+        st.markdown("<div class='custom-container'><h5 style='padding-bottom: 0.1px;';'>Total</h5><h2 >{:.1f}</h2></div>".format(int(df_grouped['precipitacion'].sum())), unsafe_allow_html=True)
         st.markdown("<div class='custom-container'><h5 style='padding-bottom: 0.1px;';'>Promedio</h5><h2 >{}</h2></div>".format(round(df_grouped['precipitacion'].mean(), 2)), unsafe_allow_html=True)
         st.markdown("<div class='custom-container'><h5 style='padding-bottom: 0.1px;';'>Maximo</h5><h2 >{}</h2></div>".format((df_grouped["precipitacion"]).max()), unsafe_allow_html=True)
         
     with subcol3:
         st.markdown("<h4 style='text-align: center;'>En meses</h4>", unsafe_allow_html=True)
         st.markdown("<div class='custom-container'><h5 style='padding-bottom: 0.1px;';'>Meses totales</h5><h2 >{}</h2></div>".format(total_meses), unsafe_allow_html=True)
-        st.markdown("<div class='custom-container'><h5 style='padding-bottom: 0.1px;';'>Mes más lluvioso</h5><h2 >{}</h2></div>".format(mes_mas_lluvioso), unsafe_allow_html=True)
-        st.markdown("<div class='custom-container'><h5 style='padding-bottom: 0.1px;';'>Mes menos lluvioso</h5><h2 >{}</h2></div>".format(mes_menos_lluvioso), unsafe_allow_html=True)
+        st.markdown("<div class='custom-container'><h5 style='padding-bottom: 0.1px;';'>Más lluvioso</h5><h2 >{}</h2></div>".format(mes_mas_lluvioso), unsafe_allow_html=True)
+        st.markdown("<div class='custom-container'><h5 style='padding-bottom: 0.1px;';'>Menos lluvioso</h5><h2 >{}</h2></div>".format(mes_menos_lluvioso), unsafe_allow_html=True)
 
 
 
 # Lluvia diaria
-fig_rain = px.bar(df_grouped, x="fecha", y="precipitacion", title=f"         Precipitación diaria en {localizacion}")
-fig_rain.update_layout(
-    plot_bgcolor='rgba(0, 0, 0, 0)',  # Fondo de la gráfica transparente
-    paper_bgcolor='rgba(0, 0, 0, 0)',  # Fondo del paper transparente
-    font=dict(color='white'),
-    title_font=dict(color='white'),
-    legend=dict(font=dict(color='white')),
-    xaxis=dict(title='Fecha', color='white'),
-    yaxis=dict(title='Precipitación (L/m²)',
-        color='white', 
-        gridcolor='rgba(255, 255, 255, 0.4)'),
-    autosize=True,
-    margin=dict(l=20, r=20, t=40, b=40)
-)
+def plot_lluvia_line(df, localizacion):
+
+    if 'ciudad' in df.columns:
+        fig = px.bar(df, x="fecha", y="precipitacion", color="ciudad",
+                      title=f"         Temperatura diaria en {localizacion}")
+    else:
+        fig = px.bar(df, x="fecha", y="precipitacion",
+                      title=f"         Temperatura diaria en {localizacion}")
+
+    fig.update_layout(
+        plot_bgcolor='rgba(0, 0, 0, 0)',
+        paper_bgcolor='rgba(0, 0, 0, 0)',
+        font=dict(color='white'),
+        title_font=dict(color='white'),
+        legend=dict(font=dict(color='white')),
+        xaxis=dict(title='Fecha', color='white'),
+        yaxis=dict(title='Temperatura (°C)', color='white', gridcolor='rgba(255, 255, 255, 0.4)'),
+        autosize=True,
+        margin=dict(l=20, r=20, t=40, b=40)
+    )
+    
+    return fig
+
+fig_rain = plot_lluvia_line(df_filtrado, localizacion)
 
 st.plotly_chart(fig_rain, use_container_width=True)
 
