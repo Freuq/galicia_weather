@@ -5,6 +5,78 @@ import plotly.express as px
 import plotly.graph_objects as go
 import folium
 
+# PIE DE LLUVIA
+def lluvia_pie(df_conteo, localizacion):
+    fig_pie = px.pie(df_conteo, title=f"         Porcentaje de días con y sin lluvia en {localizacion}", names="Tipo de día", values="Cantidad")
+    fig_pie.update_traces(
+        textinfo="percent+label+value", 
+        marker=dict(colors=['#4FC3F7', '#FFEB3B']))
+    
+    fig_pie.update_layout(
+        plot_bgcolor='rgba(0, 0, 0, 0)',  # Fondo de la gráfica transparente
+        paper_bgcolor='rgba(0, 0, 0, 0)',  # Fondo del paper transparente
+        font=dict(color='white'),
+        title_font=dict(color='white'),
+        legend=dict(font=dict(color='white')),
+        xaxis=dict(title='Fecha', color='white'),
+        yaxis=dict(title='Precipitación (L/m²)',
+            color='white', 
+            gridcolor='rgba(255, 255, 255, 0.4)'),
+        autosize=True,
+        margin=dict(l=20, r=20, t=40, b=40))
+    
+    return fig_pie
+
+# LINEA DE LLUVIA DIARIA
+def plot_lluvia_bar(df, localizacion):
+
+    if 'ciudad' in df.columns:
+        fig = px.bar(df, x="fecha", y="precipitacion", color="ciudad",
+                      title=f"         Precipitación diaria en {localizacion}")
+    else:
+        fig = px.bar(df, x="fecha", y="precipitacion",
+                      title=f"         Precipitación diaria en {localizacion}")
+
+    fig.update_layout(
+        plot_bgcolor='rgba(0, 0, 0, 0)',
+        paper_bgcolor='rgba(0, 0, 0, 0)',
+        font=dict(color='white'),
+        title_font=dict(color='white'),
+        legend=dict(font=dict(color='white')),
+        xaxis=dict(title='Fecha', color='white'),
+        yaxis=dict(title='Precipitación (L/m2)', color='white', gridcolor='rgba(255, 255, 255, 0.4)'),
+        autosize=True,
+        margin=dict(l=20, r=20, t=40, b=40)
+    )
+    
+    return fig
+
+# BARPLOT TEMPERATURA: VARIABLE CATEGÓRICA
+def fig_bar_temp_cat(df): 
+    fig = px.bar(
+        df,
+        x='categoria',
+        y='count',
+        labels={'categoria': 'Categoría de Temperatura', 'count': 'Frecuencia'},
+        color='categoria',
+        title='         Distribución de días a partir de clasificación de Temperatura'
+    )
+
+    fig.update_layout(
+        plot_bgcolor='rgba(0, 0, 0, 0)',  # Fondo de la gráfica transparente
+        paper_bgcolor='rgba(0, 0, 0, 0)',  # Fondo del paper transparente
+        font=dict(color='white'),
+        title_font=dict(color='white'),
+        legend=dict(font=dict(color='white')),
+        xaxis=dict( color='white'),
+        yaxis=dict(
+            color='white', 
+            gridcolor='rgba(255, 255, 255, 0.4)'),
+        autosize=True,
+        margin=dict(l=20, r=20, t=40, b=40)
+    )
+    return fig
+
 # LINEA DE TEMPERATURA DIARIA
 def plot_temp_line(df, localizacion):
 
@@ -29,7 +101,7 @@ def plot_temp_line(df, localizacion):
     
     return fig
 
-# BOXPLOT POR MES
+# BOXPLOT TEMPERATURA POR MES 
 def plot_temp_boxplot(df, localizacion):
     if 'ciudad' in df.columns:
         fig = px.box(df, x='mes_nombre', y='temperatura', color='ciudad',
@@ -52,7 +124,7 @@ def plot_temp_boxplot(df, localizacion):
     
     return fig
 
-# MEDIA MENSUAL POR CIUDAD (LINEA O BARRAS)
+# MEDIA MENSUAL POR CIUDAD (LINEA)
 def plot_temp_monthly_avg(df, localizacion):
     # Agrupamos por mes (y ciudad si hay varias)
     if 'ciudad' in df.columns:
@@ -104,6 +176,31 @@ def plot_humidity_line(df_filtrado, localizacion):
     )
     
     return fig
+
+# BARPLOT: HUMEDAD EN CATEGORÍAS
+def fig_bar_humedad(df, colores):
+    fig_bar_hum = px.bar(
+        df,
+        x='categoria',
+        y='count',
+        color='categoria',
+        color_discrete_map=colores,
+        title="Distribución de Humedad por Categoría",
+        labels={'categoria': 'Categoría de Humedad', 'humedad': 'Humedad (%)'}
+    )
+
+    fig_bar_hum.update_layout(
+        plot_bgcolor='rgba(0, 0, 0, 0)',
+        paper_bgcolor='rgba(0, 0, 0, 0)',
+        font=dict(color='white'),
+        title_font=dict(color='white'),
+        legend=dict(font=dict(color='white')),
+        xaxis=dict(color='white'),
+        yaxis=dict(color='white', gridcolor='rgba(255,255,255,0.4)'),
+        autosize=True,
+        margin=dict(l=20, r=20, t=40, b=40)
+    )
+    return fig_bar_hum
 
 # DISTRIBUCIÓN DE HUMEDAD (KDE)
 def plot_humidity_kde_line(df_filtrado, localizacion):

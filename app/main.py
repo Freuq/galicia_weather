@@ -60,7 +60,6 @@ df_conteo = pd.DataFrame({
     'Tipo de día': etiquetas,
     'Cantidad': conteo
 })
-colores = ['#4FC3F7', '#FFEB3B']
 
 # Agrupamos por mes y sumamos las precipitaciones
 precipitaciones_mes = df_filtrado.groupby('mes_nombre')['precipitacion'].sum()
@@ -84,24 +83,8 @@ st.markdown(
     unsafe_allow_html=True
 )
 
-fig_pie = px.pie(df_conteo, title="         Porcentaje de días con y sin lluvia en Santiago", names="Tipo de día", values="Cantidad")
-fig_pie.update_traces(
-    textinfo="percent+label+value", 
-    marker=dict(
-        colors=colores))
-fig_pie.update_layout(
-    plot_bgcolor='rgba(0, 0, 0, 0)',  # Fondo de la gráfica transparente
-    paper_bgcolor='rgba(0, 0, 0, 0)',  # Fondo del paper transparente
-    font=dict(color='white'),
-    title_font=dict(color='white'),
-    legend=dict(font=dict(color='white')),
-    xaxis=dict(title='Fecha', color='white'),
-    yaxis=dict(title='Precipitación (L/m²)',
-        color='white', 
-        gridcolor='rgba(255, 255, 255, 0.4)'),
-    autosize=True,
-    margin=dict(l=20, r=20, t=40, b=40)
-)
+# PIE PLOT: DÍAS CON LLUVIA
+fig_pie = lluvia_pie(df_conteo, localizacion)
 
 # Crear tres columnas
 col1, col2 = st.columns(2)
@@ -121,7 +104,7 @@ with col2:
     
     with subcol2:
         st.markdown("<h4 style='text-align: center;'>Cantidad (L/m2)</h4>", unsafe_allow_html=True)
-        st.markdown("<div class='custom-container'><h5 style='padding-bottom: 0.1px;';'>Total</h5><h2 >{:.1f}</h2></div>".format(int(df_grouped['precipitacion'].sum())), unsafe_allow_html=True)
+        st.markdown("<div class='custom-container'><h5 style='padding-bottom: 0.1px;';'>Total</h5><h2 >{}</h2></div>".format(int(df_grouped['precipitacion'].sum())), unsafe_allow_html=True)
         st.markdown("<div class='custom-container'><h5 style='padding-bottom: 0.1px;';'>Promedio</h5><h2 >{}</h2></div>".format(round(df_grouped['precipitacion'].mean(), 2)), unsafe_allow_html=True)
         st.markdown("<div class='custom-container'><h5 style='padding-bottom: 0.1px;';'>Maximo</h5><h2 >{}</h2></div>".format((df_grouped["precipitacion"]).max()), unsafe_allow_html=True)
         
@@ -131,33 +114,8 @@ with col2:
         st.markdown("<div class='custom-container'><h5 style='padding-bottom: 0.1px;';'>Más lluvioso</h5><h2 >{}</h2></div>".format(mes_mas_lluvioso), unsafe_allow_html=True)
         st.markdown("<div class='custom-container'><h5 style='padding-bottom: 0.1px;';'>Menos lluvioso</h5><h2 >{}</h2></div>".format(mes_menos_lluvioso), unsafe_allow_html=True)
 
-
-
 # Lluvia diaria
-def plot_lluvia_line(df, localizacion):
-
-    if 'ciudad' in df.columns:
-        fig = px.bar(df, x="fecha", y="precipitacion", color="ciudad",
-                      title=f"         Temperatura diaria en {localizacion}")
-    else:
-        fig = px.bar(df, x="fecha", y="precipitacion",
-                      title=f"         Temperatura diaria en {localizacion}")
-
-    fig.update_layout(
-        plot_bgcolor='rgba(0, 0, 0, 0)',
-        paper_bgcolor='rgba(0, 0, 0, 0)',
-        font=dict(color='white'),
-        title_font=dict(color='white'),
-        legend=dict(font=dict(color='white')),
-        xaxis=dict(title='Fecha', color='white'),
-        yaxis=dict(title='Temperatura (°C)', color='white', gridcolor='rgba(255, 255, 255, 0.4)'),
-        autosize=True,
-        margin=dict(l=20, r=20, t=40, b=40)
-    )
-    
-    return fig
-
-fig_rain = plot_lluvia_line(df_filtrado, localizacion)
+fig_rain = plot_lluvia_bar(df_filtrado, localizacion)
 
 st.plotly_chart(fig_rain, use_container_width=True)
 
@@ -167,10 +125,38 @@ st.markdown(
     unsafe_allow_html=True
 )
 
-col1, col2, col3 = st.columns(3)
+col1, col2, col3 = st.columns(3)                                                                                                  # duda de si usar df_grouped o df_filtrado
 col1.markdown("<div style='text-align: center;'><h5 style='padding-bottom: 0.1px;';'>T mínima (ºC)</h5><h2 >{:.1f}</h2></div>".format(df_grouped['temperatura'].min()), unsafe_allow_html=True)
 col2.markdown("<div style='text-align: center;'><h5 style='padding-bottom: 0.1px;';'>Promedio (ºC)</h5><h2 >{}</h2></div>".format(round(df_grouped['temperatura'].mean(), 2)), unsafe_allow_html=True)
 col3.markdown("<div style='text-align: center;'><h5 style='padding-bottom: 0.1px;';'>T máxima (ºC)</h5><h2 >{}</h2></div>".format(round(df_grouped['temperatura'].max(), 2)), unsafe_allow_html=True)
+
+# BARPLOT TEMPERATURA: VARIABLE CATEGÓRICA
+def clasificar_temperatura(temp, categorias):
+    keys = list(categorias.keys())
+    values = list(categorias.values())
+    if temp < values[0]:
+        return f'{keys[0]}'
+    elif temp < values[1]:
+        return f'{keys[1]}'
+    else:
+        return f'{keys[2]}'
+
+
+categorias = {'Frío❄️ (<10°C)':10, 
+              'Templado🌤️ (10–20°C)':20,
+              'Cálido♨️ (>20°C)':30}
+
+def df_categorico(df, col, categorias):
+    df['categoria'] = df[col].apply(lambda valor: clasificar_temperatura(valor, categorias))
+    df["categoria"] = pd.Categorical(df["categoria"], categories=list(categorias.keys()), ordered=True)
+    df_cat = df_filtrado.groupby("categoria").size().reset_index(name='count')
+    return df_cat
+
+df_temp_cat = df_categorico(df_filtrado, 'temperatura', categorias)
+
+fig_temp_cat = fig_bar_temp_cat(df_temp_cat)
+
+st.plotly_chart(fig_temp_cat, use_container_width=True)
 
 
 # LINEA DE TEMPERATURA DIARIA: Muestra la evolución temporal y diferencias entre ciudades
@@ -195,6 +181,25 @@ col1, col2, col3 = st.columns(3)
 col1.markdown("<div style='text-align: center;'><h5 style='padding-bottom: 0.1px;';'>Humedad min (%)</h5><h2 >{:.1f}</h2></div>".format(df_grouped['humedad'].min()), unsafe_allow_html=True)
 col2.markdown("<div style='text-align: center;'><h5 style='padding-bottom: 0.1px;';'>Humedad prom (%)</h5><h2 >{}</h2></div>".format(round(df_grouped['humedad'].mean(), 2)), unsafe_allow_html=True)
 col3.markdown("<div style='text-align: center;'><h5 style='padding-bottom: 0.1px;';'>Humedad max (%)</h5><h2 >{}</h2></div>".format(round(df_grouped['humedad'].max(), 2)), unsafe_allow_html=True)
+
+# BARPLOT CATEGORICO
+categorias = {'Seco 🌵 (<50%)':50, 
+              'Moderado 🌤️ (50–75%)':75,
+              'Húmedo 💧 (>75%)':100}
+
+df_hum_cat = df_categorico(df_filtrado, 'humedad', categorias)
+
+# Colores personalizados para las categorías
+colores = {
+    'Seco 🌵 (<50%)': 'rgb(204, 204, 204)',  # Gris claro para baja humedad
+    'Moderado 🌤️ (50–75%)': 'rgb(102, 153, 255)',  # Azul claro para humedad moderada
+    'Húmedo 💧 (>75%)': 'rgb(7, 121, 197)' # Azul fuerte para alta humedad
+}
+
+fig_bar_hum = fig_bar_humedad(df_hum_cat, colores)
+
+st.plotly_chart(fig_bar_hum, use_container_width=True)
+
 
 # LINEA DE TEMPERATURA DIARIA: Muestra la evolución temporal y diferencias entre ciudades
 fig_humidity_line = plot_humidity_line(df_filtrado, localizacion)
