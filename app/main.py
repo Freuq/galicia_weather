@@ -163,9 +163,9 @@ with col1:
 
 with col2:
     st.markdown("<br>", unsafe_allow_html=True)
-    st.markdown("<div class='custom-container'><h5 style='padding-bottom: 0.1px;';'>Humedad mínima</h5><h2 >{:.1f} %</h2></div>".format(df_grouped['humedad'].min()), unsafe_allow_html=True)
-    st.markdown("<div class='custom-container'><h5 style='padding-bottom: 0.1px;';'>Humedad promedio</h5><h2 >{} %</h2></div>".format(round(df_grouped['humedad'].mean(), 2)), unsafe_allow_html=True)
-    st.markdown("<div class='custom-container'><h5 style='padding-bottom: 0.1px;';'>Humedad máxima</h5><h2 >{} %</h2></div>".format(round(df_grouped['humedad'].max(), 2)), unsafe_allow_html=True)
+    st.markdown("<div class='custom-container'><h5 style='padding-bottom: 0.1px;';'>Humedad máxima🔼</h5><h2 >{} %</h2></div>".format(round(df_grouped['humedad'].max(), 2)), unsafe_allow_html=True)
+    st.markdown("<div class='custom-container'><h5 style='padding-bottom: 0.1px;';'>Humedad promedio➖</h5><h2 >{} %</h2></div>".format(round(df_grouped['humedad'].mean(), 2)), unsafe_allow_html=True)
+    st.markdown("<div class='custom-container'><h5 style='padding-bottom: 0.1px;';'>Humedad mínima🔽</h5><h2 >{:.1f} %</h2></div>".format(df_grouped['humedad'].min()), unsafe_allow_html=True)
 
 
 # LINEA DE HUMEDAD DIARIA: Muestra la evolución temporal y diferencias entre ciudades
