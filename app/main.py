@@ -114,7 +114,6 @@ with col1:
     st.plotly_chart(fig_temp_cat)
 
 with col2:
-    st.markdown("<h3 style='text-align: center;'>Métricas</h3>", unsafe_allow_html=True)
     st.markdown("<div class='custom-container'><h5 style='padding-bottom: 0.1px;';'>🔥 Temperatura máxima</h5><h2 >{} ºC</h2></div>".format(round(df_grouped['temperatura'].max(), 2)), unsafe_allow_html=True)
     st.markdown("<div class='custom-container'><h5 style='padding-bottom: 0.1px;';'>⚖️ Temperatura promedio</h5><h2 >{} ºC</h2></div>".format(round(df_grouped['temperatura'].mean(), 2)), unsafe_allow_html=True)
     st.markdown("<div class='custom-container'><h5 style='padding-bottom: 0.1px;';'>🧊 Temperatura mínima</h5><h2 >{} ºC</h2></div>".format(df_grouped['temperatura'].min()), unsafe_allow_html=True)
@@ -162,7 +161,6 @@ with col1:
     st.plotly_chart(fig_bar_hum, use_container_width=True)
 
 with col2:
-    st.markdown("<h3 style='text-align: center;'>Métricas</h3>", unsafe_allow_html=True)
     st.markdown("<div class='custom-container'><h5 style='padding-bottom: 0.1px;';'>Humedad mínima</h5><h2 >{:.1f} %</h2></div>".format(df_grouped['humedad'].min()), unsafe_allow_html=True)
     st.markdown("<div class='custom-container'><h5 style='padding-bottom: 0.1px;';'>Humedad promedio</h5><h2 >{} %</h2></div>".format(round(df_grouped['humedad'].mean(), 2)), unsafe_allow_html=True)
     st.markdown("<div class='custom-container'><h5 style='padding-bottom: 0.1px;';'>Humedad máxima</h5><h2 >{} %</h2></div>".format(round(df_grouped['humedad'].max(), 2)), unsafe_allow_html=True)
