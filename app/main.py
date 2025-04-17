@@ -1,11 +1,4 @@
 import streamlit as st
-import pandas as pd
-import seaborn as sns
-import plotly.express as px
-import plotly.graph_objects as go
-import folium
-import tempfile
-import os
 from utils.filters import *
 from utils.graphics import *
 from utils.df_functions import *
@@ -92,10 +85,12 @@ with col2:
         st.markdown("<div class='custom-container'><h5 style='padding-bottom: 0.1px;';'>Menos lluvioso</h5><h2 >{}</h2></div>".format(mes_menos_lluvioso), unsafe_allow_html=True)
 
 # Lluvia diaria
-fig_rain = plot_lluvia_bar(df_filtrado, localizacion)
+#fig_rain = plot_lluvia_bar(df_filtrado, localizacion)
+#st.plotly_chart(fig_rain, use_container_width=True)
 
-st.plotly_chart(fig_rain, use_container_width=True)
-
+# lluvia mensual
+fig_rain_monthly = plot_lluvia_mes(df_filtrado, localizacion)
+st.plotly_chart(fig_rain_monthly, use_container_width=True)
 ################################################### TEMPERATURA #######################################################
 st.markdown(
     f"<h3 style='text-align: center;'>🌡️ Temperatura en {localizacion}</h3>",
@@ -117,16 +112,20 @@ fig_temp_cat = fig_bar_temp_cat(df_temp_cat)
 st.plotly_chart(fig_temp_cat, use_container_width=True)
 
 # LINEA DE TEMPERATURA DIARIA: Muestra la evolución temporal y diferencias entre ciudades
-fig_temp_line = plot_temp_line(df_filtrado, localizacion)
-st.plotly_chart(fig_temp_line, use_container_width=True)
+#fig_temp_line = plot_temp_line(df_filtrado, localizacion)
+#st.plotly_chart(fig_temp_line, use_container_width=True)
+
+# LINEA DE TEMPERATURA MENSUAL: Muestra la evolución temporal y diferencias entre ciudades POR MES
+fig_temp_monthly = plot_temp_mes(df_filtrado, localizacion)
+st.plotly_chart(fig_temp_monthly, use_container_width=True)
 
 # BOXPLOT POR MES: Permite ver la dispersión, medianas y outliers por mes
 fig_temp_boxplot = plot_temp_boxplot(df_filtrado, localizacion)
 st.plotly_chart(fig_temp_boxplot, use_container_width=True)
 
 # MEDIA MENSUAL POR CIUDAD (LINEA O BARRAS):  Buena para ver estacionalidad y comparaciones regionales
-fig_temp_monthly_avg = plot_temp_monthly_avg(df_filtrado, localizacion)
-st.plotly_chart(fig_temp_monthly_avg, use_container_width=True)
+#fig_temp_monthly_avg = plot_temp_monthly_avg(df_filtrado, localizacion)
+#st.plotly_chart(fig_temp_monthly_avg, use_container_width=True)
 
 ########################################### HUMEDAD RELATIVA #######################################################
 st.markdown(

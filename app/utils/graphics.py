@@ -1,5 +1,3 @@
-import streamlit as st
-import pandas as pd
 import seaborn as sns
 import plotly.express as px
 import plotly.graph_objects as go
@@ -66,6 +64,33 @@ def plot_lluvia_bar(df, localizacion):
     
     return fig
 
+#### REEMPLAZO DEL DE ARRIBA: LINEA DE LLUVIA MENSUAL mes_anyo
+def plot_lluvia_mes(df, localizacion):
+    # Agrupamos por mes (y ciudad si hay varias)
+    if 'ciudad' in df.columns:
+            df_mensual = df.groupby(['mes_anyo', 'ciudad'], as_index=False)['precipitacion'].sum()
+            fig = px.bar(df_mensual, x="mes_anyo", y="precipitacion", color="ciudad",
+                        title=f"         Precipitación mensual en {localizacion}")
+    else:
+        df_mensual = df.groupby('mes_anyo', as_index=False)['precipitacion'].sum()
+        fig = px.bar(df_mensual, x="mes_anyo", y="precipitacion",
+                    title=f"         Precipitación mensual en {localizacion}")
+
+    # Estilo del gráfico
+    fig.update_layout(
+        plot_bgcolor='rgba(0, 0, 0, 0)',
+        paper_bgcolor='rgba(0, 0, 0, 0)',
+        font=dict(color='white'),
+        title_font=dict(color='white'),
+        legend=dict(font=dict(color='white')),
+        xaxis=dict(title='Mes', color='white'),
+        yaxis=dict(title='Precipitación mensual (L/m2)', color='white', gridcolor='rgba(255, 255, 255, 0.4)'),
+        autosize=True,
+        margin=dict(l=20, r=20, t=40, b=40)
+    )
+
+    return fig
+
 # BARPLOT TEMPERATURA: VARIABLE CATEGÓRICA
 def fig_bar_temp_cat(df): 
     fig = px.bar(
@@ -114,6 +139,32 @@ def plot_temp_line(df, localizacion):
         margin=dict(l=20, r=20, t=40, b=40)
     )
     
+    return fig
+
+def plot_temp_mes(df, localizacion):
+    # Agrupamos por mes (y ciudad si hay varias)
+    if 'ciudad' in df.columns:
+            df_mensual = df.groupby(['mes_anyo', 'ciudad'], as_index=False)['temperatura'].sum()
+            fig = px.line(df_mensual, x="mes_anyo", y="temperatura", color="ciudad",
+                        title=f"         Temperatura mensual en {localizacion}")
+    else:
+        df_mensual = df.groupby('mes_anyo', as_index=False)['temperatura'].sum()
+        fig = px.line(df_mensual, x="mes_anyo", y="temperatura",
+                    title=f"         Temperatura mensual en {localizacion}")
+
+    # Estilo del gráfico
+    fig.update_layout(
+        plot_bgcolor='rgba(0, 0, 0, 0)',
+        paper_bgcolor='rgba(0, 0, 0, 0)',
+        font=dict(color='white'),
+        title_font=dict(color='white'),
+        legend=dict(font=dict(color='white')),
+        xaxis=dict(title='Mes', color='white'),
+        yaxis=dict(title='Temperatura mensual (°C)', color='white', gridcolor='rgba(255, 255, 255, 0.4)'),
+        autosize=True,
+        margin=dict(l=20, r=20, t=40, b=40)
+    )
+
     return fig
 
 # BOXPLOT TEMPERATURA POR MES 
@@ -265,17 +316,14 @@ def plot_humidity_heatmap(df_filtrado, localizacion):
     df_heatmap['mes'] = df_heatmap['fecha'].dt.month
     df_heatmap['dia'] = df_heatmap['fecha'].dt.day
     df_heatmap['año'] = df_heatmap['fecha'].dt.year
-
-    # Para simplificar, combinamos año y mes para formar una fila única
-    df_heatmap['año_mes'] = df_heatmap['fecha'].dt.to_period('M').astype(str)
-
+    
     if 'ciudad' in df_heatmap.columns and df_heatmap['ciudad'].nunique() > 1:
-        df_heatmap = df_heatmap.groupby(['año_mes', 'ciudad'])['humedad'].mean().reset_index()
-        heatmap_data = df_heatmap.pivot(index='ciudad', columns='año_mes', values='humedad')
+        df_heatmap = df_heatmap.groupby(['mes_anyo', 'ciudad'])['humedad'].mean().reset_index()
+        heatmap_data = df_heatmap.pivot(index='ciudad', columns='mes_anyo', values='humedad')
         title = f"         Mapa de calor de humedad media mensual por ciudad"
     else:
-        df_heatmap = df_heatmap.groupby(['año_mes'])['humedad'].mean().reset_index()
-        heatmap_data = df_heatmap.pivot_table(index='año_mes', values='humedad')
+        df_heatmap = df_heatmap.groupby(['mes_anyo'])['humedad'].mean().reset_index()
+        heatmap_data = df_heatmap.pivot_table(index='mes_anyo', values='humedad')
         title = f"         Mapa de calor de humedad media mensual en {localizacion}"
 
     fig = px.imshow(

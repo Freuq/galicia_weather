@@ -35,7 +35,7 @@ def variables_de_tiempo(df):
     df["mes_num"] = df["fecha"].dt.month
     df["mes_nombre"] = df["mes_num"].map(MESES_ORDENADOS)
     df["llovio"] = df["precipitacion"] > 0
-    df['mes_anyo'] = df['fecha'].dt.to_period('M')
+    df['mes_anyo'] = df['fecha'].dt.to_period('M').dt.to_timestamp()
     return df
 
 def aplicar_filtros(df):

@@ -1,7 +1,5 @@
-import streamlit as st
 import pandas as pd
 import os
-import json
 
 def cargar_df(localizacion, localidades):
     if localizacion.lower() == 'galicia':
