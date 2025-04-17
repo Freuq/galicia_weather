@@ -8,6 +8,7 @@ import tempfile
 import os
 from utils.filters import *
 from utils.graphics import *
+from utils.df_functions import *
 
 # Diseño de la página
 st.set_page_config(layout="wide")
@@ -16,25 +17,28 @@ cargar_css("app/static/styles.css")
 st.title("⛅Morriña en Galicia")
 
 localidades = ["Galicia", "Santiago", "Coruña", "Lugo", "Ourense", "Pontevedra", "Vigo"]
-localizacion = st.sidebar.selectbox("Clima en:", localidades)
+
+localidades = {
+    "galicia": "Galicia",
+    "santiago": "Santiago de Compostela",
+    "coruna": "A Coruña",
+    "lugo": "Lugo",
+    "ourense": "Ourense",
+    "pontevedra": "Pontevedra",
+    "vigo": "Vigo"}
+
+localizacion = st.sidebar.selectbox("Clima en:", localidades.values())
 st.subheader(f"📍 Localización: {localizacion}")
-localizacion_var = localizacion.lower().replace('ñ', 'n')
+localizacion_var = localizacion.split(" ")[0].lower().replace('ñ', 'n')
 
 # Cargar datos
-df = cargar_df(localizacion_var)
+df = cargar_df(localizacion_var, localidades)
 
 # Aplicar filtros desde el archivo utils/filters.py
 df_filtrado, año, mes = aplicar_filtros(df)
 
-# Crear el mapa
-lon, lat = coors(localizacion_var)
-zoom = 7.5 if localizacion_var.lower() == 'galicia' else 12
-
-m = folium.Map(location=[lat, lon], zoom_start=zoom, control_scale=False)
-# Guardar como archivo temporal
-with tempfile.NamedTemporaryFile(mode='w+', delete=False, suffix='.html') as f:
-    m.save(f.name)
-    map_html = f.read()
+# MAPA
+map_html = map_local(localizacion_var)
 
 # Forzar estilo en div padre e iframe
 st.components.v1.html(f"""
@@ -43,38 +47,8 @@ st.components.v1.html(f"""
     </div>
 """, height=520)
 
-df_grouped = df_filtrado.groupby('fecha').agg({
-    'temperatura': 'mean',
-    'precipitacion': 'sum',
-    'humedad': 'mean'
-}).reset_index()
-
-df_grouped['llovio'] = df_grouped['precipitacion'] > 0
-conteo_con = df_grouped["llovio"].sum()
-conteo_sin = len(df_grouped) - conteo_con
-conteo = [conteo_con, conteo_sin]
-conteo = [conteo_con, conteo_sin]
-etiquetas = ['Días con lluvia 🌧️', 'Días sin lluvia ☀️']
-
-df_conteo = pd.DataFrame({
-    'Tipo de día': etiquetas,
-    'Cantidad': conteo
-})
-
-# Agrupamos por mes y sumamos las precipitaciones
-precipitaciones_mes = df_filtrado.groupby('mes_nombre')['precipitacion'].sum()
-
-# Encontramos el mes con más lluvia
-mes_mas_lluvioso = precipitaciones_mes.idxmax()
-lluvia_mas = precipitaciones_mes.max()
-
-# Encontramos el mes con menos lluvia
-mes_menos_lluvioso = precipitaciones_mes.idxmin()
-lluvia_menos = precipitaciones_mes.min()
-
-# Contamos el número total de meses (con datos)
-df_filtrado['mes_anyo'] = df_filtrado['fecha'].dt.to_period('M')
-total_meses = df_filtrado['mes_anyo'].nunique()
+# GENERACIÓN DE DF_GROUPED (VALORES AGRUPADOS PARA GALICIA) Y DF_CONTEO (NRO DE DÍAS CON LLUVIA Y SIN LLUVIA)
+df_grouped, df_conteo = df_grouped_conteo(df_filtrado)
 
 ####################################################### PRECIPITACIÓN #######################################################
 # Lluvia en Santiago
@@ -85,6 +59,9 @@ st.markdown(
 
 # PIE PLOT: DÍAS CON LLUVIA
 fig_pie = lluvia_pie(df_conteo, localizacion)
+
+# VALORES DE LLUVIA MENSUALES
+total_meses, mes_mas_lluvioso, mes_menos_lluvioso = lluvia_mensual(df_filtrado)
 
 # Crear tres columnas
 col1, col2 = st.columns(2)
@@ -131,33 +108,13 @@ col2.markdown("<div style='text-align: center;'><h5 style='padding-bottom: 0.1px
 col3.markdown("<div style='text-align: center;'><h5 style='padding-bottom: 0.1px;';'>T máxima (ºC)</h5><h2 >{}</h2></div>".format(round(df_grouped['temperatura'].max(), 2)), unsafe_allow_html=True)
 
 # BARPLOT TEMPERATURA: VARIABLE CATEGÓRICA
-def clasificar_temperatura(temp, categorias):
-    keys = list(categorias.keys())
-    values = list(categorias.values())
-    if temp < values[0]:
-        return f'{keys[0]}'
-    elif temp < values[1]:
-        return f'{keys[1]}'
-    else:
-        return f'{keys[2]}'
-
-
 categorias = {'Frío❄️ (<10°C)':10, 
               'Templado🌤️ (10–20°C)':20,
               'Cálido♨️ (>20°C)':30}
 
-def df_categorico(df, col, categorias):
-    df['categoria'] = df[col].apply(lambda valor: clasificar_temperatura(valor, categorias))
-    df["categoria"] = pd.Categorical(df["categoria"], categories=list(categorias.keys()), ordered=True)
-    df_cat = df_filtrado.groupby("categoria").size().reset_index(name='count')
-    return df_cat
-
 df_temp_cat = df_categorico(df_filtrado, 'temperatura', categorias)
-
 fig_temp_cat = fig_bar_temp_cat(df_temp_cat)
-
 st.plotly_chart(fig_temp_cat, use_container_width=True)
-
 
 # LINEA DE TEMPERATURA DIARIA: Muestra la evolución temporal y diferencias entre ciudades
 fig_temp_line = plot_temp_line(df_filtrado, localizacion)
@@ -186,18 +143,14 @@ col3.markdown("<div style='text-align: center;'><h5 style='padding-bottom: 0.1px
 categorias = {'Seco 🌵 (<50%)':50, 
               'Moderado 🌤️ (50–75%)':75,
               'Húmedo 💧 (>75%)':100}
-
-df_hum_cat = df_categorico(df_filtrado, 'humedad', categorias)
-
-# Colores personalizados para las categorías
 colores = {
     'Seco 🌵 (<50%)': 'rgb(204, 204, 204)',  # Gris claro para baja humedad
     'Moderado 🌤️ (50–75%)': 'rgb(102, 153, 255)',  # Azul claro para humedad moderada
     'Húmedo 💧 (>75%)': 'rgb(7, 121, 197)' # Azul fuerte para alta humedad
 }
 
+df_hum_cat = df_categorico(df_filtrado, 'humedad', categorias)
 fig_bar_hum = fig_bar_humedad(df_hum_cat, colores)
-
 st.plotly_chart(fig_bar_hum, use_container_width=True)
 
 

@@ -4,6 +4,21 @@ import seaborn as sns
 import plotly.express as px
 import plotly.graph_objects as go
 import folium
+import tempfile
+from utils.filters import coors
+
+# MAPA
+def map_local(localizacion_var):
+    
+    lon, lat = coors(localizacion_var)
+    zoom = 7.5 if localizacion_var == 'galicia' else 12
+
+    m = folium.Map(location=[lat, lon], zoom_start=zoom, control_scale=False)
+    # Guardar como archivo temporal
+    with tempfile.NamedTemporaryFile(mode='w+', delete=False, suffix='.html') as f:
+        m.save(f.name)
+        map_html = f.read()
+    return map_html
 
 # PIE DE LLUVIA
 def lluvia_pie(df_conteo, localizacion):

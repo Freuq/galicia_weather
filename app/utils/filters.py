@@ -3,33 +3,10 @@ import os
 import json
 import pandas as pd
 import streamlit as st
-    
-def df_galicia():
-    # Ruta absoluta desde el archivo actual
-    base_path = os.path.dirname(os.path.abspath(__file__))  # directorio del script actual
-    project_root = os.path.abspath(os.path.join(base_path, '..', '..'))  # sube hasta 'galizia_weather'
-    folder = os.path.join(project_root, 'data', 'processed')
 
-    dataframes = []
-
-    if os.path.exists(folder):
-        for archivo in os.listdir(folder):
-            if archivo.endswith('.csv'):
-                path_archivo = os.path.join(folder, archivo)
-                df = pd.read_csv(path_archivo, index_col=0)
-                df['ciudad'] = archivo.split(".")[0].capitalize()  # columna con nombre de la ciudad
-                dataframes.append(df)
-    df_final = pd.concat(dataframes)
-    df_final["fecha"] = pd.to_datetime(df["fecha"])
-    #st.dataframe(df_final, use_container_width=True, height=500)
-    return df_final
-
-def cargar_df(localizacion):
-    if localizacion.lower() == 'galicia':
-        df = df_galicia()
-    else:
-        df = pd.read_csv(f"data/processed/{localizacion.lower()}.csv", parse_dates=["fecha"])
-    return df
+def cargar_css(path: str):
+    with open(path) as f:
+        st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
 
 def coors(localizacion):
     localizacion = localizacion.lower()
@@ -58,6 +35,7 @@ def variables_de_tiempo(df):
     df["mes_num"] = df["fecha"].dt.month
     df["mes_nombre"] = df["mes_num"].map(MESES_ORDENADOS)
     df["llovio"] = df["precipitacion"] > 0
+    df['mes_anyo'] = df['fecha'].dt.to_period('M')
     return df
 
 def aplicar_filtros(df):
@@ -81,9 +59,23 @@ def aplicar_filtros(df):
 
     return df_filtrado, año_seleccionado, mes_seleccionado
 
-def cargar_css(path: str):
-    with open(path) as f:
-        st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
+
+
+def lluvia_mensual(df_filtrado):
+    # Contamos el número total de meses (con datos)
+    total_meses = df_filtrado['mes_anyo'].nunique()
+    
+    precipitaciones_mes = df_filtrado.groupby('mes_nombre')['precipitacion'].sum()
+
+    # Encontramos el mes con más lluvia
+    mes_mas_lluvioso = precipitaciones_mes.idxmax()
+    lluvia_mas = precipitaciones_mes.max() # VALOR
+
+    # Encontramos el mes con menos lluvia
+    mes_menos_lluvioso = precipitaciones_mes.idxmin()
+    lluvia_menos = precipitaciones_mes.min() # VALOR 
+
+    return total_meses, mes_mas_lluvioso, mes_menos_lluvioso
 
 #def main(df):
 #    df = variables_de_tiempo(df)
