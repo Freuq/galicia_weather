@@ -45,8 +45,9 @@ df_grouped, df_conteo = df_grouped_conteo(df_filtrado)
 
 ####################################################### PRECIPITACIÓN #######################################################
 # Lluvia en Santiago
+st.markdown("<br>", unsafe_allow_html=True)
 st.markdown(
-    f"<h3 style='text-align: center;'>☔ Choiva en {localizacion}</h3>",
+    f"<h2 style='text-align: center;'>☔ Choiva en {localizacion}</h2>",
     unsafe_allow_html=True
 )
 
@@ -92,15 +93,11 @@ with col2:
 fig_rain_monthly = plot_lluvia_mes(df_filtrado, localizacion)
 st.plotly_chart(fig_rain_monthly, use_container_width=True)
 ################################################### TEMPERATURA #######################################################
+st.markdown("<br>", unsafe_allow_html=True)
 st.markdown(
-    f"<h3 style='text-align: center;'>🌡️ Temperatura en {localizacion}</h3>",
+    f"<h2 style='text-align: center;'>🌡️ Temperatura en {localizacion}</h2>",
     unsafe_allow_html=True
 )
-
-col1, col2, col3 = st.columns(3)                                                                                                  # duda de si usar df_grouped o df_filtrado
-col1.markdown("<div style='text-align: center;'><h5 style='padding-bottom: 0.1px;';'>T mínima (ºC)</h5><h2 >{:.1f}</h2></div>".format(df_grouped['temperatura'].min()), unsafe_allow_html=True)
-col2.markdown("<div style='text-align: center;'><h5 style='padding-bottom: 0.1px;';'>Promedio (ºC)</h5><h2 >{}</h2></div>".format(round(df_grouped['temperatura'].mean(), 2)), unsafe_allow_html=True)
-col3.markdown("<div style='text-align: center;'><h5 style='padding-bottom: 0.1px;';'>T máxima (ºC)</h5><h2 >{}</h2></div>".format(round(df_grouped['temperatura'].max(), 2)), unsafe_allow_html=True)
 
 # BARPLOT TEMPERATURA: VARIABLE CATEGÓRICA
 categorias = {'Frío❄️ (<10°C)':10, 
@@ -109,7 +106,18 @@ categorias = {'Frío❄️ (<10°C)':10,
 
 df_temp_cat = df_categorico(df_filtrado, 'temperatura', categorias)
 fig_temp_cat = fig_bar_temp_cat(df_temp_cat)
-st.plotly_chart(fig_temp_cat, use_container_width=True)
+#st.plotly_chart(fig_temp_cat, use_container_width=True)
+
+col1, col2 = st.columns([2, 1])  # 2 partes y 1 parte → 66% y 33%
+
+with col1:
+    st.plotly_chart(fig_temp_cat)
+
+with col2:
+    st.markdown("<h3 style='text-align: center;'>Métricas</h3>", unsafe_allow_html=True)
+    st.markdown("<div class='custom-container'><h5 style='padding-bottom: 0.1px;';'>🔥 Temperatura máxima</h5><h2 >{} ºC</h2></div>".format(round(df_grouped['temperatura'].max(), 2)), unsafe_allow_html=True)
+    st.markdown("<div class='custom-container'><h5 style='padding-bottom: 0.1px;';'>⚖️ Temperatura promedio</h5><h2 >{} ºC</h2></div>".format(round(df_grouped['temperatura'].mean(), 2)), unsafe_allow_html=True)
+    st.markdown("<div class='custom-container'><h5 style='padding-bottom: 0.1px;';'>🧊 Temperatura mínima</h5><h2 >{} ºC</h2></div>".format(df_grouped['temperatura'].min()), unsafe_allow_html=True)
 
 # LINEA DE TEMPERATURA DIARIA: Muestra la evolución temporal y diferencias entre ciudades
 #fig_temp_line = plot_temp_line(df_filtrado, localizacion)
@@ -128,15 +136,11 @@ st.plotly_chart(fig_temp_boxplot, use_container_width=True)
 #st.plotly_chart(fig_temp_monthly_avg, use_container_width=True)
 
 ########################################### HUMEDAD RELATIVA #######################################################
+st.markdown("<br>", unsafe_allow_html=True)
 st.markdown(
-    f"<h3 style='text-align: center;'>🌫️ Humidade Relativa en {localizacion}</h3>",
+    f"<h2 style='text-align: center;'>🌫️ Humidade Relativa en {localizacion}</h2>",
     unsafe_allow_html=True
 )
-
-col1, col2, col3 = st.columns(3)
-col1.markdown("<div style='text-align: center;'><h5 style='padding-bottom: 0.1px;';'>Humedad min (%)</h5><h2 >{:.1f}</h2></div>".format(df_grouped['humedad'].min()), unsafe_allow_html=True)
-col2.markdown("<div style='text-align: center;'><h5 style='padding-bottom: 0.1px;';'>Humedad prom (%)</h5><h2 >{}</h2></div>".format(round(df_grouped['humedad'].mean(), 2)), unsafe_allow_html=True)
-col3.markdown("<div style='text-align: center;'><h5 style='padding-bottom: 0.1px;';'>Humedad max (%)</h5><h2 >{}</h2></div>".format(round(df_grouped['humedad'].max(), 2)), unsafe_allow_html=True)
 
 # BARPLOT CATEGORICO
 categorias = {'Seco 🌵 (<50%)':50, 
@@ -150,24 +154,41 @@ colores = {
 
 df_hum_cat = df_categorico(df_filtrado, 'humedad', categorias)
 fig_bar_hum = fig_bar_humedad(df_hum_cat, colores)
-st.plotly_chart(fig_bar_hum, use_container_width=True)
+#st.plotly_chart(fig_bar_hum, use_container_width=True)
+
+col1, col2 = st.columns([2, 1])  # 2 partes y 1 parte → 66% y 33%
+
+with col1:
+    st.plotly_chart(fig_bar_hum, use_container_width=True)
+
+with col2:
+    st.markdown("<h3 style='text-align: center;'>Métricas</h3>", unsafe_allow_html=True)
+    st.markdown("<div class='custom-container'><h5 style='padding-bottom: 0.1px;';'>Humedad mínima</h5><h2 >{:.1f} %</h2></div>".format(df_grouped['humedad'].min()), unsafe_allow_html=True)
+    st.markdown("<div class='custom-container'><h5 style='padding-bottom: 0.1px;';'>Humedad promedio</h5><h2 >{} %</h2></div>".format(round(df_grouped['humedad'].mean(), 2)), unsafe_allow_html=True)
+    st.markdown("<div class='custom-container'><h5 style='padding-bottom: 0.1px;';'>Humedad máxima</h5><h2 >{} %</h2></div>".format(round(df_grouped['humedad'].max(), 2)), unsafe_allow_html=True)
 
 
-# LINEA DE TEMPERATURA DIARIA: Muestra la evolución temporal y diferencias entre ciudades
-fig_humidity_line = plot_humidity_line(df_filtrado, localizacion)
-st.plotly_chart(fig_humidity_line, use_container_width=True)
+# LINEA DE HUMEDAD DIARIA: Muestra la evolución temporal y diferencias entre ciudades
+#fig_humidity_line = plot_humidity_line(df_filtrado, localizacion)
+#st.plotly_chart(fig_humidity_line, use_container_width=True)
+
+# LINEA DE HUMEDAD MENSUAL
+fig_hume_mes = plot_hum_mes(df_filtrado, localizacion)
+st.plotly_chart(fig_hume_mes, use_container_width=True)
 
 # DISTRIBUCIÓN DE HUMEDAD (HISTOGRAMA O UN KDE): Te dice en qué rango de humedad se mueven la mayoría de los días
 fig_humidity_kde_clean = plot_humidity_kde_line(df_filtrado, localizacion)
 st.plotly_chart(fig_humidity_kde_clean, use_container_width=True)
 
 # MAPA DE CALOR (HEATMAP): Muy visual para ver tendencias, anomalías o días con humedad alta/baja
-fig_humidity_heatmap = plot_humidity_heatmap(df_filtrado, localizacion)
-st.plotly_chart(fig_humidity_heatmap, use_container_width=True)
+if localizacion_var == "galicia":
+    fig_humidity_heatmap = plot_humidity_heatmap(df_filtrado, localizacion)
+    st.plotly_chart(fig_humidity_heatmap, use_container_width=True)
 
 ####################################### COMPARATIVAS #######################################################
+st.markdown("<br>", unsafe_allow_html=True)
 st.markdown(
-    f"<h3 style='text-align: center;'>Temperatura vs Humidade en {localizacion}</h3>",
+    f"<h2 style='text-align: center;'>Temperatura vs Humidade en {localizacion}</h2>",
     unsafe_allow_html=True
 )
 

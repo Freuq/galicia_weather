@@ -36,6 +36,7 @@ def df_grouped_conteo(df):
     }).reset_index()
 
     df_grouped['llovio'] = df_grouped['precipitacion'] > 0
+    df_grouped['mes_anyo'] = df_grouped['fecha'].dt.to_period('M').dt.to_timestamp()
     conteo_con = df_grouped["llovio"].sum()
     conteo_sin = len(df_grouped) - conteo_con
     conteo = [conteo_con, conteo_sin]

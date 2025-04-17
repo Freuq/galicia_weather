@@ -218,7 +218,32 @@ def plot_temp_monthly_avg(df, localizacion):
     
     return fig
 
-# LINEA DE TEMPERATURA DIARIA
+# BARPLOT: HUMEDAD EN CATEGORÍAS
+def fig_bar_humedad(df, colores):
+    fig_bar_hum = px.bar(
+        df,
+        x='categoria',
+        y='count',
+        color='categoria',
+        color_discrete_map=colores,
+        title="         Distribución de Humedad por Categoría",
+        labels={'categoria': 'Categoría de Humedad', 'humedad': 'Humedad (%)'}
+    )
+
+    fig_bar_hum.update_layout(
+        plot_bgcolor='rgba(0, 0, 0, 0)',
+        paper_bgcolor='rgba(0, 0, 0, 0)',
+        font=dict(color='white'),
+        title_font=dict(color='white'),
+        legend=dict(font=dict(color='white')),
+        xaxis=dict(color='white'),
+        yaxis=dict(color='white', gridcolor='rgba(255,255,255,0.4)'),
+        autosize=True,
+        margin=dict(l=20, r=20, t=40, b=40)
+    )
+    return fig_bar_hum
+
+# LINEA DE HUMEDAD DIARIA
 def plot_humidity_line(df_filtrado, localizacion):
     if 'ciudad' in df_filtrado.columns:
         fig = px.line(df_filtrado, x="fecha", y="humedad", color='ciudad',
@@ -243,30 +268,31 @@ def plot_humidity_line(df_filtrado, localizacion):
     
     return fig
 
-# BARPLOT: HUMEDAD EN CATEGORÍAS
-def fig_bar_humedad(df, colores):
-    fig_bar_hum = px.bar(
-        df,
-        x='categoria',
-        y='count',
-        color='categoria',
-        color_discrete_map=colores,
-        title="Distribución de Humedad por Categoría",
-        labels={'categoria': 'Categoría de Humedad', 'humedad': 'Humedad (%)'}
-    )
+def plot_hum_mes(df, localizacion):
+    # Agrupamos por mes (y ciudad si hay varias)
+    if 'ciudad' in df.columns:
+            df_mensual = df.groupby(['mes_anyo', 'ciudad'], as_index=False)['humedad'].mean()
+            fig = px.line(df_mensual, x="mes_anyo", y="humedad", color="ciudad",
+                        title=f"         Humedad mensual en {localizacion}")
+    else:
+        df_mensual = df.groupby('mes_anyo', as_index=False)['humedad'].mean()
+        fig = px.line(df_mensual, x="mes_anyo", y="humedad",
+                    title=f"         Humedad mensual en {localizacion}")
 
-    fig_bar_hum.update_layout(
+    # Estilo del gráfico
+    fig.update_layout(
         plot_bgcolor='rgba(0, 0, 0, 0)',
         paper_bgcolor='rgba(0, 0, 0, 0)',
         font=dict(color='white'),
         title_font=dict(color='white'),
         legend=dict(font=dict(color='white')),
-        xaxis=dict(color='white'),
-        yaxis=dict(color='white', gridcolor='rgba(255,255,255,0.4)'),
+        xaxis=dict(title='Mes', color='white'),
+        yaxis=dict(title='Humedad mensual (%)', color='white', gridcolor='rgba(255, 255, 255, 0.4)'),
         autosize=True,
         margin=dict(l=20, r=20, t=40, b=40)
     )
-    return fig_bar_hum
+
+    return fig
 
 # DISTRIBUCIÓN DE HUMEDAD (KDE)
 def plot_humidity_kde_line(df_filtrado, localizacion):
@@ -375,12 +401,14 @@ def plot_temp_vs_humidity(df_filtrado, localizacion):
     return fig
 
 # LINEA CON DOBLE EJE Y: Útil para ver cómo cambian juntas en el tiempo
-def plot_temp_humidity_dual_axis(df_filtrado, localizacion):
+def plot_temp_humidity_dual_axis(df, localizacion):
+    df_temp = df.groupby('mes_anyo', as_index=False)['temperatura'].mean()
+    df_hum = df.groupby('mes_anyo', as_index=False)['humedad'].mean()
+    
     fig = go.Figure()
-
     fig.add_trace(go.Scatter(
-        x=df_filtrado['fecha'], 
-        y=df_filtrado['temperatura'], 
+        x=df_temp['mes_anyo'], 
+        y=df_temp['temperatura'], 
         name='Temperatura (°C)', 
         yaxis='y1',
         mode='lines',
@@ -388,8 +416,8 @@ def plot_temp_humidity_dual_axis(df_filtrado, localizacion):
     ))
 
     fig.add_trace(go.Scatter(
-        x=df_filtrado['fecha'], 
-        y=df_filtrado['humedad'], 
+        x=df_hum['mes_anyo'], 
+        y=df_hum['humedad'], 
         name='Humedad (%)', 
         yaxis='y2',
         mode='lines',
