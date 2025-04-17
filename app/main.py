@@ -9,12 +9,10 @@ cargar_css("app/static/styles.css")
 
 st.title("⛅Morriña en Galicia")
 
-localidades = ["Galicia", "Santiago", "Coruña", "Lugo", "Ourense", "Pontevedra", "Vigo"]
-
 localidades = {
     "galicia": "Galicia",
     "santiago": "Santiago de Compostela",
-    "coruna": "A Coruña",
+    "coruna": "Coruña",
     "lugo": "Lugo",
     "ourense": "Ourense",
     "pontevedra": "Pontevedra",
