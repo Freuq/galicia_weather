@@ -115,7 +115,7 @@ with col2:
 st.markdown("---")
 ########################################### HUMEDAD RELATIVA #######################################################
 st.markdown(
-    f"<h2 style='text-align: center;'>🌫️<a href='/humidity';'>Humidade Relativa en {localizacion}</a></h2>",
+    f"<h2 style='text-align: center;'>🌫️<a href='/humidity' style='color: #ffffff;'>Humidade Relativa en {localizacion}</a></h2>",
     unsafe_allow_html=True
 )
 
