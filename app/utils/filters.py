@@ -17,11 +17,27 @@ localidades = {
     "pontevedra": "Pontevedra",
     "vigo": "Vigo"}
 
-def local():
-    localizacion = st.sidebar.selectbox("Clima en:", localidades.values())
-    st.subheader(f"📍 Localización: {localizacion}")
+def local(page_name="main"):
+    # Usar session_state para generar un key único
+    key_name = f"selectbox_localizacion_{page_name}_{st.session_state.get('localizacion', 'default')}"
+
+    # Verificar si 'localizacion' ya está en session_state
+    if 'localizacion' not in st.session_state:
+        st.session_state.localizacion = list(localidades.values())[0]
+
+    # Mostrar el selectbox con un key único
+    localizacion = st.sidebar.selectbox(
+        "Clima en:",
+        localidades.values(),
+        key=key_name,  # clave única con base en session_state
+        index=list(localidades.values()).index(st.session_state.localizacion)
+    )
+
+    # Guardar la selección en session_state
+    st.session_state.localizacion = localizacion
     localizacion_var = localizacion.split(" ")[0].lower().replace('ñ', 'n')
     return localizacion, localizacion_var
+
 
 def coors(localizacion):
     localizacion = localizacion.lower()

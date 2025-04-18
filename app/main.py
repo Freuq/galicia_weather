@@ -18,7 +18,9 @@ localidades = {
     "pontevedra": "Pontevedra",
     "vigo": "Vigo"}
 
-localizacion, localizacion_var = local()
+localizacion, localizacion_var = local(page_name='main')
+
+st.subheader(f"📍 Localización: {localizacion}")
 
 # Cargar datos
 df = cargar_df(localizacion_var, localidades)
@@ -41,7 +43,7 @@ st.components.v1.html(f"""
 
 # GENERACIÓN DE DF_GROUPED (VALORES AGRUPADOS PARA GALICIA) Y DF_CONTEO (NRO DE DÍAS CON LLUVIA Y SIN LLUVIA)
 df_grouped, df_conteo = df_grouped_conteo(df_filtrado)
-
+st.markdown("---")
 ####################################################### PRECIPITACIÓN #######################################################
 # Lluvia en Santiago
 st.markdown("<br>", unsafe_allow_html=True)
@@ -91,6 +93,7 @@ with col2:
 # lluvia mensual
 fig_rain_monthly = plot_lluvia_mes(df_filtrado, localizacion)
 st.plotly_chart(fig_rain_monthly, use_container_width=True)
+st.markdown("---")
 ################################################### TEMPERATURA #######################################################
 st.markdown("<br>", unsafe_allow_html=True)
 st.markdown(
@@ -133,7 +136,7 @@ st.plotly_chart(fig_temp_boxplot, use_container_width=True)
 # MEDIA MENSUAL POR CIUDAD (LINEA O BARRAS):  Buena para ver estacionalidad y comparaciones regionales
 #fig_temp_monthly_avg = plot_temp_monthly_avg(df_filtrado, localizacion)
 #st.plotly_chart(fig_temp_monthly_avg, use_container_width=True)
-
+st.markdown("---")
 ########################################### HUMEDAD RELATIVA #######################################################
 st.markdown("<br>", unsafe_allow_html=True)
 st.markdown(
