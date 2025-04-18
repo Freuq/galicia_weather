@@ -8,12 +8,6 @@ from utils.graphics import *
 st.set_page_config(layout="wide", page_title="Morriña en Galicia - Lluvia", page_icon="⛅")
 cargar_css("app/static/styles.css")
 
-# Nombre en el sidebar
-st.sidebar.title("Navegación")
-st.sidebar.markdown("### Lluvia")
-
-
-
 # Cargar tu dataframe (esto puedes adaptarlo si usas session_state o carga desde archivo)
 # Cargar datos
 if "df_climatico" not in st.session_state:

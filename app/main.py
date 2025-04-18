@@ -10,10 +10,6 @@ cargar_css("app/static/styles.css")
 
 st.title("⛅Morriña en Galicia")
 
-# Nombre en el sidebar
-st.sidebar.title("Navegación")
-st.sidebar.markdown("### Página principal")
-
 localidades = {
     "galicia": "Galicia",
     "santiago": "Santiago de Compostela",
@@ -50,8 +46,6 @@ st.components.v1.html(f"""
 df_grouped, df_conteo = df_grouped_conteo(df_filtrado)
 st.markdown("---")
 ####################################################### PRECIPITACIÓN #######################################################
-# Lluvia en Santiago
-st.markdown("<br>", unsafe_allow_html=True)
 st.markdown(
     f"<h2 style='text-align: center;'>☔ Choiva en {localizacion}</h2>",
     unsafe_allow_html=True
@@ -96,7 +90,6 @@ fig_rain_monthly = plot_lluvia_mes(df_filtrado, localizacion)
 st.plotly_chart(fig_rain_monthly, use_container_width=True)
 st.markdown("---")
 ################################################### TEMPERATURA #######################################################
-st.markdown("<br>", unsafe_allow_html=True)
 st.markdown(
     f"<h2 style='text-align: center;'>🌡️ Temperatura en {localizacion}</h2>",
     unsafe_allow_html=True
@@ -139,7 +132,6 @@ st.plotly_chart(fig_temp_boxplot, use_container_width=True)
 #st.plotly_chart(fig_temp_monthly_avg, use_container_width=True)
 st.markdown("---")
 ########################################### HUMEDAD RELATIVA #######################################################
-st.markdown("<br>", unsafe_allow_html=True)
 st.markdown(
     f"<h2 style='text-align: center;'>🌫️ Humidade Relativa en {localizacion}</h2>",
     unsafe_allow_html=True
