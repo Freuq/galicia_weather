@@ -5,7 +5,7 @@ from utils.filters import *
 from utils.df_functions import *
 from utils.graphics import *
 
-st.set_page_config(layout="wide", page_title="Morriña en Galicia - Lluvia", page_icon="⛅")
+st.set_page_config(layout="wide", page_title="Morriña en Galicia - Lluvia", page_icon="🌧️")
 cargar_css("app/static/styles.css")
 
 # Cargar tu dataframe (esto puedes adaptarlo si usas session_state o carga desde archivo)
@@ -74,7 +74,7 @@ with col3:
     st.metric("📅 Mes más lluvioso", mes_mas_lluvioso.strftime("%B %Y"), f"{lluvia_total_mes:.2f} mm", delta_color="off")
 
 
-
+st.markdown("---")
 st.subheader(f"📍 Localización: {localizacion}")
 # PIE PLOT: DÍAS CON LLUVIA
 fig_pie = lluvia_pie(df_conteo, localizacion)

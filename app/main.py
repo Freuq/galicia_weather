@@ -84,10 +84,6 @@ with col2:
         st.markdown("<div class='custom-container'><h5 style='padding-bottom: 0.1px;';'>Meses totales</h5><h2 >{}</h2></div>".format(total_meses), unsafe_allow_html=True)
         st.markdown("<div class='custom-container'><h5 style='padding-bottom: 0.1px;';'>Más lluvioso</h5><h2 >{}</h2></div>".format(mes_mas_lluvioso), unsafe_allow_html=True)
         st.markdown("<div class='custom-container'><h5 style='padding-bottom: 0.1px;';'>Menos lluvioso</h5><h2 >{}</h2></div>".format(mes_menos_lluvioso), unsafe_allow_html=True)
-
-# lluvia mensual
-fig_rain_monthly = plot_lluvia_mes(df_filtrado, localizacion)
-st.plotly_chart(fig_rain_monthly, use_container_width=True)
 st.markdown("---")
 ################################################### TEMPERATURA #######################################################
 st.markdown(
@@ -115,21 +111,7 @@ with col2:
     st.markdown("<div class='custom-container'><h5 style='padding-bottom: 0.1px;';'>⚖️ Temperatura promedio</h5><h2 >{} ºC</h2></div>".format(round(df_grouped['temperatura'].mean(), 2)), unsafe_allow_html=True)
     st.markdown("<div class='custom-container'><h5 style='padding-bottom: 0.1px;';'>🧊 Temperatura mínima</h5><h2 >{} ºC</h2></div>".format(df_grouped['temperatura'].min()), unsafe_allow_html=True)
 
-# LINEA DE TEMPERATURA DIARIA: Muestra la evolución temporal y diferencias entre ciudades
-#fig_temp_line = plot_temp_line(df_filtrado, localizacion)
-#st.plotly_chart(fig_temp_line, use_container_width=True)
 
-# LINEA DE TEMPERATURA MENSUAL: Muestra la evolución temporal y diferencias entre ciudades POR MES
-fig_temp_monthly = plot_temp_mes(df_filtrado, localizacion)
-st.plotly_chart(fig_temp_monthly, use_container_width=True)
-
-# BOXPLOT POR MES: Permite ver la dispersión, medianas y outliers por mes
-fig_temp_boxplot = plot_temp_boxplot(df_filtrado, localizacion)
-st.plotly_chart(fig_temp_boxplot, use_container_width=True)
-
-# MEDIA MENSUAL POR CIUDAD (LINEA O BARRAS):  Buena para ver estacionalidad y comparaciones regionales
-#fig_temp_monthly_avg = plot_temp_monthly_avg(df_filtrado, localizacion)
-#st.plotly_chart(fig_temp_monthly_avg, use_container_width=True)
 st.markdown("---")
 ########################################### HUMEDAD RELATIVA #######################################################
 st.markdown(
@@ -162,26 +144,8 @@ with col2:
     st.markdown("<div class='custom-container'><h5 style='padding-bottom: 0.1px;';'>➖ Humedad promedio</h5><h2 >{} %</h2></div>".format(round(df_grouped['humedad'].mean(), 2)), unsafe_allow_html=True)
     st.markdown("<div class='custom-container'><h5 style='padding-bottom: 0.1px;';'>🔽 Humedad mínima</h5><h2 >{:.1f} %</h2></div>".format(df_grouped['humedad'].min()), unsafe_allow_html=True)
 
-
-# LINEA DE HUMEDAD DIARIA: Muestra la evolución temporal y diferencias entre ciudades
-#fig_humidity_line = plot_humidity_line(df_filtrado, localizacion)
-#st.plotly_chart(fig_humidity_line, use_container_width=True)
-
-# LINEA DE HUMEDAD MENSUAL
-fig_hume_mes = plot_hum_mes(df_filtrado, localizacion)
-st.plotly_chart(fig_hume_mes, use_container_width=True)
-
-# DISTRIBUCIÓN DE HUMEDAD (HISTOGRAMA O UN KDE): Te dice en qué rango de humedad se mueven la mayoría de los días
-fig_humidity_kde_clean = plot_humidity_kde_line(df_filtrado, localizacion)
-st.plotly_chart(fig_humidity_kde_clean, use_container_width=True)
-
-# MAPA DE CALOR (HEATMAP): Muy visual para ver tendencias, anomalías o días con humedad alta/baja
-if localizacion_var == "galicia":
-    fig_humidity_heatmap = plot_humidity_heatmap(df_filtrado, localizacion)
-    st.plotly_chart(fig_humidity_heatmap, use_container_width=True)
-
 ####################################### COMPARATIVAS #######################################################
-st.markdown("<br>", unsafe_allow_html=True)
+st.markdown("---")
 st.markdown(
     f"<h2 style='text-align: center;'>Temperatura vs Humidade en {localizacion}</h2>",
     unsafe_allow_html=True
