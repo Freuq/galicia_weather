@@ -18,15 +18,16 @@ localidades = {
     "pontevedra": "Pontevedra",
     "vigo": "Vigo"}
 
-localizacion = st.sidebar.selectbox("Clima en:", localidades.values())
-st.subheader(f"📍 Localización: {localizacion}")
-localizacion_var = localizacion.split(" ")[0].lower().replace('ñ', 'n')
+localizacion, localizacion_var = local()
 
 # Cargar datos
 df = cargar_df(localizacion_var, localidades)
 
 # Aplicar filtros desde el archivo utils/filters.py
 df_filtrado, año, mes = aplicar_filtros(df)
+
+if "df_climatico" not in st.session_state:
+    st.session_state["df_climatico"] = df
 
 # MAPA
 map_html = map_local(localizacion_var)

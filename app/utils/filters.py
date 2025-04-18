@@ -8,6 +8,21 @@ def cargar_css(path: str):
     with open(path) as f:
         st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
 
+localidades = {
+    "galicia": "Galicia",
+    "santiago": "Santiago de Compostela",
+    "coruna": "Coruña",
+    "lugo": "Lugo",
+    "ourense": "Ourense",
+    "pontevedra": "Pontevedra",
+    "vigo": "Vigo"}
+
+def local():
+    localizacion = st.sidebar.selectbox("Clima en:", localidades.values())
+    st.subheader(f"📍 Localización: {localizacion}")
+    localizacion_var = localizacion.split(" ")[0].lower().replace('ñ', 'n')
+    return localizacion, localizacion_var
+
 def coors(localizacion):
     localizacion = localizacion.lower()
     if localizacion == 'galicia':
@@ -56,7 +71,7 @@ def aplicar_filtros(df):
     if mes_seleccionado != "Todos":
         mes_num = [k for k, v in MESES_ORDENADOS.items() if v == mes_seleccionado][0]
         df_filtrado = df_filtrado[df_filtrado["mes_num"] == mes_num]
-
+    st.session_state["df_filtrado"] = df_filtrado
     return df_filtrado, año_seleccionado, mes_seleccionado
 
 
