@@ -47,7 +47,7 @@ df_grouped, df_conteo = df_grouped_conteo(df_filtrado)
 st.markdown("---")
 ####################################################### PRECIPITACIÓN #######################################################
 st.markdown(
-    f"<h2 style='text-align: center;'>☔ Choiva en {localizacion}</h2>",
+    f"<h2 style='text-align: center;'>☔<a href='/rain' style='color: #ffffff;'>Choiva en {localizacion}</a></h2>",
     unsafe_allow_html=True
 )
 
@@ -87,7 +87,7 @@ with col2:
 st.markdown("---")
 ################################################### TEMPERATURA #######################################################
 st.markdown(
-    f"<h2 style='text-align: center;'>🌡️ Temperatura en {localizacion}</h2>",
+    f"<h2 style='text-align: center;'>🌡️<a href='/temperature' style='color: #ffffff;'>Temperatura en {localizacion}</a></h2>",
     unsafe_allow_html=True
 )
 
@@ -115,7 +115,7 @@ with col2:
 st.markdown("---")
 ########################################### HUMEDAD RELATIVA #######################################################
 st.markdown(
-    f"<h2 style='text-align: center;'>🌫️ Humidade Relativa en {localizacion}</h2>",
+    f"<h2 style='text-align: center;'>🌫️<a href='/humidity';'>Humidade Relativa en {localizacion}</a></h2>",
     unsafe_allow_html=True
 )
 
