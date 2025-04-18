@@ -4,10 +4,15 @@ from utils.graphics import *
 from utils.df_functions import *
 
 # Diseño de la página
-st.set_page_config(layout="wide")
+st.set_page_config(layout="wide", page_title="Morriña en Galicia", page_icon="⛅")
 cargar_css("app/static/styles.css")
+# Configuración de la página
 
 st.title("⛅Morriña en Galicia")
+
+# Nombre en el sidebar
+st.sidebar.title("Navegación")
+st.sidebar.markdown("### Página principal")
 
 localidades = {
     "galicia": "Galicia",
@@ -85,10 +90,6 @@ with col2:
         st.markdown("<div class='custom-container'><h5 style='padding-bottom: 0.1px;';'>Meses totales</h5><h2 >{}</h2></div>".format(total_meses), unsafe_allow_html=True)
         st.markdown("<div class='custom-container'><h5 style='padding-bottom: 0.1px;';'>Más lluvioso</h5><h2 >{}</h2></div>".format(mes_mas_lluvioso), unsafe_allow_html=True)
         st.markdown("<div class='custom-container'><h5 style='padding-bottom: 0.1px;';'>Menos lluvioso</h5><h2 >{}</h2></div>".format(mes_menos_lluvioso), unsafe_allow_html=True)
-
-# Lluvia diaria
-#fig_rain = plot_lluvia_bar(df_filtrado, localizacion)
-#st.plotly_chart(fig_rain, use_container_width=True)
 
 # lluvia mensual
 fig_rain_monthly = plot_lluvia_mes(df_filtrado, localizacion)

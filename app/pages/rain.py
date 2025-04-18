@@ -5,15 +5,22 @@ from utils.filters import *
 from utils.df_functions import *
 from utils.graphics import *
 
-st.set_page_config(layout="wide")
+st.set_page_config(layout="wide", page_title="Morriña en Galicia - Lluvia", page_icon="⛅")
 cargar_css("app/static/styles.css")
+
+# Nombre en el sidebar
+st.sidebar.title("Navegación")
+st.sidebar.markdown("### Lluvia")
+
+
 
 # Cargar tu dataframe (esto puedes adaptarlo si usas session_state o carga desde archivo)
 # Cargar datos
 if "df_climatico" not in st.session_state:
     localizacion, localizacion_var = local(page_name='rain')
     st.session_state["df_climatico"] = cargar_df(localizacion_var, localidades)
-
+else:
+    localizacion, localizacion_var = local(page_name='rain')
 # Filtros principales
 df = st.session_state["df_climatico"]
 
@@ -23,11 +30,58 @@ if df is None:
 
 st.markdown("<br>", unsafe_allow_html=True)
 st.title(f"☔ Choiva en {localizacion}")
-st.subheader(f"📍 Localización: {localizacion}")
+
 df_filtrado, año, mes = aplicar_filtros(df)
 df_grouped, df_conteo = df_grouped_conteo(df_filtrado)
 
+################# MÉTRICAS PARA TODA GALICIA
+# CIUDAD CON MÁS DÍAS LLOVIENDO, CIUDAD CON MÁS LLUVIA MEDIA
+# CIUDAD CON MENOS DÍAS LLOVIENDO, CIUDAD CON MÁS MENOS LLUVIA MEDIA
+# DÍA MÁS LLUVIOSO
+# Agrupamos por ciudad
+df_kpi = df.groupby("ciudad")
 
+# Ciudad con más y menos días de lluvia (> 0 mm)
+dias_lluvia = df[df["precipitacion"] > 0].groupby("ciudad").size()
+ciudad_mas_dias_lluvia = dias_lluvia.idxmax()
+ciudad_menos_dias_lluvia = dias_lluvia.idxmin()
+
+# Ciudad con mayor y menor precipitación media
+precipitacion_media = df_kpi["precipitacion"].mean()
+ciudad_mas_lluvia_media = precipitacion_media.idxmax()
+ciudad_menos_lluvia_media = precipitacion_media.idxmin()
+
+# Día más lluvioso
+dia_mas_lluvioso = df.loc[df["precipitacion"].idxmax()]
+fecha_mas_lluviosa = dia_mas_lluvioso["fecha"]
+lluvia_maxima = dia_mas_lluvioso["precipitacion"]
+
+# Asegurarse de que la columna 'fecha' es datetime
+df["fecha"] = pd.to_datetime(df["fecha"])
+# Crear una columna 'mes' en formato año-mes
+df["mes"] = df["fecha"].dt.to_period("M")
+# Agrupar por mes y sumar la precipitación
+precipitacion_por_mes = df.groupby("mes")["precipitacion"].sum()
+# Obtener el mes con más precipitación
+mes_mas_lluvioso = precipitacion_por_mes.idxmax()
+lluvia_total_mes = precipitacion_por_mes.max()
+
+# Mostrar métricas
+col1, col2, col3 = st.columns(3)
+with col1:
+    st.metric("🌧️ Ciudad con más días de lluvia", ciudad_mas_dias_lluvia, f"{dias_lluvia.max()} días", delta_color="off")
+    st.metric("🌂 Ciudad con más lluvia media", ciudad_mas_lluvia_media, f"{precipitacion_media.max():.2f} mm", delta_color="off")
+
+with col2:
+    st.metric("🌤️ Ciudad con menos días de lluvia", ciudad_menos_dias_lluvia, f"{dias_lluvia.min()} días", delta_color="off")
+    st.metric("🌵 Ciudad con menos lluvia media", ciudad_menos_lluvia_media, f"{precipitacion_media.min():.2f} mm", delta_color="off")
+with col3:
+    st.metric("📆 Día más lluvioso", pd.to_datetime(fecha_mas_lluviosa.iloc[0]).strftime("%d %b %Y"), f"{lluvia_maxima.iloc[0]:.2f} mm", delta_color="off")
+    st.metric("📅 Mes más lluvioso", mes_mas_lluvioso.strftime("%B %Y"), f"{lluvia_total_mes:.2f} mm", delta_color="off")
+
+
+
+st.subheader(f"📍 Localización: {localizacion}")
 # PIE PLOT: DÍAS CON LLUVIA
 fig_pie = lluvia_pie(df_conteo, localizacion)
 
@@ -70,15 +124,4 @@ st.plotly_chart(fig_rain_monthly)
 fig_rain = plot_lluvia_bar(df_filtrado, localizacion)
 st.plotly_chart(fig_rain, use_container_width=True)
 
-# KPIs / Métricas clave
-dias_lluvia = df_filtrado[df_filtrado['precipitacion'] > 0].shape[0]
-total_dias = df_filtrado.shape[0]
-porcentaje_lluvia = round((dias_lluvia / total_dias) * 100, 2)
-mes_mas_lluvioso = df_filtrado.groupby("mes_num")["precipitacion"].sum().idxmax()
 
-col1, col2, col3 = st.columns(3)
-col1.metric("🌧️ Días con lluvia", dias_lluvia)
-col2.metric("📊 % de días con lluvia", f"{porcentaje_lluvia}%")
-col3.metric("📅 Mes más lluvioso", mes_mas_lluvioso)
-
-st.markdown("---")
