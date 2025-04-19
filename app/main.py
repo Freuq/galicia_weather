@@ -47,7 +47,7 @@ df_grouped, df_conteo = df_grouped_conteo(df_filtrado)
 st.markdown("---")
 ####################################################### PRECIPITACIÓN #######################################################
 st.markdown(
-    f"<h2 style='text-align: center;'>☔<a href='/rain' style='color: #ffffff;'>Choiva en {localizacion}</a></h2>",
+    f"<h2 style='text-align: center;'>☔<a href='/rain' target='_self' style='color: #ffffff;'>Choiva en {localizacion}</a></h2>",
     unsafe_allow_html=True
 )
 
@@ -87,7 +87,7 @@ with col2:
 st.markdown("---")
 ################################################### TEMPERATURA #######################################################
 st.markdown(
-    f"<h2 style='text-align: center;'>🌡️<a href='/temperature' style='color: #ffffff;'>Temperatura en {localizacion}</a></h2>",
+    f"<h2 style='text-align: center;'>🌡️<a href='/temperature' target='_self' style='color: #ffffff;'>Temperatura en {localizacion}</a></h2>",
     unsafe_allow_html=True
 )
 
@@ -115,7 +115,7 @@ with col2:
 st.markdown("---")
 ########################################### HUMEDAD RELATIVA #######################################################
 st.markdown(
-    f"<h2 style='text-align: center;'>🌫️<a href='/humidity' style='color: #ffffff;'>Humidade Relativa en {localizacion}</a></h2>",
+    f"<h2 style='text-align: center;'>🌫️<a href='/humidity' target='_self' style='color: #ffffff;'>Humidade Relativa en {localizacion}</a></h2>",
     unsafe_allow_html=True
 )
 
@@ -152,8 +152,8 @@ st.markdown(
 )
 
 # SCATTER PLOT ENTRE TEMP Y HUMEDAD: Para ver correlaciones o agrupaciones
-fig_temp_vs_humidity = plot_temp_vs_humidity(df_filtrado, localizacion)
-st.plotly_chart(fig_temp_vs_humidity, use_container_width=True)
+#fig_temp_vs_humidity = plot_temp_vs_humidity(df_filtrado, localizacion)
+#st.plotly_chart(fig_temp_vs_humidity, use_container_width=True)
 
 # LINEA CON DOBLE EJE Y: Útil para ver cómo cambian juntas en el tiempo
 fig_temp_humidity = plot_temp_humidity_dual_axis(df_grouped, localizacion)

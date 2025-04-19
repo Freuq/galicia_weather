@@ -50,6 +50,14 @@ temperatura_ciudad_mas_fria = df_kpi["temperatura"].median().min()
 ciudad_mas_calida = df_kpi["temperatura"].median().idxmax()
 temperatura_ciudad_mas_calida = df_kpi["temperatura"].median().max()
 
+# Ciudad con pico más frío (mínima temperatura)
+ciudad_mas_fria_pico = df_kpi["temperatura"].min().idxmin()
+pico_mas_frio = df_kpi["temperatura"].min().min()
+
+# Ciudad con pico más cálido (máxima temperatura)
+ciudad_mas_calida_pico = df_kpi["temperatura"].max().idxmax()
+pico_mas_calido = df_kpi["temperatura"].max().max()
+
 # Asegurarse de que la columna 'fecha' es datetime
 df["fecha"] = pd.to_datetime(df["fecha"])
 # Crear una columna 'mes' en formato año-mes
@@ -82,15 +90,17 @@ fecha_mas_calido = dia_mas_calido["fecha"]
 temperatura_maxima_dia_calido = dia_mas_calido["temperatura"]
 
 # Mostrar métricas
-col1, col2, col3 = st.columns(3)
+col1, col2, col3, col4 = st.columns(4)
 with col1:
     st.metric("❄️ Ciudad más fría", ciudad_mas_fria, f"{temperatura_ciudad_mas_fria:.2f} °C", delta_color="off")
     st.metric("🌞 Ciudad más calurosa", ciudad_mas_calida, f"{temperatura_ciudad_mas_calida:.2f} °C", delta_color="off")
-
 with col2:
+    st.metric("❄️ Ciudad con pico más frío", ciudad_mas_fria_pico, f"{pico_mas_frio:.2f} °C", delta_color="off")
+    st.metric("🌞 Ciudad con pico más caluroso", ciudad_mas_calida_pico, f"{pico_mas_calido:.2f} °C", delta_color="off")
+with col3:
     st.metric("📆🧊 Día más frío", pd.to_datetime(fecha_mas_frio.iloc[0]).strftime("%d %b %Y"), f"{temperatura_maxima_dia_frio.iloc[0]:.2f} °C", delta_color="off")
     st.metric("📆🔥 Día más caluroso", pd.to_datetime(fecha_mas_calido.iloc[0]).strftime("%d %b %Y"), f"{temperatura_maxima_dia_calido.iloc[0]:.2f} °C", delta_color="off")
-with col3:
+with col4:
     st.metric("📅🌬️ Mes más frío", str(mes_mas_frio.strftime("%B %Y")), f"{temperatura_mes_mas_frio:.2f} °C", delta_color="off")
     st.metric("📅🌞 Mes más cálido", str(mes_mas_calido.strftime("%B %Y")), f"{temperatura_mes_mas_calido:.2f} °C", delta_color="off")
 
