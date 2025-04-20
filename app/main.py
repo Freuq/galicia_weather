@@ -60,7 +60,7 @@ df_grouped, df_conteo = df_grouped_conteo(df_filtrado)
 st.markdown("---")
 ####################################################### PRECIPITACIÓN #######################################################
 st.markdown(
-    f"<h2 style='text-align: center;'>☔<a href='/☔_Choiva' target='_self' style='color: #ffffff;'>Choiva en {localizacion}</a></h2>",
+    f"<h2 style='text-align: center;'>☔<a href='/Choiva' target='_self' style='color: #ffffff;'>Choiva en {localizacion}</a></h2>",
     unsafe_allow_html=True
 )
 
@@ -112,7 +112,7 @@ with st.expander("📊 Análisis de Choiva en Galicia"):
 st.markdown("---")
 ################################################### TEMPERATURA #######################################################
 st.markdown(
-    f"<h2 style='text-align: center;'>🌡️<a href='/🌡️_Temperatura' target='_self' style='color: #ffffff;'>Temperatura en {localizacion}</a></h2>",
+    f"<h2 style='text-align: center;'>🌡️<a href='/Temperatura' target='_self' style='color: #ffffff;'>Temperatura en {localizacion}</a></h2>",
     unsafe_allow_html=True
 )
 
@@ -151,7 +151,7 @@ with st.expander("📊 Análisis de Temperatura en Galicia"):
 st.markdown("---")
 ########################################### HUMEDAD RELATIVA #######################################################
 st.markdown(
-    f"<h2 style='text-align: center;'>🌫️<a href='/🌫️_Humidade' target='_self' style='color: #ffffff;'>Humidade Relativa en {localizacion}</a></h2>",
+    f"<h2 style='text-align: center;'>🌫️<a href='/Humidade' target='_self' style='color: #ffffff;'>Humidade Relativa en {localizacion}</a></h2>",
     unsafe_allow_html=True
 )
 
