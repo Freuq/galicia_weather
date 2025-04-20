@@ -19,10 +19,20 @@ localidades = {
     "pontevedra": "Pontevedra",
     "vigo": "Vigo"}
 
-# Obtener la localización actual (esto debe ir SIEMPRE antes del uso del df)
+# Guardar la localización previa (si existía)
+localizacion_anterior = st.session_state.get("localizacion_anterior", None)
+
+# Obtener localización actual
 localizacion, localizacion_var = local(page_name="main")
-if "df_climatico" not in st.session_state:
+
+# Si no existe el df o ha cambiado la ciudad, cargar nuevo df
+if ("df_climatico" not in st.session_state) or (localizacion != localizacion_anterior):
     st.session_state["df_climatico"] = cargar_df(localizacion_var, localidades)
+    st.session_state["localizacion_anterior"] = localizacion  # actualizar
+
+df = st.session_state["df_climatico"]
+
+
 
 df = st.session_state["df_climatico"]
 st.subheader(f"📍 Localización: {localizacion}")
