@@ -23,7 +23,7 @@ if df is None:
     st.stop()
 
 st.markdown("<br>", unsafe_allow_html=True)
-st.title(f"☔ Choiva en {localizacion}")
+st.title(f"☔ Choiva en Galicia")
 
 df_filtrado, año, mes = aplicar_filtros(df)
 df_grouped, df_conteo = df_grouped_conteo(df_filtrado)
@@ -33,10 +33,13 @@ df_grouped, df_conteo = df_grouped_conteo(df_filtrado)
 # CIUDAD CON MENOS DÍAS LLOVIENDO, CIUDAD CON MÁS MENOS LLUVIA MEDIA
 # DÍA MÁS LLUVIOSO
 # Agrupamos por ciudad
-df_kpi = df.groupby("ciudad")
+df_gal = df_galicia(localidades)
+df_gal["fecha"] = pd.to_datetime(df_gal["fecha"])
+# Agrupamos por ciudad
+df_kpi = df_gal.groupby("ciudad")
 
 # Ciudad con más y menos días de lluvia (> 0 mm)
-dias_lluvia = df[df["precipitacion"] > 0].groupby("ciudad").size()
+dias_lluvia = df_gal[df_gal["precipitacion"] > 0].groupby("ciudad").size()
 ciudad_mas_dias_lluvia = dias_lluvia.idxmax()
 ciudad_menos_dias_lluvia = dias_lluvia.idxmin()
 
@@ -45,17 +48,18 @@ precipitacion_media = df_kpi["precipitacion"].mean()
 ciudad_mas_lluvia_media = precipitacion_media.idxmax()
 ciudad_menos_lluvia_media = precipitacion_media.idxmin()
 
+df_dias = df_gal.drop('ciudad', axis = 1).groupby("fecha")["precipitacion"].sum()
+
 # Día más lluvioso
-dia_mas_lluvioso = df.loc[df["precipitacion"].idxmax()]
-fecha_mas_lluviosa = dia_mas_lluvioso["fecha"]
-lluvia_maxima = dia_mas_lluvioso["precipitacion"]
+fecha_mas_lluviosa = df_dias.idxmax()
+lluvia_maxima = df_dias.max()
 
 # Asegurarse de que la columna 'fecha' es datetime
-df["fecha"] = pd.to_datetime(df["fecha"])
+df_gal["fecha"] = pd.to_datetime(df_gal["fecha"])
 # Crear una columna 'mes' en formato año-mes
-df["mes"] = df["fecha"].dt.to_period("M")
+df_gal["mes"] = df_gal["fecha"].dt.to_period("M")
 # Agrupar por mes y sumar la precipitación
-precipitacion_por_mes = df.groupby("mes")["precipitacion"].sum()
+precipitacion_por_mes = df_gal.drop('ciudad', axis = 1).groupby("mes")["precipitacion"].sum()
 # Obtener el mes con más precipitación
 mes_mas_lluvioso = precipitacion_por_mes.idxmax()
 lluvia_total_mes = precipitacion_por_mes.max()
@@ -64,14 +68,14 @@ lluvia_total_mes = precipitacion_por_mes.max()
 col1, col2, col3 = st.columns(3)
 with col1:
     st.metric("🌧️ Ciudad con más días de lluvia", ciudad_mas_dias_lluvia, f"{dias_lluvia.max()} días", delta_color="off")
-    st.metric("🌂 Ciudad con más lluvia media", ciudad_mas_lluvia_media, f"{precipitacion_media.max():.2f} mm", delta_color="off")
+    st.metric("🌂 Ciudad con más lluvia media", ciudad_mas_lluvia_media, f"{precipitacion_media.max():.2f} L/m²", delta_color="off")
 
 with col2:
     st.metric("🌤️ Ciudad con menos días de lluvia", ciudad_menos_dias_lluvia, f"{dias_lluvia.min()} días", delta_color="off")
-    st.metric("🌵 Ciudad con menos lluvia media", ciudad_menos_lluvia_media, f"{precipitacion_media.min():.2f} mm", delta_color="off")
+    st.metric("🌵 Ciudad con menos lluvia media", ciudad_menos_lluvia_media, f"{precipitacion_media.min():.2f} L/m²", delta_color="off")
 with col3:
-    st.metric("📆 Día más lluvioso", pd.to_datetime(fecha_mas_lluviosa.iloc[0]).strftime("%d %b %Y"), f"{lluvia_maxima.iloc[0]:.2f} mm", delta_color="off")
-    st.metric("📅 Mes más lluvioso", mes_mas_lluvioso.strftime("%B %Y"), f"{lluvia_total_mes:.2f} mm", delta_color="off")
+    st.metric("📆 Día más lluvioso", pd.to_datetime(fecha_mas_lluviosa).strftime("%d %b %Y"), f"{lluvia_maxima:.2f} L/m²", delta_color="off")
+    st.metric("📅 Mes más lluvioso", mes_mas_lluvioso.strftime("%B %Y"), f"{lluvia_total_mes:.2f} L/m²", delta_color="off")
 
 
 st.markdown("---")

@@ -23,7 +23,7 @@ if df is None:
     st.stop()
 
 st.markdown("<br>", unsafe_allow_html=True)
-st.title(f"🌡️ Temperatura en {localizacion}")
+st.title(f"🌡️ Temperatura en Galicia")
 
 df_filtrado, año, mes = aplicar_filtros(df)
 df_grouped, df_conteo = df_grouped_conteo(df_filtrado)
@@ -37,10 +37,10 @@ df_grouped, df_conteo = df_grouped_conteo(df_filtrado)
 # DÍA MÁS CÁLIDO
 # Agrupamos por ciudad
 # Asegurarse de que la columna 'fecha' es datetime
-df["fecha"] = pd.to_datetime(df["fecha"])
-
+df_gal = df_galicia(localidades)
+df_gal["fecha"] = pd.to_datetime(df_gal["fecha"])
 # Agrupamos por ciudad
-df_kpi = df.groupby("ciudad")
+df_kpi = df_gal.groupby("ciudad")
 
 # Ciudad más fría (mínima temperatura)
 ciudad_mas_fria = df_kpi["temperatura"].median().idxmin()
@@ -59,19 +59,19 @@ ciudad_mas_calida_pico = df_kpi["temperatura"].max().idxmax()
 pico_mas_calido = df_kpi["temperatura"].max().max()
 
 # Asegurarse de que la columna 'fecha' es datetime
-df["fecha"] = pd.to_datetime(df["fecha"])
+df_gal["fecha"] = pd.to_datetime(df["fecha"])
 # Crear una columna 'mes' en formato año-mes
-df["mes"] = df["fecha"].dt.to_period("M")
+df_gal["mes"] = df_gal["fecha"].dt.to_period("M")
 # Agrupar por mes y sumar la precipitación
-precipitacion_por_mes = df.groupby("mes")["precipitacion"].sum()
+precipitacion_por_mes = df_gal.groupby("mes")["precipitacion"].sum()
 # Obtener el mes con más precipitación
 mes_mas_lluvioso = precipitacion_por_mes.idxmax()
 lluvia_total_mes = precipitacion_por_mes.max()
 
 
 # Mes más frío (mínima temperatura media mensual)
-df["mes"] = df["fecha"].dt.to_period("M")
-temperatura_media_por_mes = df.groupby("mes")["temperatura"].median()
+df_gal["mes"] = df_gal["fecha"].dt.to_period("M")
+temperatura_media_por_mes = df_gal.groupby("mes")["temperatura"].median()
 mes_mas_frio = temperatura_media_por_mes.idxmin()
 temperatura_mes_mas_frio = temperatura_media_por_mes.min()
 
@@ -79,15 +79,15 @@ temperatura_mes_mas_frio = temperatura_media_por_mes.min()
 mes_mas_calido = temperatura_media_por_mes.idxmax()
 temperatura_mes_mas_calido = temperatura_media_por_mes.max()
 
+df_dias = df_gal.drop('ciudad', axis = 1).groupby("fecha")["temperatura"].median()
+
 # Día más frío (mínima temperatura)
-dia_mas_frio = df.loc[df["temperatura"].idxmin()]
-fecha_mas_frio = dia_mas_frio["fecha"]
-temperatura_maxima_dia_frio = dia_mas_frio["temperatura"]
+fecha_mas_frio = df_dias.idxmin()
+temperatura_maxima_dia_frio = df_dias.min()
 
 # Día más cálido (máxima temperatura)
-dia_mas_calido = df.loc[df["temperatura"].idxmax()]
-fecha_mas_calido = dia_mas_calido["fecha"]
-temperatura_maxima_dia_calido = dia_mas_calido["temperatura"]
+fecha_mas_calido = df_dias.idxmax()
+temperatura_maxima_dia_calido = df_dias.max()
 
 # Mostrar métricas
 col1, col2, col3, col4 = st.columns(4)
@@ -98,8 +98,8 @@ with col2:
     st.metric("❄️ Ciudad con pico más frío", ciudad_mas_fria_pico, f"{pico_mas_frio:.2f} °C", delta_color="off")
     st.metric("🌞 Ciudad con pico más caluroso", ciudad_mas_calida_pico, f"{pico_mas_calido:.2f} °C", delta_color="off")
 with col3:
-    st.metric("📆🧊 Día más frío", pd.to_datetime(fecha_mas_frio.iloc[0]).strftime("%d %b %Y"), f"{temperatura_maxima_dia_frio.iloc[0]:.2f} °C", delta_color="off")
-    st.metric("📆🔥 Día más caluroso", pd.to_datetime(fecha_mas_calido.iloc[0]).strftime("%d %b %Y"), f"{temperatura_maxima_dia_calido.iloc[0]:.2f} °C", delta_color="off")
+    st.metric("📆🧊 Día más frío", pd.to_datetime(fecha_mas_frio).strftime("%d %b %Y"), f"{temperatura_maxima_dia_frio:.2f} °C", delta_color="off")
+    st.metric("📆🔥 Día más caluroso", pd.to_datetime(fecha_mas_calido).strftime("%d %b %Y"), f"{temperatura_maxima_dia_calido:.2f} °C", delta_color="off")
 with col4:
     st.metric("📅🌬️ Mes más frío", str(mes_mas_frio.strftime("%B %Y")), f"{temperatura_mes_mas_frio:.2f} °C", delta_color="off")
     st.metric("📅🌞 Mes más cálido", str(mes_mas_calido.strftime("%B %Y")), f"{temperatura_mes_mas_calido:.2f} °C", delta_color="off")

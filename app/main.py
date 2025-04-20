@@ -19,18 +19,20 @@ localidades = {
     "pontevedra": "Pontevedra",
     "vigo": "Vigo"}
 
-localizacion, localizacion_var = local(page_name='main')
+# Obtener la localización actual (esto debe ir SIEMPRE antes del uso del df)
+localizacion, localizacion_var = local(page_name="main")
+df = st.session_state.df_climatico
 
 st.subheader(f"📍 Localización: {localizacion}")
-
-# Cargar datos
-df = cargar_df(localizacion_var, localidades)
 
 # Aplicar filtros desde el archivo utils/filters.py
 df_filtrado, año, mes = aplicar_filtros(df)
 
-if "df_climatico" not in st.session_state:
-    st.session_state["df_climatico"] = df
+#localizacion, localizacion_var = local(page_name='main')
+# Cargar datos
+#df = cargar_df(localizacion_var, localidades)
+#if "df_climatico" not in st.session_state:
+#    st.session_state["df_climatico"] = df
 
 # MAPA
 map_html = map_local(localizacion_var)
@@ -74,7 +76,7 @@ with col2:
         st.markdown("<div class='custom-container'><h5 style='padding-bottom: 0.1px;';'>Sin lluvia</h5><h2 >{}</h2></div>".format((df_grouped["precipitacion"] == 0).sum()), unsafe_allow_html=True)
     
     with subcol2:
-        st.markdown("<h4 style='text-align: center;'>Lluvia (L/m2)</h4>", unsafe_allow_html=True)
+        st.markdown("<h4 style='text-align: center;'>Lluvia (L/m²)</h4>", unsafe_allow_html=True)
         st.markdown("<div class='custom-container'><h5 style='padding-bottom: 0.1px;';'>Total</h5><h2 >{}</h2></div>".format(int(df_grouped['precipitacion'].sum())), unsafe_allow_html=True)
         st.markdown("<div class='custom-container'><h5 style='padding-bottom: 0.1px;';'>Promedio</h5><h2 >{}</h2></div>".format(round(df_grouped['precipitacion'].mean(), 2)), unsafe_allow_html=True)
         st.markdown("<div class='custom-container'><h5 style='padding-bottom: 0.1px;';'>Maximo</h5><h2 >{}</h2></div>".format((df_grouped["precipitacion"]).max()), unsafe_allow_html=True)
@@ -84,6 +86,18 @@ with col2:
         st.markdown("<div class='custom-container'><h5 style='padding-bottom: 0.1px;';'>Meses totales</h5><h2 >{}</h2></div>".format(total_meses), unsafe_allow_html=True)
         st.markdown("<div class='custom-container'><h5 style='padding-bottom: 0.1px;';'>Más lluvioso</h5><h2 >{}</h2></div>".format(mes_mas_lluvioso), unsafe_allow_html=True)
         st.markdown("<div class='custom-container'><h5 style='padding-bottom: 0.1px;';'>Menos lluvioso</h5><h2 >{}</h2></div>".format(mes_menos_lluvioso), unsafe_allow_html=True)
+with st.expander("📊 Análisis de Choiva en Galicia"):
+    st.markdown("""
+    El gráfico de la izqueirda representa la cantidad de días sin lluvia y con lluvia que hay en dicha Población. Para todas las ciudades por individual hay más días SIN lluvia,
+    pero al ver toda Galicia sí hay más días con lluvia (469 días). Si consideramos sólo las ciudades des mayor cantidad de días con lluvia a menor, sería de la siguente forma:
+    Santiago de Compostela > Coruña > Lugo > Pontevedra > Vigo > Ourense.
+    
+    Por otra parte, las métricas señaladas del lado derecho expresan diferentes puntos de valor. De los cuales podemos destacar que los meses más lluviosos y menos lluviosos se suelen repetir en casi todas las ciudades.
+    A excepción de Pontevedra y Vigo, donde su mes más lluvioso es Octubre y el menos lluvioso es Agosto y Julio, respectivamente.
+    
+    Para más detalle ir a la sección de lluvia.
+    """)
+
 st.markdown("---")
 ################################################### TEMPERATURA #######################################################
 st.markdown(
@@ -158,3 +172,8 @@ st.markdown(
 # LINEA CON DOBLE EJE Y: Útil para ver cómo cambian juntas en el tiempo
 fig_temp_humidity = plot_temp_humidity_dual_axis(df_grouped, localizacion)
 st.plotly_chart(fig_temp_humidity, use_container_width=True)
+
+################################## DF ####################################
+st.markdown("---")
+with st.expander("🗂️ Ver datos utilizados"):
+    st.dataframe(df_filtrado)

@@ -60,7 +60,8 @@ def clasificar_temperatura(temp, categorias):
         return f'{keys[2]}'
 
 def df_categorico(df, col, categorias):
-    df['categoria'] = df[col].apply(lambda valor: clasificar_temperatura(valor, categorias))
-    df["categoria"] = pd.Categorical(df["categoria"], categories=list(categorias.keys()), ordered=True)
-    df_cat = df.groupby("categoria").size().reset_index(name='count')
+    df_temp = df.copy()
+    df_temp['categoria'] = df_temp[col].apply(lambda valor: clasificar_temperatura(valor, categorias))
+    df_temp["categoria"] = pd.Categorical(df_temp["categoria"], categories=list(categorias.keys()), ordered=True)
+    df_cat = df_temp.groupby("categoria").size().reset_index(name='count')
     return df_cat
