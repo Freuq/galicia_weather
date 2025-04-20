@@ -1,0 +1,4 @@
+[[pages]]
+path = "app/main.py"
+name = "🏠 Inicio"
+icon = "house"
