@@ -189,28 +189,31 @@ with st.expander("📊 Análisis de Humidade en Galicia"):
     
     Para más detalle ir a la sección de temperatura.
     """)
-
-####################################### COMPARATIVAS #######################################################
+################################## DF ####################################
 st.markdown("---")
 st.markdown(
-    f"<h2 style='text-align: center;'>Temperatura vs Humidade en {localizacion}</h2>",
+    f"<h2 style='text-align: center;'>DataFrame de {localizacion}</h2>",
     unsafe_allow_html=True
 )
+with st.expander("🗂️ Ver datos utilizados"):
+    st.dataframe(df_filtrado)
+####################################### COMPARATIVAS #######################################################
+#st.markdown("---")
+#st.markdown(
+#    f"<h2 style='text-align: center;'>Temperatura vs Humidade en {localizacion}</h2>",
+#    unsafe_allow_html=True
+#)
 
 # SCATTER PLOT ENTRE TEMP Y HUMEDAD: Para ver correlaciones o agrupaciones
 #fig_temp_vs_humidity = plot_temp_vs_humidity(df_filtrado, localizacion)
 #st.plotly_chart(fig_temp_vs_humidity, use_container_width=True)
 
 # LINEA CON DOBLE EJE Y: Útil para ver cómo cambian juntas en el tiempo
-fig_temp_humidity = plot_temp_humidity_dual_axis(df_grouped, localizacion)
-st.plotly_chart(fig_temp_humidity, use_container_width=True)
-with st.expander("📊 Proximo análisis"):
-    st.markdown("""
-    Esta sección será dedicada en un futuro a la relación entre las variables Temperatura y Humedad, para poder explicar y ver la presencia de días de "bochorno" en Galicia y ese frío que "se mete por los huesos"
-    """)
+#fig_temp_humidity = plot_temp_humidity_dual_axis(df_grouped, localizacion)
+#st.plotly_chart(fig_temp_humidity, use_container_width=True)
+#with st.expander("📊 Proximo análisis"):
+#    st.markdown("""
+#    Esta sección será dedicada en un futuro a la relación entre las variables Temperatura y Humedad, para poder explicar y ver la presencia de días de "bochorno" en Galicia y ese frío que "se mete por los huesos"
+#    """)
 
 
-################################## DF ####################################
-st.markdown("---")
-with st.expander("🗂️ Ver datos utilizados"):
-    st.dataframe(df_filtrado)
