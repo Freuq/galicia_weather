@@ -21,8 +21,10 @@ localidades = {
 
 # Obtener la localización actual (esto debe ir SIEMPRE antes del uso del df)
 localizacion, localizacion_var = local(page_name="main")
-df = st.session_state.df_climatico
+if "df_climatico" not in st.session_state:
+    st.session_state["df_climatico"] = cargar_df(localizacion_var, localidades)
 
+df = st.session_state["df_climatico"]
 st.subheader(f"📍 Localización: {localizacion}")
 
 # Aplicar filtros desde el archivo utils/filters.py
