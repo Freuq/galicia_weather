@@ -49,8 +49,8 @@ humedad_ciudad_menos_humeda = df_kpi["humedad"].median().min()
 ciudad_mas_humeda = df_kpi["humedad"].median().idxmax()
 humedad_ciudad_mas_humeda = df_kpi["humedad"].median().max()
 
-df_temp = df.copy()
-df_temp["fecha"] = pd.to_datetime(df["fecha"])
+df_temp = df_gal.copy()
+df_temp["fecha"] = pd.to_datetime(df_temp["fecha"])
 # Crear una columna 'mes' en formato año-mes
 df_temp["mes"] = df_temp["fecha"].dt.to_period("M")
 # Agrupar por mes y sumar la humedad
