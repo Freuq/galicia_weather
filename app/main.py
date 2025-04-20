@@ -39,7 +39,6 @@ st.subheader(f"📍 Localización: {localizacion}")
 
 # Aplicar filtros desde el archivo utils/filters.py
 df_filtrado, año, mes = aplicar_filtros(df)
-
 #localizacion, localizacion_var = local(page_name='main')
 # Cargar datos
 #df = cargar_df(localizacion_var, localidades)
@@ -100,7 +99,7 @@ with col2:
         st.markdown("<div class='custom-container'><h5 style='padding-bottom: 0.1px;';'>Menos lluvioso</h5><h2 >{}</h2></div>".format(mes_menos_lluvioso), unsafe_allow_html=True)
 with st.expander("📊 Análisis de Choiva en Galicia"):
     st.markdown("""
-    El gráfico de la izqueirda representa la cantidad de días sin lluvia y con lluvia que hay en dicha Población. Para todas las ciudades por individual hay más días SIN lluvia,
+    El gráfico de pe a la izquierda representa la cantidad de días sin lluvia y con lluvia que hay en dicha Población. Para todas las ciudades por individual hay más días SIN lluvia,
     pero al ver toda Galicia sí hay más días con lluvia (469 días). Si consideramos sólo las ciudades des mayor cantidad de días con lluvia a menor, sería de la siguente forma:
     Santiago de Compostela > Coruña > Lugo > Pontevedra > Vigo > Ourense.
     
@@ -137,6 +136,17 @@ with col2:
     st.markdown("<div class='custom-container'><h5 style='padding-bottom: 0.1px;';'>⚖️ Temperatura promedio</h5><h2 >{} ºC</h2></div>".format(round(df_grouped['temperatura'].mean(), 2)), unsafe_allow_html=True)
     st.markdown("<div class='custom-container'><h5 style='padding-bottom: 0.1px;';'>🧊 Temperatura mínima</h5><h2 >{} ºC</h2></div>".format(df_grouped['temperatura'].min()), unsafe_allow_html=True)
 
+with st.expander("📊 Análisis de Temperatura en Galicia"):
+    st.markdown("""
+    Por el lado del Barplot se puede observar una clasificación los días para la localización que se esté observando, como tendencia tenemos que la mayoría de los días se califican como días templados🌤️ (10–20°C).
+    La ciudad que menos días Templados tiene es Ourense, esto significa que es la ciudad con mayor variabilidad de temperatura, ya que apesar de que la distribución se mantiene (Templado > Cálido y Frío),
+    tiene una diferencia entre ellas mucho menor a comparación de los otros sitios.
+    
+    Además se observan la temperatura máxima y mínima, ambas históricos. Estos resultados para Galicia se obtuvieron tomando en cuenta el promedio de las seis ciudades, siendo así los máximos y mínimos de ciudades en particular menores que en toda la región.
+    La menor temperatura es en Lugo (0.56 ºC) y la mayor temperatura en Ourense (31.0 ºC).
+    
+    Para más detalle ir a la sección de temperatura.
+    """)
 
 st.markdown("---")
 ########################################### HUMEDAD RELATIVA #######################################################
@@ -170,6 +180,16 @@ with col2:
     st.markdown("<div class='custom-container'><h5 style='padding-bottom: 0.1px;';'>➖ Humedad promedio</h5><h2 >{} %</h2></div>".format(round(df_grouped['humedad'].mean(), 2)), unsafe_allow_html=True)
     st.markdown("<div class='custom-container'><h5 style='padding-bottom: 0.1px;';'>🔽 Humedad mínima</h5><h2 >{:.1f} %</h2></div>".format(df_grouped['humedad'].min()), unsafe_allow_html=True)
 
+with st.expander("📊 Análisis de Humidade en Galicia"):
+    st.markdown("""
+    Aquí se presenta una clasificación de Humedad Relativa, es impresionante observar como la humedad es un parámetro que siempre está muy presente en el clima gallego,
+    Llegando a tener un promedio (75.43 %) para la zona que ya es considerado húmedo (>75%). Estando todas ellas por menos de diez días Secos en los datos presentados (2023 a 2025)
+    
+    Estos datos hacen ver lo representativa que llega a ser la humedad para Galicia, que inclusive en días de más calor, puede haber sensaciones de más frío o inclusive "bochorno".
+    
+    Para más detalle ir a la sección de temperatura.
+    """)
+
 ####################################### COMPARATIVAS #######################################################
 st.markdown("---")
 st.markdown(
@@ -184,6 +204,11 @@ st.markdown(
 # LINEA CON DOBLE EJE Y: Útil para ver cómo cambian juntas en el tiempo
 fig_temp_humidity = plot_temp_humidity_dual_axis(df_grouped, localizacion)
 st.plotly_chart(fig_temp_humidity, use_container_width=True)
+with st.expander("📊 Proximo análisis"):
+    st.markdown("""
+    Esta sección será dedicada en un futuro a la relación entre las variables Temperatura y Humedad, para poder explicar y ver la presencia de días de "bochorno" en Galicia y ese frío que "se mete por los huesos"
+    """)
+
 
 ################################## DF ####################################
 st.markdown("---")
