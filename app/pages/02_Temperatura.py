@@ -56,28 +56,16 @@ pico_mas_frio = df_kpi["temperatura"].min().min()
 ciudad_mas_calida_pico = df_kpi["temperatura"].max().idxmax()
 pico_mas_calido = df_kpi["temperatura"].max().max()
 
+# Mes menor temp, mes mayor temp
+mes_menor_temp, mes_mayor_temp = max_min_func(df_gal, 'mes', 'temperatura', 'median')
+mes_menor_temp_nombre, mes_menor_temp_valor = mes_menor_temp
+mes_mayor_temp_nombre, mes_mayor_temp_valor = mes_mayor_temp
 
-# Agrupar por mes y sumar la precipitación
-precipitacion_por_mes = df_gal.groupby("mes")["precipitacion"].sum()
-# Obtener el mes con más precipitación
-mes_mas_lluvioso = precipitacion_por_mes.idxmax()
-lluvia_total_mes = precipitacion_por_mes.max()
+# Dia menor temp, dia mayor temp
+min_temp, max_temp = max_min_func(df_gal, "fecha", 'temperatura', 'median')
+fecha_min, valor_min = min_temp
+fecha_max, valor_max = max_temp
 
-
-temperatura_media_por_mes = df_gal.groupby("mes")["temperatura"].median()
-mes_mas_frio = temperatura_media_por_mes.idxmin()
-temperatura_mes_mas_frio = temperatura_media_por_mes.min()
-
-# Mes más cálido (máxima temperatura media mensual)
-mes_mas_calido = temperatura_media_por_mes.idxmax()
-temperatura_mes_mas_calido = temperatura_media_por_mes.max()
-
-min_temp, max_temp = max_min_dia(df_gal, 'temperatura')
-
-fecha_min = min_temp[0]
-valor_min = min_temp[1]
-fecha_max = max_temp[0]
-valor_max = max_temp[1]
 
 # Mostrar métricas
 col1, col2, col3, col4 = st.columns(4)
@@ -91,8 +79,8 @@ with col3:
     st.metric("📆🧊 Día más frío", pd.to_datetime(fecha_min).strftime("%d %b %Y"), f"{valor_min:.2f} °C", delta_color="off")
     st.metric("📆🔥 Día más caluroso", pd.to_datetime(fecha_max).strftime("%d %b %Y"), f"{valor_max:.2f} °C", delta_color="off")
 with col4:
-    st.metric("📅🌬️ Mes más frío", str(mes_mas_frio.strftime("%B %Y")), f"{temperatura_mes_mas_frio:.2f} °C", delta_color="off")
-    st.metric("📅🌞 Mes más cálido", str(mes_mas_calido.strftime("%B %Y")), f"{temperatura_mes_mas_calido:.2f} °C", delta_color="off")
+    st.metric("📅🌬️ Mes más frío", str(mes_menor_temp_nombre.strftime("%B %Y")), f"{mes_menor_temp_valor:.2f} °C", delta_color="off")
+    st.metric("📅🌞 Mes más cálido", str(mes_mayor_temp_nombre.strftime("%B %Y")), f"{mes_mayor_temp_valor:.2f} °C", delta_color="off")
 
 
 

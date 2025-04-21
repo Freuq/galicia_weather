@@ -88,3 +88,20 @@ def max_min_dia(df, col):
     valor_max = df_dias.max()
     
     return (fecha_min, valor_min), (fecha_max, valor_max)
+
+def max_min_func(df, fecha, col, var):
+    if var == 'sum':
+        df_fecha = df.drop('ciudad', axis = 1).groupby(fecha)[col].sum()
+    if var == 'median':
+        df_fecha = df.drop('ciudad', axis = 1).groupby(fecha)[col].median()
+    else:
+        return "Tu variable no es aceptada, utiliza 'sum' o 'median'"
+    # Día de menor valor
+    fecha_min = df_fecha.idxmin()
+    valor_min = df_fecha.min()
+
+    # Día de mayor valor
+    fecha_max = df_fecha.idxmax()
+    valor_max = df_fecha.max()
+    
+    return (fecha_min, valor_min), (fecha_max, valor_max)

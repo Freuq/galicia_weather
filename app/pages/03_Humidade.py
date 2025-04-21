@@ -60,21 +60,15 @@ humedad_total_mes = humedad_por_mes.max()
 # Mes más frío (mínima humedad media mensual)
 df_temp["mes"] = df_temp["fecha"].dt.to_period("M")
 
-humedad_media_por_mes = df_temp.drop('ciudad', axis = 1).groupby("mes")["humedad"].median()
-mes_menos_humedo = humedad_media_por_mes.idxmin()
-humedad_mes_mas_seco = humedad_media_por_mes.min()
+# Mes más humedo, mes menos humedo
+min_mes_hum, max_mes_hum = max_min_func(df_temp, 'mes', 'humedad', 'median')
+mes_mas_humedo, mes_mas_humedo_valor = max_mes_hum
+mes_menos_humedo, mes_menos_humedo_valor = min_mes_hum
 
-# Mes más seco (máxima humedad media mensual)
-mes_mas_humedo = humedad_media_por_mes.idxmax()
-humedad_mes_mas_humedo = humedad_media_por_mes.max()
-
-min_temp, max_temp = max_min_dia(df_gal, 'humedad')
-
-fecha_min = min_temp[0]
-valor_min = min_temp[1]
-fecha_max = max_temp[0]
-valor_max = max_temp[1]
-
+# Dia más humedo, dia menos humedo
+min_hum, max_hum = max_min_func(df_gal, 'fecha', 'humedad', 'median')
+fecha_min, valor_min = min_hum
+fecha_max, valor_max = max_hum
 
 # Mostrar métricas
 col1, col2, col3 = st.columns(3)
@@ -86,8 +80,8 @@ with col2:
     st.metric("📆🔼 Día más húmedo", pd.to_datetime(fecha_max).strftime("%d %b %Y"), f"{valor_max:.2f} %", delta_color="off")
     st.metric("📆🔽 Día menos húmedo", pd.to_datetime(fecha_min).strftime("%d %b %Y"), f"{valor_min:.2f} %", delta_color="off")
 with col3:
-    st.metric("📅🔼 Mes más húmedo", str(mes_mas_humedo.strftime("%B %Y")), f"{humedad_mes_mas_humedo:.2f} %", delta_color="off")
-    st.metric("📅🔽 Mes menos húmedo", str(mes_menos_humedo.strftime("%B %Y")), f"{humedad_mes_mas_seco:.2f} %", delta_color="off")
+    st.metric("📅🔼 Mes más húmedo", str(mes_mas_humedo.strftime("%B %Y")), f"{mes_mas_humedo_valor:.2f} %", delta_color="off")
+    st.metric("📅🔽 Mes menos húmedo", str(mes_menos_humedo.strftime("%B %Y")), f"{mes_menos_humedo_valor:.2f} %", delta_color="off")
 
 ############################################################################
 st.markdown("---")
