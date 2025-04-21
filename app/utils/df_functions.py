@@ -75,3 +75,16 @@ def obtiene_minimo(df, col):
     min_id = df[col].median().idxmin()
     minimo = df[col].median().min()
     return min_id, minimo
+
+def max_min_dia(df, col):
+    df_dias = df.drop('ciudad', axis = 1).groupby("fecha")[col].median()
+
+    # Día de menor valor
+    fecha_min = df_dias.idxmin()
+    valor_min = df_dias.min()
+
+    # Día de mayor valor
+    fecha_max = df_dias.idxmax()
+    valor_max = df_dias.max()
+    
+    return (fecha_min, valor_min), (fecha_max, valor_max)

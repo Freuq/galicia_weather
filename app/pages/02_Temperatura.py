@@ -72,15 +72,12 @@ temperatura_mes_mas_frio = temperatura_media_por_mes.min()
 mes_mas_calido = temperatura_media_por_mes.idxmax()
 temperatura_mes_mas_calido = temperatura_media_por_mes.max()
 
-df_dias = df_gal.drop('ciudad', axis = 1).groupby("fecha")["temperatura"].median()
+min_temp, max_temp = max_min_dia(df_gal, 'temperatura')
 
-# Día más frío (mínima temperatura)
-fecha_mas_frio = df_dias.idxmin()
-temperatura_maxima_dia_frio = df_dias.min()
-
-# Día más cálido (máxima temperatura)
-fecha_mas_calido = df_dias.idxmax()
-temperatura_maxima_dia_calido = df_dias.max()
+fecha_min = min_temp[0]
+valor_min = min_temp[1]
+fecha_max = max_temp[0]
+valor_max = max_temp[1]
 
 # Mostrar métricas
 col1, col2, col3, col4 = st.columns(4)
@@ -91,8 +88,8 @@ with col2:
     st.metric("❄️ Ciudad con pico más frío", ciudad_mas_fria_pico, f"{pico_mas_frio:.2f} °C", delta_color="off")
     st.metric("🌞 Ciudad con pico más caluroso", ciudad_mas_calida_pico, f"{pico_mas_calido:.2f} °C", delta_color="off")
 with col3:
-    st.metric("📆🧊 Día más frío", pd.to_datetime(fecha_mas_frio).strftime("%d %b %Y"), f"{temperatura_maxima_dia_frio:.2f} °C", delta_color="off")
-    st.metric("📆🔥 Día más caluroso", pd.to_datetime(fecha_mas_calido).strftime("%d %b %Y"), f"{temperatura_maxima_dia_calido:.2f} °C", delta_color="off")
+    st.metric("📆🧊 Día más frío", pd.to_datetime(fecha_min).strftime("%d %b %Y"), f"{valor_min:.2f} °C", delta_color="off")
+    st.metric("📆🔥 Día más caluroso", pd.to_datetime(fecha_max).strftime("%d %b %Y"), f"{valor_max:.2f} °C", delta_color="off")
 with col4:
     st.metric("📅🌬️ Mes más frío", str(mes_mas_frio.strftime("%B %Y")), f"{temperatura_mes_mas_frio:.2f} °C", delta_color="off")
     st.metric("📅🌞 Mes más cálido", str(mes_mas_calido.strftime("%B %Y")), f"{temperatura_mes_mas_calido:.2f} °C", delta_color="off")
