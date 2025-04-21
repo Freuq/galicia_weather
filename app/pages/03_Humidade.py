@@ -37,20 +37,17 @@ df_grouped, df_conteo = df_grouped_conteo(df_filtrado)
 # DÍA MÁS SECO
 
 df_gal = df_galicia(localidades)
-df_gal["fecha"] = pd.to_datetime(df_gal["fecha"])
-# Agrupamos por ciudad
 df_kpi = df_gal.groupby("ciudad")
 
-# Ciudad más fría (mínima humedad)
-ciudad_menos_humeda = df_kpi["humedad"].median().idxmin()
-humedad_ciudad_menos_humeda = df_kpi["humedad"].median().min()
 
-# Ciudad más cálida (máxima humedad)
-ciudad_mas_humeda = df_kpi["humedad"].median().idxmax()
-humedad_ciudad_mas_humeda = df_kpi["humedad"].median().max()
+# Ciudad menos humeda
+ciudad_menos_humeda, valor_menos_humedo = obtiene_minimo(df_kpi, 'humedad')
+
+# Ciudad más humeda
+ciudad_mas_humeda, valor_mas_humedo = obtiene_maximo(df_kpi, 'humedad')
+
 
 df_temp = df_gal.copy()
-df_temp["fecha"] = pd.to_datetime(df_temp["fecha"])
 # Crear una columna 'mes' en formato año-mes
 df_temp["mes"] = df_temp["fecha"].dt.to_period("M")
 # Agrupar por mes y sumar la humedad
@@ -84,8 +81,8 @@ humedad_maxima_dia_seco = df_dias.max()
 # Mostrar métricas
 col1, col2, col3 = st.columns(3)
 with col1:
-    st.metric("💧 Ciudad más húmeda", ciudad_mas_humeda, f"{humedad_ciudad_mas_humeda:.2f} %", delta_color="off")
-    st.metric("🌵 Ciudad menos húmeda", ciudad_menos_humeda, f"{humedad_ciudad_menos_humeda:.2f} %", delta_color="off")
+    st.metric("💧 Ciudad más húmeda", ciudad_mas_humeda, f"{valor_mas_humedo:.2f} %", delta_color="off")
+    st.metric("🌵 Ciudad menos húmeda", ciudad_menos_humeda, f"{valor_menos_humedo:.2f} %", delta_color="off")
 
 with col2:
     st.metric("📆🔼 Día más húmedo", pd.to_datetime(fecha_mas_humeda).strftime("%d %b %Y"), f"{humedad_maxima_dia_seco:.2f} %", delta_color="off")

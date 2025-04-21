@@ -38,17 +38,15 @@ df_grouped, df_conteo = df_grouped_conteo(df_filtrado)
 # Agrupamos por ciudad
 # Asegurarse de que la columna 'fecha' es datetime
 df_gal = df_galicia(localidades)
-df_gal["fecha"] = pd.to_datetime(df_gal["fecha"])
+df_gal["mes"] = df_gal["fecha"].dt.to_period("M")
 # Agrupamos por ciudad
 df_kpi = df_gal.groupby("ciudad")
 
-# Ciudad más fría (mínima temperatura)
-ciudad_mas_fria = df_kpi["temperatura"].median().idxmin()
-temperatura_ciudad_mas_fria = df_kpi["temperatura"].median().min()
+# Ciudad menos humeda
+ciudad_menos_temp, valor_menos_temp = obtiene_minimo(df_kpi, 'temperatura')
 
-# Ciudad más cálida (máxima temperatura)
-ciudad_mas_calida = df_kpi["temperatura"].median().idxmax()
-temperatura_ciudad_mas_calida = df_kpi["temperatura"].median().max()
+# Ciudad más humeda
+ciudad_mas_temp, valor_mas_temp = obtiene_maximo(df_kpi, 'temperatura')
 
 # Ciudad con pico más frío (mínima temperatura)
 ciudad_mas_fria_pico = df_kpi["temperatura"].min().idxmin()
@@ -58,10 +56,7 @@ pico_mas_frio = df_kpi["temperatura"].min().min()
 ciudad_mas_calida_pico = df_kpi["temperatura"].max().idxmax()
 pico_mas_calido = df_kpi["temperatura"].max().max()
 
-# Asegurarse de que la columna 'fecha' es datetime
-df_gal["fecha"] = pd.to_datetime(df["fecha"])
-# Crear una columna 'mes' en formato año-mes
-df_gal["mes"] = df_gal["fecha"].dt.to_period("M")
+
 # Agrupar por mes y sumar la precipitación
 precipitacion_por_mes = df_gal.groupby("mes")["precipitacion"].sum()
 # Obtener el mes con más precipitación
@@ -69,8 +64,6 @@ mes_mas_lluvioso = precipitacion_por_mes.idxmax()
 lluvia_total_mes = precipitacion_por_mes.max()
 
 
-# Mes más frío (mínima temperatura media mensual)
-df_gal["mes"] = df_gal["fecha"].dt.to_period("M")
 temperatura_media_por_mes = df_gal.groupby("mes")["temperatura"].median()
 mes_mas_frio = temperatura_media_por_mes.idxmin()
 temperatura_mes_mas_frio = temperatura_media_por_mes.min()
@@ -92,8 +85,8 @@ temperatura_maxima_dia_calido = df_dias.max()
 # Mostrar métricas
 col1, col2, col3, col4 = st.columns(4)
 with col1:
-    st.metric("❄️ Ciudad más fría", ciudad_mas_fria, f"{temperatura_ciudad_mas_fria:.2f} °C", delta_color="off")
-    st.metric("🌞 Ciudad más calurosa", ciudad_mas_calida, f"{temperatura_ciudad_mas_calida:.2f} °C", delta_color="off")
+    st.metric("❄️ Ciudad más fría", ciudad_menos_temp, f"{valor_menos_temp:.2f} °C", delta_color="off")
+    st.metric("🌞 Ciudad más calurosa", ciudad_mas_temp, f"{valor_mas_temp:.2f} °C", delta_color="off")
 with col2:
     st.metric("❄️ Ciudad con pico más frío", ciudad_mas_fria_pico, f"{pico_mas_frio:.2f} °C", delta_color="off")
     st.metric("🌞 Ciudad con pico más caluroso", ciudad_mas_calida_pico, f"{pico_mas_calido:.2f} °C", delta_color="off")

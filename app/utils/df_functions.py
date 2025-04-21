@@ -65,3 +65,13 @@ def df_categorico(df, col, categorias):
     df_temp["categoria"] = pd.Categorical(df_temp["categoria"], categories=list(categorias.keys()), ordered=True)
     df_cat = df_temp.groupby("categoria").size().reset_index(name='count')
     return df_cat
+
+def obtiene_maximo(df, col):
+    max_id = df[col].median().idxmax()
+    maximo = df[col].median().max()
+    return max_id, maximo
+
+def obtiene_minimo(df, col):
+    min_id = df[col].median().idxmin()
+    minimo = df[col].median().min()
+    return min_id, minimo

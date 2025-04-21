@@ -34,7 +34,6 @@ df_grouped, df_conteo = df_grouped_conteo(df_filtrado)
 # DÍA MÁS LLUVIOSO
 # Agrupamos por ciudad
 df_gal = df_galicia(localidades)
-df_gal["fecha"] = pd.to_datetime(df_gal["fecha"])
 # Agrupamos por ciudad
 df_kpi = df_gal.groupby("ciudad")
 
