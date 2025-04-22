@@ -1,4 +1,4 @@
-# Galizia Weather  
+# ⛅Morriña en Galicia o Galizia Weather  
 Este proyecto es sobre el clima de Galicia y sus seis ciudades, en particular sobre tres variables: La temperatura, las precipitaciones y la humedad relativa. Realizado netamente en Python.  
 ## Motivo  
 Estuve poco más de dos años viviendo en Galicia y siempre me dijeron que en esta zona llovía mucho y que antes inclusive más, que "el frío de galicia es diferente, se te mete a los huesos".  
