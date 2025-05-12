@@ -48,7 +48,7 @@ with st.expander("🗂️ Ver datos utilizados"):
 st.markdown("---")
 #fecha = st.date_input("Selecciona la fecha", default=mañana)
 st.markdown(
-    f"<h3 style='text-align: center;'>Actualmente estamos en {localidad}</h3>",
+    f"<h3 style='text-align: center;'>Clima para mañana en {localidad}</h3>",
     unsafe_allow_html=True
 )
 
@@ -61,6 +61,15 @@ col1, col2, col3 = st.columns(3)
 col1.metric("Temp. media 🌡️", f"{df['temperature'].mean():.1f} °C")
 col2.metric("Humedad media 💧", f"{df['humidity'].mean():.0f} %")
 col3.metric("Lluvia total 🌧️", f"{df['precipitation'].sum():.1f} mm")
+
+
+col4, col5, col6 = st.columns(3)
+with col4:
+    st.markdown("<div class='custom-container'><h5 style='padding-bottom: 0.1px;';'>🌡️ Temperatura media</h5><h2 >{}</h2></div>".format(f"{df['temperature'].mean():.1f} °C"), unsafe_allow_html=True)
+with col5:
+    st.markdown("<div class='custom-container'><h5 style='padding-bottom: 0.1px;';'>💧 Humedad media</h5><h2 >{}</h2></div>".format(f"{df['humidity'].mean():.0f} %"), unsafe_allow_html=True)
+with col6:
+    st.markdown("<div class='custom-container'><h5 style='padding-bottom: 0.1px;';'>🌧️ Lluvia total</h5><h2 >{}</h2></div>".format(f"{df['precipitation'].sum():.1f} mm"), unsafe_allow_html=True)
 
 ##################################################################################
 # --- Estado general del cielo
