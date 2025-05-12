@@ -24,4 +24,4 @@ for i in ['santiago', 'coruna', 'lugo', 'pontevedra', 'ourense', 'vigo']:
 
     df_forecast = pd.DataFrame(dict_)
     print(df_forecast.head())
-    df_forecast.to_csv(f"data/processed/forecast/forecast_{i}.csv")
+    df_forecast.to_csv(f"data/processed/forecast/{i}.csv")
