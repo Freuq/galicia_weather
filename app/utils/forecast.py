@@ -1,9 +1,11 @@
 import requests
 import pandas as pd
 from datetime import date, timedelta, datetime
+import time
 import json
 import os
 import streamlit as st
+import glob
 
 def cargar_api_key():
     try:
@@ -28,21 +30,48 @@ def json_to_df(forecast_data):
         dict_[param] = list_
     return dict_
 
-def forecast_main(localidades):
-    hoy = date.today().isoformat()
+def delete_old_files(folder):
+    archivos = os.listdir(folder)
+    hoy = date.today()
+    for archivo in archivos:
+        # Verificar si el archivo sigue el patrón de "forecast_YYYY-MM-DD"
+        if archivo.startswith("forecast_"):
+            try:
+                # Extraer la fecha del nombre del archivo
+                archivo_limpio = archivo.split(".")[0]
+                fecha_archivo_str = archivo_limpio[len("forecast_"):]
+                fecha_archivo = date.fromisoformat(fecha_archivo_str)
+                # Comparar la fecha del archivo con la fecha de hoy
+                if fecha_archivo < hoy:
+                    archivo_a_eliminar = os.path.join(folder, archivo)
+                    os.remove(archivo_a_eliminar)  # Eliminar archivo
+                    print(f"Archivo eliminado: {archivo_a_eliminar}")
+            except Exception as e:
+                print(f"Error al eliminar el archivo {archivo[len('forecast_'):]}: {e}")   
 
+def file_path_():
+    hoy = date.today().isoformat()
     # Definir base de proyecto sin depender del working dir
     base_path = os.path.dirname(os.path.abspath(__file__))  # app/
     project_root = os.path.abspath(os.path.join(base_path, '..', '..'))  # galizia_weather/
     folder = os.path.join(project_root, 'data', 'processed', 'forecast', 'final')
-    os.makedirs(folder, exist_ok=True)
     
-    file_path = os.path.join(folder, f"forecast_{hoy}.csv")    
+    # eliminar otros archivos 
+    delete_old_files(folder)
+    
+    return os.path.join(folder, f"forecast_{hoy}.csv")    
+
+@st.cache_data
+def forecast_main(localidades):
+
+    file_path = file_path_()
     
     # Si ya existe, lo carga
     if os.path.exists(file_path):
         return pd.read_csv(file_path, parse_dates=['time'])  # Ajusta si es otra columna
 
+    
+    # Sino hace la petición a la API
     API_KEY = cargar_api_key()
 
     place_coors_dict = {}
@@ -54,7 +83,6 @@ def forecast_main(localidades):
         place_coors_dict = json.load(f)
 
     today = date.today()
-
     tomorrowDay = today + timedelta(days=1)
     inicio = datetime.combine(tomorrowDay, datetime.min.time())
     final = datetime.combine(tomorrowDay, datetime.max.time()).replace(microsecond=0)
@@ -86,14 +114,12 @@ def forecast_main(localidades):
         df_temp['city'] = localidades[i]
         
         df_forecast = pd.concat([df_forecast, df_temp])
+
     
-    hoy = date.today().isoformat()
-    
-    base_path = os.path.dirname(os.path.abspath(__file__))  # app/
-    project_root = os.path.abspath(os.path.join(base_path, '..', '..'))  # galizia_weather/
-    folder = os.path.join(project_root, 'data', 'processed', 'forecast', 'final')
-    file_path = os.path.join(folder, f"forecast_{hoy}.csv")    
+    file_path = file_path_()
     df_forecast.to_csv(file_path, index=False)
+    # Llamar esta función al inicio para eliminar archivos antiguos
+
     # Si ya existe, lo carga
     if os.path.exists(file_path):
         return pd.read_csv(file_path, parse_dates=["time"])
