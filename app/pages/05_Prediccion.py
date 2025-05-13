@@ -60,11 +60,6 @@ if df.empty:
     st.stop()
 ##################################################################################
 # --- Métricas rápidas
-col1, col2, col3 = st.columns(3)
-col1.metric("Temp. media 🌡️", f"{df['temperature'].mean():.1f} °C")
-col2.metric("Humedad media 💧", f"{df['humidity'].mean():.0f} %")
-col3.metric("Lluvia total 🌧️", f"{df['precipitation'].sum():.1f} mm")
-
 
 col4, col5, col6 = st.columns(3)
 with col4:
