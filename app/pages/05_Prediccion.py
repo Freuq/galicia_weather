@@ -96,9 +96,8 @@ sky = {
     "RAIN_HayL": "Lluvia con granizo 🌧️🌨️"
 }
 
-st.subheader("☁️ Estado general del cielo")
-st.write(f"Durante el día predominará un cielo **{sky[modo]}**.")
 
+st.markdown("<div class='custom-container'><h5 style='padding-bottom: 0.1px;';'>☁️ Estado general del cielo</h5><h2 >{}</h2></div>".format(f"{sky[modo]}"), unsafe_allow_html=True)
 #######################################################################
 # --- Gráficas de evolución
 st.subheader("📈 Evolución horaria")

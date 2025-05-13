@@ -90,7 +90,6 @@ def df_forecast(localidades):
                 path_archivo = os.path.join(folder, archivo)
                 df = pd.read_csv(path_archivo, index_col=0)
                 df["time"] = pd.to_datetime(df["time"])
-                df['hora'] = df['time'].dt.hour
                 df["hour"] = df['time'].dt.strftime('%H:%M')
                 df['city'] = localidades[archivo.split(".")[0]] # columna con nombre de la ciudad
                 dataframes.append(df)
