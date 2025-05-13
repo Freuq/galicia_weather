@@ -6,15 +6,16 @@ import json
 import os
 import streamlit as st
 import glob
+from dotenv import load_dotenv
 
 def cargar_api_key():
+    load_dotenv()  
     try:
         # Intentar primero desde st.secrets (producción)
         return st.secrets["API_KEY"]
     except Exception:
         # Si falla (estás en local), leer desde archivo api_key.txt
-        with open("api_key.txt") as f:
-            return f.read().strip()
+        return os.getenv("API_KEY")
 
 def json_to_df(forecast_data):
     dict_ = {}
