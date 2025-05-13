@@ -1,11 +1,12 @@
 import streamlit as st
 import pandas as pd
 import plotly.express as px
-import altair as alt
+from datetime import date, timedelta
 from collections import Counter
 from utils.filters import *
 from utils.df_functions import *
 from utils.graphics import *
+from utils.forecast import *
 
 st.set_page_config(layout="wide", page_title="Morriña en Galicia - Predicción", page_icon="🌧️")
 cargar_css("app/static/styles.css")
@@ -38,7 +39,7 @@ localidades = {
     "pontevedra": "Pontevedra",
     "vigo": "Vigo"}
 
-df_fore = df_forecast(localidades)
+df_fore = main_forecast(localidades)
 
 localidad = st.selectbox("Selecciona una localidad", localidades.values())
 df = df_fore[df_fore['city'] == localidad]
@@ -46,9 +47,11 @@ df = df_fore[df_fore['city'] == localidad]
 with st.expander("🗂️ Ver datos utilizados"):
     st.dataframe(df)
 st.markdown("---")
+hoy = date.today()
+tomorrow = (hoy + timedelta(days=1)).isoformat()
 #fecha = st.date_input("Selecciona la fecha", default=mañana)
 st.markdown(
-    f"<h3 style='text-align: center;'>Clima para mañana en {localidad}</h3>",
+    f"<h3 style='text-align: center;'>Clima para mañana ({tomorrow}) en {localidad}</h3>",
     unsafe_allow_html=True
 )
 
@@ -69,7 +72,7 @@ with col4:
 with col5:
     st.markdown("<div class='custom-container'><h5 style='padding-bottom: 0.1px;';'>💧 Humedad media</h5><h2 >{}</h2></div>".format(f"{df['humidity'].mean():.0f} %"), unsafe_allow_html=True)
 with col6:
-    st.markdown("<div class='custom-container'><h5 style='padding-bottom: 0.1px;';'>🌧️ Lluvia total</h5><h2 >{}</h2></div>".format(f"{df['precipitation'].sum():.1f} mm"), unsafe_allow_html=True)
+    st.markdown("<div class='custom-container'><h5 style='padding-bottom: 0.1px;';'>🌧️ Lluvia total</h5><h2 >{}</h2></div>".format(f"{df['precipitation'].sum():.1f} L/m2"), unsafe_allow_html=True)
 
 ##################################################################################
 # --- Estado general del cielo
@@ -77,7 +80,7 @@ modo = Counter(df['sky_state']).most_common(1)[0][0]
 sky = {
     "SUNNY": "Despejado ☀️",
     "HIGH_CLOUDS": "Nubes altas 🌤️",
-    "PARTLY_-CLOUDY": "Parcialmente nublado 🌥️",
+    "PARTLY_CLOUDY": "Parcialmente nublado 🌥️",
     "OVERCAST": "Cubierto ☁️",
     "CLOUDY": "Nublado 🌥️",
     "FOG": "Niebla 🌫️",
