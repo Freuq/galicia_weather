@@ -8,7 +8,7 @@ from utils.df_functions import *
 from utils.graphics import *
 from utils.forecast import *
 
-st.set_page_config(layout="wide", page_title="Morriña en Galicia - Predicción", page_icon="🌧️")
+st.set_page_config(layout="wide", page_title="Morriña en Galicia - Predicción", page_icon="🌤️")
 cargar_css("app/static/styles.css")
 
 # Cargar tu dataframe (esto puedes adaptarlo si usas session_state o carga desde archivo)
@@ -26,7 +26,7 @@ if df is None:
     st.stop()
 
 st.markdown("<br>", unsafe_allow_html=True)
-st.title(f"📈 Predicción en Galicia")
+st.title(f"🌤️ Predicción en Galicia")
 
 #df_filtrado, año, mes = aplicar_filtros(df)
 #df_grouped, df_conteo = df_grouped_conteo(df_filtrado)
@@ -39,14 +39,15 @@ localidades = {
     "pontevedra": "Pontevedra",
     "vigo": "Vigo"}
 
-df_fore = main_forecast(localidades)
+df_fore = forecast_main(localidades)
 
 localidad = st.selectbox("Selecciona una localidad", localidades.values())
+
 df = df_fore[df_fore['city'] == localidad]
 
 with st.expander("🗂️ Ver datos utilizados"):
     st.dataframe(df)
-st.markdown("---")
+
 hoy = date.today()
 tomorrow = (hoy + timedelta(days=1)).isoformat()
 #fecha = st.date_input("Selecciona la fecha", default=mañana)
@@ -96,12 +97,15 @@ sky = {
     "RAIN_HayL": "Lluvia con granizo 🌧️🌨️"
 }
 
-
 st.markdown("<div class='custom-container'><h5 style='padding-bottom: 0.1px;';'>☁️ Estado general del cielo</h5><h2 >{}</h2></div>".format(f"{sky[modo]}"), unsafe_allow_html=True)
+
+st.markdown("---")
 #######################################################################
 # --- Gráficas de evolución
-st.subheader("📈 Evolución horaria")
-
+st.markdown(
+    f"<h2 style='text-align: center;'>📈 Predicción del clima a lo largo del día</h2>",
+    unsafe_allow_html=True
+)
 fig1 = px.line(df, x="hour", y="temperature", title="              🌡️ Evolución de la temperatura durante el día")
 fig1.update_layout(
     plot_bgcolor='rgba(0, 0, 0, 0)',
