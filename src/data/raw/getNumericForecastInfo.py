@@ -3,6 +3,7 @@ import pandas as pd
 from datetime import date, timedelta, datetime
 import json
 import os
+import streamlit as st
 
 def getForecastInfo():
     
@@ -73,7 +74,7 @@ def cleanForecastInfo():
             dict_[param] = list_
 
         df_forecast = pd.DataFrame(dict_)
-        print(df_forecast.head())
+        #print(df_forecast.head())
         df_forecast.to_csv(f"data/processed/forecast/{i}.csv")
         
 def df_forecast(localidades):
@@ -83,7 +84,7 @@ def df_forecast(localidades):
     folder = os.path.join(project_root, 'data', 'processed', 'forecast')
 
     dataframes = []
-
+    print(folder)
     if os.path.exists(folder):
         for archivo in os.listdir(folder):
             if archivo.endswith('.csv'):
@@ -95,7 +96,8 @@ def df_forecast(localidades):
                 df['city'] = localidades[archivo.split(".")[0]] # columna con nombre de la ciudad
                 dataframes.append(df)
     df_final = pd.concat(dataframes)
-    #st.dataframe(df_final, use_container_width=True, height=500)
+    st.dataframe(df_final, use_container_width=True, height=500)
+    print(dataframes)
     return df_final
 
 def main_forecast(localidades):
@@ -116,7 +118,17 @@ def main_forecast(localidades):
     getForecastInfo()
     cleanForecastInfo()
     df = df_forecast(localidades)
-    
+    print(df)
     # Guarda el dataframe
     df.to_csv(file_path, index=False)
     return df
+
+localidades = {
+    "santiago": "Santiago de Compostela",
+    "coruna": "Coruña",
+    "lugo": "Lugo",
+    "ourense": "Ourense",
+    "pontevedra": "Pontevedra",
+    "vigo": "Vigo"}
+
+main_forecast(localidades)

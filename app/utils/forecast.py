@@ -99,7 +99,7 @@ def forecast_main(localidades):
             "API_KEY": API_KEY,
             "coords": ", ".join(map(str, place_coors_dict[i]["coors"])),
             "variables" : "sky_state,temperature,precipitation_amount,relative_humidity",
-            "lang": "es",
+            "lang": "en",
             # startTime y endTime yyyy-MM-ddTHH:mm:ss
             "startTime": startDay,
             "endTime": endDay

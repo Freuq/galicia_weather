@@ -40,10 +40,11 @@ localidades = {
     "vigo": "Vigo"}
 
 df_fore = forecast_main(localidades)
-
+with st.expander("🗂️ Ver datos utilizados"):
+    st.dataframe(df_fore)
 localidad = st.selectbox("Selecciona una localidad", localidades.values())
 
-df = df_fore[df_fore['city'] == localidad]
+df = df_fore[df_fore['ciudad'] == localidad]
 
 with st.expander("🗂️ Ver datos utilizados"):
     st.dataframe(df)
