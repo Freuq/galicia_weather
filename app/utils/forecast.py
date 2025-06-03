@@ -58,7 +58,7 @@ def file_path_():
     folder = os.path.join(project_root, 'data', 'processed', 'forecast', 'final')
     
     # eliminar otros archivos 
-    delete_old_files(folder)
+    #delete_old_files(folder)
     
     return os.path.join(folder, f"forecast_{hoy}.csv")    
 
@@ -117,8 +117,8 @@ def forecast_main(localidades):
         df_forecast = pd.concat([df_forecast, df_temp])
 
     
-    file_path = file_path_()
-    df_forecast.to_csv(file_path, index=False)
+    #file_path = file_path_()
+    #df_forecast.to_csv(file_path, index=False)
     # Llamar esta función al inicio para eliminar archivos antiguos
 
     # Si ya existe, lo carga
