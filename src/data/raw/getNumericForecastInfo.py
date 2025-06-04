@@ -94,6 +94,7 @@ def df_forecast(localidades):
                 df['hora'] = df['time'].dt.hour
                 df["hour"] = df['time'].dt.strftime('%H:%M')
                 df['city'] = localidades[archivo.split(".")[0]] # columna con nombre de la ciudad
+                print(df.head())
                 dataframes.append(df)
     df_final = pd.concat(dataframes)
     st.dataframe(df_final, use_container_width=True, height=500)

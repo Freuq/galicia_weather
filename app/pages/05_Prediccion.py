@@ -40,14 +40,10 @@ localidades = {
     "vigo": "Vigo"}
 
 df_fore = forecast_main(localidades)
-with st.expander("🗂️ Ver datos utilizados"):
-    st.dataframe(df_fore)
+
 localidad = st.selectbox("Selecciona una localidad", localidades.values())
 
-df = df_fore[df_fore['ciudad'] == localidad]
-
-with st.expander("🗂️ Ver datos utilizados"):
-    st.dataframe(df)
+df = df_fore[df_fore['city'] == localidad]
 
 hoy = date.today()
 tomorrow = (hoy + timedelta(days=1)).isoformat()
@@ -185,3 +181,7 @@ with tab2:
 
 with tab3:
     st.plotly_chart(fig3, use_container_width=True)
+
+
+with st.expander("🗂️ Ver datos detallados de mañana"):
+    st.dataframe(df)

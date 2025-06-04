@@ -21,10 +21,10 @@
                     {
                         "timePeriod": {
                             "begin": {
-                                "timeInstant": "2025-06-04T00:00:00+02"
+                                "timeInstant": "2025-06-05T00:00:00+02"
                             },
                             "end": {
-                                "timeInstant": "2025-06-04T23:59:59+02"
+                                "timeInstant": "2025-06-05T23:59:59+02"
                             }
                         },
                         "variables": [
@@ -41,148 +41,148 @@
                                 },
                                 "values": [
                                     {
-                                        "timeInstant": "2025-06-04T00:00:00+02",
-                                        "modelRun": "2025-06-03T02:00:00+02",
+                                        "timeInstant": "2025-06-05T00:00:00+02",
+                                        "modelRun": "2025-06-04T02:00:00+02",
+                                        "value": "SUNNY",
+                                        "iconURL": "https://servizos.meteogalicia.gal/apiv4/images/weather/sky-state/night/despexado.png"
+                                    },
+                                    {
+                                        "timeInstant": "2025-06-05T01:00:00+02",
+                                        "modelRun": "2025-06-04T02:00:00+02",
+                                        "value": "PARTLY_CLOUDY",
+                                        "iconURL": "https://servizos.meteogalicia.gal/apiv4/images/weather/sky-state/night/nubescraros.png"
+                                    },
+                                    {
+                                        "timeInstant": "2025-06-05T02:00:00+02",
+                                        "modelRun": "2025-06-04T02:00:00+02",
+                                        "value": "PARTLY_CLOUDY",
+                                        "iconURL": "https://servizos.meteogalicia.gal/apiv4/images/weather/sky-state/night/nubescraros.png"
+                                    },
+                                    {
+                                        "timeInstant": "2025-06-05T03:00:00+02",
+                                        "modelRun": "2025-06-04T02:00:00+02",
+                                        "value": "PARTLY_CLOUDY",
+                                        "iconURL": "https://servizos.meteogalicia.gal/apiv4/images/weather/sky-state/night/nubescraros.png"
+                                    },
+                                    {
+                                        "timeInstant": "2025-06-05T04:00:00+02",
+                                        "modelRun": "2025-06-04T02:00:00+02",
+                                        "value": "PARTLY_CLOUDY",
+                                        "iconURL": "https://servizos.meteogalicia.gal/apiv4/images/weather/sky-state/night/nubescraros.png"
+                                    },
+                                    {
+                                        "timeInstant": "2025-06-05T05:00:00+02",
+                                        "modelRun": "2025-06-04T02:00:00+02",
+                                        "value": "PARTLY_CLOUDY",
+                                        "iconURL": "https://servizos.meteogalicia.gal/apiv4/images/weather/sky-state/night/nubescraros.png"
+                                    },
+                                    {
+                                        "timeInstant": "2025-06-05T06:00:00+02",
+                                        "modelRun": "2025-06-04T02:00:00+02",
+                                        "value": "PARTLY_CLOUDY",
+                                        "iconURL": "https://servizos.meteogalicia.gal/apiv4/images/weather/sky-state/night/nubescraros.png"
+                                    },
+                                    {
+                                        "timeInstant": "2025-06-05T07:00:00+02",
+                                        "modelRun": "2025-06-04T02:00:00+02",
                                         "value": "CLOUDY",
-                                        "iconURL": "https://servizos.meteogalicia.gal/apiv4/images/weather/sky-state/night/nubes75.png"
+                                        "iconURL": "https://servizos.meteogalicia.gal/apiv4/images/weather/sky-state/day/nubes75.png"
                                     },
                                     {
-                                        "timeInstant": "2025-06-04T01:00:00+02",
-                                        "modelRun": "2025-06-03T02:00:00+02",
+                                        "timeInstant": "2025-06-05T08:00:00+02",
+                                        "modelRun": "2025-06-04T02:00:00+02",
                                         "value": "CLOUDY",
-                                        "iconURL": "https://servizos.meteogalicia.gal/apiv4/images/weather/sky-state/night/nubes75.png"
+                                        "iconURL": "https://servizos.meteogalicia.gal/apiv4/images/weather/sky-state/day/nubes75.png"
                                     },
                                     {
-                                        "timeInstant": "2025-06-04T02:00:00+02",
-                                        "modelRun": "2025-06-03T02:00:00+02",
-                                        "value": "WEAK_SHOWERS",
-                                        "iconURL": "https://servizos.meteogalicia.gal/apiv4/images/weather/sky-state/night/chubascosdebiles.png"
+                                        "timeInstant": "2025-06-05T09:00:00+02",
+                                        "modelRun": "2025-06-04T02:00:00+02",
+                                        "value": "CLOUDY",
+                                        "iconURL": "https://servizos.meteogalicia.gal/apiv4/images/weather/sky-state/day/nubes75.png"
                                     },
                                     {
-                                        "timeInstant": "2025-06-04T03:00:00+02",
-                                        "modelRun": "2025-06-03T02:00:00+02",
+                                        "timeInstant": "2025-06-05T10:00:00+02",
+                                        "modelRun": "2025-06-04T02:00:00+02",
+                                        "value": "CLOUDY",
+                                        "iconURL": "https://servizos.meteogalicia.gal/apiv4/images/weather/sky-state/day/nubes75.png"
+                                    },
+                                    {
+                                        "timeInstant": "2025-06-05T11:00:00+02",
+                                        "modelRun": "2025-06-04T02:00:00+02",
+                                        "value": "CLOUDY",
+                                        "iconURL": "https://servizos.meteogalicia.gal/apiv4/images/weather/sky-state/day/nubes75.png"
+                                    },
+                                    {
+                                        "timeInstant": "2025-06-05T12:00:00+02",
+                                        "modelRun": "2025-06-04T02:00:00+02",
+                                        "value": "PARTLY_CLOUDY",
+                                        "iconURL": "https://servizos.meteogalicia.gal/apiv4/images/weather/sky-state/day/nubescraros.png"
+                                    },
+                                    {
+                                        "timeInstant": "2025-06-05T13:00:00+02",
+                                        "modelRun": "2025-06-04T02:00:00+02",
+                                        "value": "PARTLY_CLOUDY",
+                                        "iconURL": "https://servizos.meteogalicia.gal/apiv4/images/weather/sky-state/day/nubescraros.png"
+                                    },
+                                    {
+                                        "timeInstant": "2025-06-05T14:00:00+02",
+                                        "modelRun": "2025-06-04T02:00:00+02",
+                                        "value": "OVERCAST",
+                                        "iconURL": "https://servizos.meteogalicia.gal/apiv4/images/weather/sky-state/day/cuberto.png"
+                                    },
+                                    {
+                                        "timeInstant": "2025-06-05T15:00:00+02",
+                                        "modelRun": "2025-06-04T02:00:00+02",
                                         "value": "OVERCAST_AND_SHOWERS",
-                                        "iconURL": "https://servizos.meteogalicia.gal/apiv4/images/weather/sky-state/night/chubasco75.png"
+                                        "iconURL": "https://servizos.meteogalicia.gal/apiv4/images/weather/sky-state/day/chubasco75.png"
                                     },
                                     {
-                                        "timeInstant": "2025-06-04T04:00:00+02",
-                                        "modelRun": "2025-06-03T02:00:00+02",
-                                        "value": "OVERCAST_AND_SHOWERS",
-                                        "iconURL": "https://servizos.meteogalicia.gal/apiv4/images/weather/sky-state/night/chubasco75.png"
-                                    },
-                                    {
-                                        "timeInstant": "2025-06-04T05:00:00+02",
-                                        "modelRun": "2025-06-03T02:00:00+02",
-                                        "value": "WEAK_SHOWERS",
-                                        "iconURL": "https://servizos.meteogalicia.gal/apiv4/images/weather/sky-state/night/chubascosdebiles.png"
-                                    },
-                                    {
-                                        "timeInstant": "2025-06-04T06:00:00+02",
-                                        "modelRun": "2025-06-03T02:00:00+02",
-                                        "value": "WEAK_SHOWERS",
-                                        "iconURL": "https://servizos.meteogalicia.gal/apiv4/images/weather/sky-state/night/chubascosdebiles.png"
-                                    },
-                                    {
-                                        "timeInstant": "2025-06-04T07:00:00+02",
-                                        "modelRun": "2025-06-03T02:00:00+02",
+                                        "timeInstant": "2025-06-05T16:00:00+02",
+                                        "modelRun": "2025-06-04T02:00:00+02",
                                         "value": "WEAK_SHOWERS",
                                         "iconURL": "https://servizos.meteogalicia.gal/apiv4/images/weather/sky-state/day/chubascosdebiles.png"
                                     },
                                     {
-                                        "timeInstant": "2025-06-04T08:00:00+02",
-                                        "modelRun": "2025-06-03T02:00:00+02",
-                                        "value": "HIGH_CLOUDS",
-                                        "iconURL": "https://servizos.meteogalicia.gal/apiv4/images/weather/sky-state/day/nubesaltas.png"
-                                    },
-                                    {
-                                        "timeInstant": "2025-06-04T09:00:00+02",
-                                        "modelRun": "2025-06-03T02:00:00+02",
-                                        "value": "SUNNY",
-                                        "iconURL": "https://servizos.meteogalicia.gal/apiv4/images/weather/sky-state/day/despexado.png"
-                                    },
-                                    {
-                                        "timeInstant": "2025-06-04T10:00:00+02",
-                                        "modelRun": "2025-06-03T02:00:00+02",
+                                        "timeInstant": "2025-06-05T17:00:00+02",
+                                        "modelRun": "2025-06-04T02:00:00+02",
                                         "value": "PARTLY_CLOUDY",
                                         "iconURL": "https://servizos.meteogalicia.gal/apiv4/images/weather/sky-state/day/nubescraros.png"
                                     },
                                     {
-                                        "timeInstant": "2025-06-04T11:00:00+02",
-                                        "modelRun": "2025-06-03T02:00:00+02",
+                                        "timeInstant": "2025-06-05T18:00:00+02",
+                                        "modelRun": "2025-06-04T02:00:00+02",
                                         "value": "PARTLY_CLOUDY",
                                         "iconURL": "https://servizos.meteogalicia.gal/apiv4/images/weather/sky-state/day/nubescraros.png"
                                     },
                                     {
-                                        "timeInstant": "2025-06-04T12:00:00+02",
-                                        "modelRun": "2025-06-03T02:00:00+02",
+                                        "timeInstant": "2025-06-05T19:00:00+02",
+                                        "modelRun": "2025-06-04T02:00:00+02",
                                         "value": "PARTLY_CLOUDY",
                                         "iconURL": "https://servizos.meteogalicia.gal/apiv4/images/weather/sky-state/day/nubescraros.png"
                                     },
                                     {
-                                        "timeInstant": "2025-06-04T13:00:00+02",
-                                        "modelRun": "2025-06-03T02:00:00+02",
-                                        "value": "SUNNY",
-                                        "iconURL": "https://servizos.meteogalicia.gal/apiv4/images/weather/sky-state/day/despexado.png"
-                                    },
-                                    {
-                                        "timeInstant": "2025-06-04T14:00:00+02",
-                                        "modelRun": "2025-06-03T02:00:00+02",
+                                        "timeInstant": "2025-06-05T20:00:00+02",
+                                        "modelRun": "2025-06-04T02:00:00+02",
                                         "value": "PARTLY_CLOUDY",
                                         "iconURL": "https://servizos.meteogalicia.gal/apiv4/images/weather/sky-state/day/nubescraros.png"
                                     },
                                     {
-                                        "timeInstant": "2025-06-04T15:00:00+02",
-                                        "modelRun": "2025-06-03T02:00:00+02",
-                                        "value": "HIGH_CLOUDS",
-                                        "iconURL": "https://servizos.meteogalicia.gal/apiv4/images/weather/sky-state/day/nubesaltas.png"
-                                    },
-                                    {
-                                        "timeInstant": "2025-06-04T16:00:00+02",
-                                        "modelRun": "2025-06-03T02:00:00+02",
-                                        "value": "SUNNY",
-                                        "iconURL": "https://servizos.meteogalicia.gal/apiv4/images/weather/sky-state/day/despexado.png"
-                                    },
-                                    {
-                                        "timeInstant": "2025-06-04T17:00:00+02",
-                                        "modelRun": "2025-06-03T02:00:00+02",
-                                        "value": "SUNNY",
-                                        "iconURL": "https://servizos.meteogalicia.gal/apiv4/images/weather/sky-state/day/despexado.png"
-                                    },
-                                    {
-                                        "timeInstant": "2025-06-04T18:00:00+02",
-                                        "modelRun": "2025-06-03T02:00:00+02",
-                                        "value": "SUNNY",
-                                        "iconURL": "https://servizos.meteogalicia.gal/apiv4/images/weather/sky-state/day/despexado.png"
-                                    },
-                                    {
-                                        "timeInstant": "2025-06-04T19:00:00+02",
-                                        "modelRun": "2025-06-03T02:00:00+02",
+                                        "timeInstant": "2025-06-05T21:00:00+02",
+                                        "modelRun": "2025-06-04T02:00:00+02",
                                         "value": "PARTLY_CLOUDY",
                                         "iconURL": "https://servizos.meteogalicia.gal/apiv4/images/weather/sky-state/day/nubescraros.png"
                                     },
                                     {
-                                        "timeInstant": "2025-06-04T20:00:00+02",
-                                        "modelRun": "2025-06-03T02:00:00+02",
+                                        "timeInstant": "2025-06-05T22:00:00+02",
+                                        "modelRun": "2025-06-04T02:00:00+02",
                                         "value": "PARTLY_CLOUDY",
                                         "iconURL": "https://servizos.meteogalicia.gal/apiv4/images/weather/sky-state/day/nubescraros.png"
                                     },
                                     {
-                                        "timeInstant": "2025-06-04T21:00:00+02",
-                                        "modelRun": "2025-06-03T02:00:00+02",
-                                        "value": "CLOUDY",
-                                        "iconURL": "https://servizos.meteogalicia.gal/apiv4/images/weather/sky-state/day/nubes75.png"
-                                    },
-                                    {
-                                        "timeInstant": "2025-06-04T22:00:00+02",
-                                        "modelRun": "2025-06-03T02:00:00+02",
-                                        "value": "CLOUDY",
-                                        "iconURL": "https://servizos.meteogalicia.gal/apiv4/images/weather/sky-state/day/nubes75.png"
-                                    },
-                                    {
-                                        "timeInstant": "2025-06-04T23:00:00+02",
-                                        "modelRun": "2025-06-03T02:00:00+02",
-                                        "value": "OVERCAST",
-                                        "iconURL": "https://servizos.meteogalicia.gal/apiv4/images/weather/sky-state/night/cuberto.png"
+                                        "timeInstant": "2025-06-05T23:00:00+02",
+                                        "modelRun": "2025-06-04T02:00:00+02",
+                                        "value": "PARTLY_CLOUDY",
+                                        "iconURL": "https://servizos.meteogalicia.gal/apiv4/images/weather/sky-state/night/nubescraros.png"
                                     }
                                 ]
                             },
@@ -200,123 +200,123 @@
                                 },
                                 "values": [
                                     {
-                                        "timeInstant": "2025-06-04T00:00:00+02",
-                                        "modelRun": "2025-06-03T02:00:00+02",
-                                        "value": 16
+                                        "timeInstant": "2025-06-05T00:00:00+02",
+                                        "modelRun": "2025-06-04T02:00:00+02",
+                                        "value": 14
                                     },
                                     {
-                                        "timeInstant": "2025-06-04T01:00:00+02",
-                                        "modelRun": "2025-06-03T02:00:00+02",
-                                        "value": 16
-                                    },
-                                    {
-                                        "timeInstant": "2025-06-04T02:00:00+02",
-                                        "modelRun": "2025-06-03T02:00:00+02",
-                                        "value": 16
-                                    },
-                                    {
-                                        "timeInstant": "2025-06-04T03:00:00+02",
-                                        "modelRun": "2025-06-03T02:00:00+02",
-                                        "value": 15
-                                    },
-                                    {
-                                        "timeInstant": "2025-06-04T04:00:00+02",
-                                        "modelRun": "2025-06-03T02:00:00+02",
-                                        "value": 15
-                                    },
-                                    {
-                                        "timeInstant": "2025-06-04T05:00:00+02",
-                                        "modelRun": "2025-06-03T02:00:00+02",
-                                        "value": 15
-                                    },
-                                    {
-                                        "timeInstant": "2025-06-04T06:00:00+02",
-                                        "modelRun": "2025-06-03T02:00:00+02",
-                                        "value": 15
-                                    },
-                                    {
-                                        "timeInstant": "2025-06-04T07:00:00+02",
-                                        "modelRun": "2025-06-03T02:00:00+02",
+                                        "timeInstant": "2025-06-05T01:00:00+02",
+                                        "modelRun": "2025-06-04T02:00:00+02",
                                         "value": 13
                                     },
                                     {
-                                        "timeInstant": "2025-06-04T08:00:00+02",
-                                        "modelRun": "2025-06-03T02:00:00+02",
+                                        "timeInstant": "2025-06-05T02:00:00+02",
+                                        "modelRun": "2025-06-04T02:00:00+02",
                                         "value": 13
                                     },
                                     {
-                                        "timeInstant": "2025-06-04T09:00:00+02",
-                                        "modelRun": "2025-06-03T02:00:00+02",
-                                        "value": 15
+                                        "timeInstant": "2025-06-05T03:00:00+02",
+                                        "modelRun": "2025-06-04T02:00:00+02",
+                                        "value": 13
                                     },
                                     {
-                                        "timeInstant": "2025-06-04T10:00:00+02",
-                                        "modelRun": "2025-06-03T02:00:00+02",
-                                        "value": 16
+                                        "timeInstant": "2025-06-05T04:00:00+02",
+                                        "modelRun": "2025-06-04T02:00:00+02",
+                                        "value": 13
                                     },
                                     {
-                                        "timeInstant": "2025-06-04T11:00:00+02",
-                                        "modelRun": "2025-06-03T02:00:00+02",
-                                        "value": 17
+                                        "timeInstant": "2025-06-05T05:00:00+02",
+                                        "modelRun": "2025-06-04T02:00:00+02",
+                                        "value": 13
                                     },
                                     {
-                                        "timeInstant": "2025-06-04T12:00:00+02",
-                                        "modelRun": "2025-06-03T02:00:00+02",
-                                        "value": 19
+                                        "timeInstant": "2025-06-05T06:00:00+02",
+                                        "modelRun": "2025-06-04T02:00:00+02",
+                                        "value": 12
                                     },
                                     {
-                                        "timeInstant": "2025-06-04T13:00:00+02",
-                                        "modelRun": "2025-06-03T02:00:00+02",
-                                        "value": 19
+                                        "timeInstant": "2025-06-05T07:00:00+02",
+                                        "modelRun": "2025-06-04T02:00:00+02",
+                                        "value": 13
                                     },
                                     {
-                                        "timeInstant": "2025-06-04T14:00:00+02",
-                                        "modelRun": "2025-06-03T02:00:00+02",
-                                        "value": 20
+                                        "timeInstant": "2025-06-05T08:00:00+02",
+                                        "modelRun": "2025-06-04T02:00:00+02",
+                                        "value": 13
                                     },
                                     {
-                                        "timeInstant": "2025-06-04T15:00:00+02",
-                                        "modelRun": "2025-06-03T02:00:00+02",
-                                        "value": 19
-                                    },
-                                    {
-                                        "timeInstant": "2025-06-04T16:00:00+02",
-                                        "modelRun": "2025-06-03T02:00:00+02",
-                                        "value": 19
-                                    },
-                                    {
-                                        "timeInstant": "2025-06-04T17:00:00+02",
-                                        "modelRun": "2025-06-03T02:00:00+02",
-                                        "value": 19
-                                    },
-                                    {
-                                        "timeInstant": "2025-06-04T18:00:00+02",
-                                        "modelRun": "2025-06-03T02:00:00+02",
-                                        "value": 19
-                                    },
-                                    {
-                                        "timeInstant": "2025-06-04T19:00:00+02",
-                                        "modelRun": "2025-06-03T02:00:00+02",
+                                        "timeInstant": "2025-06-05T09:00:00+02",
+                                        "modelRun": "2025-06-04T02:00:00+02",
                                         "value": 18
                                     },
                                     {
-                                        "timeInstant": "2025-06-04T20:00:00+02",
-                                        "modelRun": "2025-06-03T02:00:00+02",
+                                        "timeInstant": "2025-06-05T10:00:00+02",
+                                        "modelRun": "2025-06-04T02:00:00+02",
+                                        "value": 18
+                                    },
+                                    {
+                                        "timeInstant": "2025-06-05T11:00:00+02",
+                                        "modelRun": "2025-06-04T02:00:00+02",
+                                        "value": 19
+                                    },
+                                    {
+                                        "timeInstant": "2025-06-05T12:00:00+02",
+                                        "modelRun": "2025-06-04T02:00:00+02",
+                                        "value": 19
+                                    },
+                                    {
+                                        "timeInstant": "2025-06-05T13:00:00+02",
+                                        "modelRun": "2025-06-04T02:00:00+02",
+                                        "value": 21
+                                    },
+                                    {
+                                        "timeInstant": "2025-06-05T14:00:00+02",
+                                        "modelRun": "2025-06-04T02:00:00+02",
+                                        "value": 22
+                                    },
+                                    {
+                                        "timeInstant": "2025-06-05T15:00:00+02",
+                                        "modelRun": "2025-06-04T02:00:00+02",
+                                        "value": 23
+                                    },
+                                    {
+                                        "timeInstant": "2025-06-05T16:00:00+02",
+                                        "modelRun": "2025-06-04T02:00:00+02",
+                                        "value": 22
+                                    },
+                                    {
+                                        "timeInstant": "2025-06-05T17:00:00+02",
+                                        "modelRun": "2025-06-04T02:00:00+02",
+                                        "value": 21
+                                    },
+                                    {
+                                        "timeInstant": "2025-06-05T18:00:00+02",
+                                        "modelRun": "2025-06-04T02:00:00+02",
+                                        "value": 20
+                                    },
+                                    {
+                                        "timeInstant": "2025-06-05T19:00:00+02",
+                                        "modelRun": "2025-06-04T02:00:00+02",
+                                        "value": 19
+                                    },
+                                    {
+                                        "timeInstant": "2025-06-05T20:00:00+02",
+                                        "modelRun": "2025-06-04T02:00:00+02",
+                                        "value": 19
+                                    },
+                                    {
+                                        "timeInstant": "2025-06-05T21:00:00+02",
+                                        "modelRun": "2025-06-04T02:00:00+02",
+                                        "value": 18
+                                    },
+                                    {
+                                        "timeInstant": "2025-06-05T22:00:00+02",
+                                        "modelRun": "2025-06-04T02:00:00+02",
                                         "value": 17
                                     },
                                     {
-                                        "timeInstant": "2025-06-04T21:00:00+02",
-                                        "modelRun": "2025-06-03T02:00:00+02",
-                                        "value": 17
-                                    },
-                                    {
-                                        "timeInstant": "2025-06-04T22:00:00+02",
-                                        "modelRun": "2025-06-03T02:00:00+02",
-                                        "value": 16
-                                    },
-                                    {
-                                        "timeInstant": "2025-06-04T23:00:00+02",
-                                        "modelRun": "2025-06-03T02:00:00+02",
+                                        "timeInstant": "2025-06-05T23:00:00+02",
+                                        "modelRun": "2025-06-04T02:00:00+02",
                                         "value": 16
                                     }
                                 ]
@@ -335,123 +335,123 @@
                                 },
                                 "values": [
                                     {
-                                        "timeInstant": "2025-06-04T00:00:00+02",
-                                        "modelRun": "2025-06-03T02:00:00+02",
+                                        "timeInstant": "2025-06-05T00:00:00+02",
+                                        "modelRun": "2025-06-04T02:00:00+02",
                                         "value": 0
                                     },
                                     {
-                                        "timeInstant": "2025-06-04T01:00:00+02",
-                                        "modelRun": "2025-06-03T02:00:00+02",
+                                        "timeInstant": "2025-06-05T01:00:00+02",
+                                        "modelRun": "2025-06-04T02:00:00+02",
                                         "value": 0
                                     },
                                     {
-                                        "timeInstant": "2025-06-04T02:00:00+02",
-                                        "modelRun": "2025-06-03T02:00:00+02",
-                                        "value": 0.24
-                                    },
-                                    {
-                                        "timeInstant": "2025-06-04T03:00:00+02",
-                                        "modelRun": "2025-06-03T02:00:00+02",
-                                        "value": 0.43
-                                    },
-                                    {
-                                        "timeInstant": "2025-06-04T04:00:00+02",
-                                        "modelRun": "2025-06-03T02:00:00+02",
-                                        "value": 0.3
-                                    },
-                                    {
-                                        "timeInstant": "2025-06-04T05:00:00+02",
-                                        "modelRun": "2025-06-03T02:00:00+02",
-                                        "value": 0.17
-                                    },
-                                    {
-                                        "timeInstant": "2025-06-04T06:00:00+02",
-                                        "modelRun": "2025-06-03T02:00:00+02",
-                                        "value": 0.12
-                                    },
-                                    {
-                                        "timeInstant": "2025-06-04T07:00:00+02",
-                                        "modelRun": "2025-06-03T02:00:00+02",
-                                        "value": 0.15
-                                    },
-                                    {
-                                        "timeInstant": "2025-06-04T08:00:00+02",
-                                        "modelRun": "2025-06-03T02:00:00+02",
+                                        "timeInstant": "2025-06-05T02:00:00+02",
+                                        "modelRun": "2025-06-04T02:00:00+02",
                                         "value": 0
                                     },
                                     {
-                                        "timeInstant": "2025-06-04T09:00:00+02",
-                                        "modelRun": "2025-06-03T02:00:00+02",
+                                        "timeInstant": "2025-06-05T03:00:00+02",
+                                        "modelRun": "2025-06-04T02:00:00+02",
                                         "value": 0
                                     },
                                     {
-                                        "timeInstant": "2025-06-04T10:00:00+02",
-                                        "modelRun": "2025-06-03T02:00:00+02",
+                                        "timeInstant": "2025-06-05T04:00:00+02",
+                                        "modelRun": "2025-06-04T02:00:00+02",
                                         "value": 0
                                     },
                                     {
-                                        "timeInstant": "2025-06-04T11:00:00+02",
-                                        "modelRun": "2025-06-03T02:00:00+02",
+                                        "timeInstant": "2025-06-05T05:00:00+02",
+                                        "modelRun": "2025-06-04T02:00:00+02",
                                         "value": 0
                                     },
                                     {
-                                        "timeInstant": "2025-06-04T12:00:00+02",
-                                        "modelRun": "2025-06-03T02:00:00+02",
+                                        "timeInstant": "2025-06-05T06:00:00+02",
+                                        "modelRun": "2025-06-04T02:00:00+02",
                                         "value": 0
                                     },
                                     {
-                                        "timeInstant": "2025-06-04T13:00:00+02",
-                                        "modelRun": "2025-06-03T02:00:00+02",
+                                        "timeInstant": "2025-06-05T07:00:00+02",
+                                        "modelRun": "2025-06-04T02:00:00+02",
                                         "value": 0
                                     },
                                     {
-                                        "timeInstant": "2025-06-04T14:00:00+02",
-                                        "modelRun": "2025-06-03T02:00:00+02",
+                                        "timeInstant": "2025-06-05T08:00:00+02",
+                                        "modelRun": "2025-06-04T02:00:00+02",
                                         "value": 0
                                     },
                                     {
-                                        "timeInstant": "2025-06-04T15:00:00+02",
-                                        "modelRun": "2025-06-03T02:00:00+02",
+                                        "timeInstant": "2025-06-05T09:00:00+02",
+                                        "modelRun": "2025-06-04T02:00:00+02",
                                         "value": 0
                                     },
                                     {
-                                        "timeInstant": "2025-06-04T16:00:00+02",
-                                        "modelRun": "2025-06-03T02:00:00+02",
+                                        "timeInstant": "2025-06-05T10:00:00+02",
+                                        "modelRun": "2025-06-04T02:00:00+02",
                                         "value": 0
                                     },
                                     {
-                                        "timeInstant": "2025-06-04T17:00:00+02",
-                                        "modelRun": "2025-06-03T02:00:00+02",
+                                        "timeInstant": "2025-06-05T11:00:00+02",
+                                        "modelRun": "2025-06-04T02:00:00+02",
                                         "value": 0
                                     },
                                     {
-                                        "timeInstant": "2025-06-04T18:00:00+02",
-                                        "modelRun": "2025-06-03T02:00:00+02",
+                                        "timeInstant": "2025-06-05T12:00:00+02",
+                                        "modelRun": "2025-06-04T02:00:00+02",
                                         "value": 0
                                     },
                                     {
-                                        "timeInstant": "2025-06-04T19:00:00+02",
-                                        "modelRun": "2025-06-03T02:00:00+02",
+                                        "timeInstant": "2025-06-05T13:00:00+02",
+                                        "modelRun": "2025-06-04T02:00:00+02",
                                         "value": 0
                                     },
                                     {
-                                        "timeInstant": "2025-06-04T20:00:00+02",
-                                        "modelRun": "2025-06-03T02:00:00+02",
+                                        "timeInstant": "2025-06-05T14:00:00+02",
+                                        "modelRun": "2025-06-04T02:00:00+02",
                                         "value": 0
                                     },
                                     {
-                                        "timeInstant": "2025-06-04T21:00:00+02",
-                                        "modelRun": "2025-06-03T02:00:00+02",
+                                        "timeInstant": "2025-06-05T15:00:00+02",
+                                        "modelRun": "2025-06-04T02:00:00+02",
+                                        "value": 0.36
+                                    },
+                                    {
+                                        "timeInstant": "2025-06-05T16:00:00+02",
+                                        "modelRun": "2025-06-04T02:00:00+02",
+                                        "value": 0.19
+                                    },
+                                    {
+                                        "timeInstant": "2025-06-05T17:00:00+02",
+                                        "modelRun": "2025-06-04T02:00:00+02",
                                         "value": 0
                                     },
                                     {
-                                        "timeInstant": "2025-06-04T22:00:00+02",
-                                        "modelRun": "2025-06-03T02:00:00+02",
+                                        "timeInstant": "2025-06-05T18:00:00+02",
+                                        "modelRun": "2025-06-04T02:00:00+02",
                                         "value": 0
                                     },
                                     {
-                                        "timeInstant": "2025-06-04T23:00:00+02",
-                                        "modelRun": "2025-06-03T02:00:00+02",
+                                        "timeInstant": "2025-06-05T19:00:00+02",
+                                        "modelRun": "2025-06-04T02:00:00+02",
+                                        "value": 0
+                                    },
+                                    {
+                                        "timeInstant": "2025-06-05T20:00:00+02",
+                                        "modelRun": "2025-06-04T02:00:00+02",
+                                        "value": 0
+                                    },
+                                    {
+                                        "timeInstant": "2025-06-05T21:00:00+02",
+                                        "modelRun": "2025-06-04T02:00:00+02",
+                                        "value": 0
+                                    },
+                                    {
+                                        "timeInstant": "2025-06-05T22:00:00+02",
+                                        "modelRun": "2025-06-04T02:00:00+02",
+                                        "value": 0
+                                    },
+                                    {
+                                        "timeInstant": "2025-06-05T23:00:00+02",
+                                        "modelRun": "2025-06-04T02:00:00+02",
                                         "value": 0
                                     }
                                 ]
@@ -470,124 +470,124 @@
                                 },
                                 "values": [
                                     {
-                                        "timeInstant": "2025-06-04T00:00:00+02",
-                                        "modelRun": "2025-06-03T02:00:00+02",
-                                        "value": 88.65
+                                        "timeInstant": "2025-06-05T00:00:00+02",
+                                        "modelRun": "2025-06-04T02:00:00+02",
+                                        "value": 96.31
                                     },
                                     {
-                                        "timeInstant": "2025-06-04T01:00:00+02",
-                                        "modelRun": "2025-06-03T02:00:00+02",
-                                        "value": 90.46
+                                        "timeInstant": "2025-06-05T01:00:00+02",
+                                        "modelRun": "2025-06-04T02:00:00+02",
+                                        "value": 95.2
                                     },
                                     {
-                                        "timeInstant": "2025-06-04T02:00:00+02",
-                                        "modelRun": "2025-06-03T02:00:00+02",
-                                        "value": 94.84
+                                        "timeInstant": "2025-06-05T02:00:00+02",
+                                        "modelRun": "2025-06-04T02:00:00+02",
+                                        "value": 97.72
                                     },
                                     {
-                                        "timeInstant": "2025-06-04T03:00:00+02",
-                                        "modelRun": "2025-06-03T02:00:00+02",
-                                        "value": 95.58
+                                        "timeInstant": "2025-06-05T03:00:00+02",
+                                        "modelRun": "2025-06-04T02:00:00+02",
+                                        "value": 96.99
                                     },
                                     {
-                                        "timeInstant": "2025-06-04T04:00:00+02",
-                                        "modelRun": "2025-06-03T02:00:00+02",
-                                        "value": 92.06
+                                        "timeInstant": "2025-06-05T04:00:00+02",
+                                        "modelRun": "2025-06-04T02:00:00+02",
+                                        "value": 95.18
                                     },
                                     {
-                                        "timeInstant": "2025-06-04T05:00:00+02",
-                                        "modelRun": "2025-06-03T02:00:00+02",
-                                        "value": 94.52
+                                        "timeInstant": "2025-06-05T05:00:00+02",
+                                        "modelRun": "2025-06-04T02:00:00+02",
+                                        "value": 95.24
                                     },
                                     {
-                                        "timeInstant": "2025-06-04T06:00:00+02",
-                                        "modelRun": "2025-06-03T02:00:00+02",
-                                        "value": 89.64
+                                        "timeInstant": "2025-06-05T06:00:00+02",
+                                        "modelRun": "2025-06-04T02:00:00+02",
+                                        "value": 94.7
                                     },
                                     {
-                                        "timeInstant": "2025-06-04T07:00:00+02",
-                                        "modelRun": "2025-06-03T02:00:00+02",
-                                        "value": 92.83
+                                        "timeInstant": "2025-06-05T07:00:00+02",
+                                        "modelRun": "2025-06-04T02:00:00+02",
+                                        "value": 94.64
                                     },
                                     {
-                                        "timeInstant": "2025-06-04T08:00:00+02",
-                                        "modelRun": "2025-06-03T02:00:00+02",
-                                        "value": 94.8
+                                        "timeInstant": "2025-06-05T08:00:00+02",
+                                        "modelRun": "2025-06-04T02:00:00+02",
+                                        "value": 92.79
                                     },
                                     {
-                                        "timeInstant": "2025-06-04T09:00:00+02",
-                                        "modelRun": "2025-06-03T02:00:00+02",
-                                        "value": 86.9
+                                        "timeInstant": "2025-06-05T09:00:00+02",
+                                        "modelRun": "2025-06-04T02:00:00+02",
+                                        "value": 91.22
                                     },
                                     {
-                                        "timeInstant": "2025-06-04T10:00:00+02",
-                                        "modelRun": "2025-06-03T02:00:00+02",
-                                        "value": 79.74
+                                        "timeInstant": "2025-06-05T10:00:00+02",
+                                        "modelRun": "2025-06-04T02:00:00+02",
+                                        "value": 85.19
                                     },
                                     {
-                                        "timeInstant": "2025-06-04T11:00:00+02",
-                                        "modelRun": "2025-06-03T02:00:00+02",
-                                        "value": 67
+                                        "timeInstant": "2025-06-05T11:00:00+02",
+                                        "modelRun": "2025-06-04T02:00:00+02",
+                                        "value": 78.52
                                     },
                                     {
-                                        "timeInstant": "2025-06-04T12:00:00+02",
-                                        "modelRun": "2025-06-03T02:00:00+02",
-                                        "value": 71.58
+                                        "timeInstant": "2025-06-05T12:00:00+02",
+                                        "modelRun": "2025-06-04T02:00:00+02",
+                                        "value": 77.43
                                     },
                                     {
-                                        "timeInstant": "2025-06-04T13:00:00+02",
-                                        "modelRun": "2025-06-03T02:00:00+02",
-                                        "value": 59.34
+                                        "timeInstant": "2025-06-05T13:00:00+02",
+                                        "modelRun": "2025-06-04T02:00:00+02",
+                                        "value": 67.58
                                     },
                                     {
-                                        "timeInstant": "2025-06-04T14:00:00+02",
-                                        "modelRun": "2025-06-03T02:00:00+02",
-                                        "value": 59.69
+                                        "timeInstant": "2025-06-05T14:00:00+02",
+                                        "modelRun": "2025-06-04T02:00:00+02",
+                                        "value": 74.57
                                     },
                                     {
-                                        "timeInstant": "2025-06-04T15:00:00+02",
-                                        "modelRun": "2025-06-03T02:00:00+02",
-                                        "value": 68.17
+                                        "timeInstant": "2025-06-05T15:00:00+02",
+                                        "modelRun": "2025-06-04T02:00:00+02",
+                                        "value": 65.81
                                     },
                                     {
-                                        "timeInstant": "2025-06-04T16:00:00+02",
-                                        "modelRun": "2025-06-03T02:00:00+02",
-                                        "value": 58.89
+                                        "timeInstant": "2025-06-05T16:00:00+02",
+                                        "modelRun": "2025-06-04T02:00:00+02",
+                                        "value": 68.68
                                     },
                                     {
-                                        "timeInstant": "2025-06-04T17:00:00+02",
-                                        "modelRun": "2025-06-03T02:00:00+02",
-                                        "value": 58.96
+                                        "timeInstant": "2025-06-05T17:00:00+02",
+                                        "modelRun": "2025-06-04T02:00:00+02",
+                                        "value": 67.57
                                     },
                                     {
-                                        "timeInstant": "2025-06-04T18:00:00+02",
-                                        "modelRun": "2025-06-03T02:00:00+02",
-                                        "value": 62.94
+                                        "timeInstant": "2025-06-05T18:00:00+02",
+                                        "modelRun": "2025-06-04T02:00:00+02",
+                                        "value": 69.02
                                     },
                                     {
-                                        "timeInstant": "2025-06-04T19:00:00+02",
-                                        "modelRun": "2025-06-03T02:00:00+02",
-                                        "value": 68.99
+                                        "timeInstant": "2025-06-05T19:00:00+02",
+                                        "modelRun": "2025-06-04T02:00:00+02",
+                                        "value": 70.11
                                     },
                                     {
-                                        "timeInstant": "2025-06-04T20:00:00+02",
-                                        "modelRun": "2025-06-03T02:00:00+02",
-                                        "value": 73.84
+                                        "timeInstant": "2025-06-05T20:00:00+02",
+                                        "modelRun": "2025-06-04T02:00:00+02",
+                                        "value": 72
                                     },
                                     {
-                                        "timeInstant": "2025-06-04T21:00:00+02",
-                                        "modelRun": "2025-06-03T02:00:00+02",
-                                        "value": 79.43
+                                        "timeInstant": "2025-06-05T21:00:00+02",
+                                        "modelRun": "2025-06-04T02:00:00+02",
+                                        "value": 78
                                     },
                                     {
-                                        "timeInstant": "2025-06-04T22:00:00+02",
-                                        "modelRun": "2025-06-03T02:00:00+02",
-                                        "value": 82.86
+                                        "timeInstant": "2025-06-05T22:00:00+02",
+                                        "modelRun": "2025-06-04T02:00:00+02",
+                                        "value": 84.06
                                     },
                                     {
-                                        "timeInstant": "2025-06-04T23:00:00+02",
-                                        "modelRun": "2025-06-03T02:00:00+02",
-                                        "value": 81.83
+                                        "timeInstant": "2025-06-05T23:00:00+02",
+                                        "modelRun": "2025-06-04T02:00:00+02",
+                                        "value": 86.06
                                     }
                                 ]
                             }

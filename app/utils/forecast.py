@@ -54,7 +54,7 @@ def file_path_():
     hoy = date.today().isoformat()
     # Definir base de proyecto sin depender del working dir
     base_path = os.path.dirname(os.path.abspath(__file__))  # app/
-    project_root = os.path.abspath(os.path.join(base_path, '..', '..'))  # galizia_weather/
+    project_root = os.path.abspath(os.path.join(base_path, '..'))  # galizia_weather/
     folder = os.path.join(project_root, 'data', 'processed', 'forecast', 'final')
     
     # eliminar otros archivos 
@@ -115,7 +115,7 @@ def forecast_main(localidades):
         df_temp['city'] = localidades[i]
         
         df_forecast = pd.concat([df_forecast, df_temp])
-
+    return df_forecast
     
     #file_path = file_path_()
     #df_forecast.to_csv(file_path, index=False)
