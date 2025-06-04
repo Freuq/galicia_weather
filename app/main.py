@@ -161,7 +161,7 @@ categorias = {'Seco 🌵 (<50%)':50,
               'Húmedo 💧 (>75%)':100}
 colores = {
     'Seco 🌵 (<50%)': 'rgb(204, 204, 204)',  # Gris claro para baja humedad
-    'Moderado 🌤️ (50–75%)': 'rgb(102, 153, 255)',  # Azul claro para humedad moderada
+    'Moderado 🌤️ (50–75%)': 'rgb(102, 153, 255)',  # Azul claro para humedad moderada 
     'Húmedo 💧 (>75%)': 'rgb(7, 121, 197)' # Azul fuerte para alta humedad
 }
 

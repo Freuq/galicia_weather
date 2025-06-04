@@ -47,7 +47,7 @@ df = df_fore[df_fore['city'] == localidad]
 
 hoy = date.today()
 tomorrow = (hoy + timedelta(days=1)).isoformat()
-#fecha = st.date_input("Selecciona la fecha", default=mañana)
+#fecha = st.date_input("Selecciona la fecha", default=mañana) 
 st.markdown(
     f"<h3 style='text-align: center;'>Clima para mañana ({tomorrow}) en {localidad}</h3>",
     unsafe_allow_html=True
