@@ -12,21 +12,20 @@ def df_galicia(localidades):
     # Ruta absoluta desde el archivo actual
     base_path = os.path.dirname(os.path.abspath(__file__))  # directorio del script actual
     project_root = os.path.abspath(os.path.join(base_path, '..', '..'))  # sube hasta 'galizia_weather'
-    folder = os.path.join(project_root, 'data', 'processed')
+    folder = os.path.join(project_root, 'data', 'processed', 'galicia')
 
     dataframes = []
 
     if os.path.exists(folder):
         for archivo in os.listdir(folder):
-            if archivo.endswith('.csv'):
-                path_archivo = os.path.join(folder, archivo)
-                df = pd.read_csv(path_archivo, index_col=0)
-                df['ciudad'] = localidades[archivo.split(".")[0]] # columna con nombre de la ciudad
-                dataframes.append(df)
-    df_final = pd.concat(dataframes)
-    df_final["fecha"] = pd.to_datetime(df["fecha"])
+            path_archivo = os.path.join(folder, archivo)
+            df = pd.read_csv(path_archivo, index_col=0)
+            #df['ciudad'] = localidades[archivo.split(".")[0]] # columna con nombre de la ciudad
+            #dataframes.append(df)
+    #df_final = pd.concat(dataframes)
+    #df_final["fecha"] = pd.to_datetime(df["fecha"])
     #st.dataframe(df_final, use_container_width=True, height=500)
-    return df_final
+    return df
 
 def df_grouped_conteo(df):
     df_grouped = df.groupby('fecha').agg({

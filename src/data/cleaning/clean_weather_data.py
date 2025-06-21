@@ -39,7 +39,39 @@ def clean_weather_data(file):
     df_pivot.to_csv(f'data/processed/{file}.csv')
     print(file)
     print(df_pivot.head())
-    
+
+def df_galicia(localidades):
+    # Ruta absoluta desde el archivo actual
+    base_path = os.path.dirname(os.path.abspath(__file__))  # directorio del script actual
+    project_root = os.path.abspath(os.path.join(base_path, '..', '..', '..'))  # sube hasta 'galizia_weather'
+    folder = os.path.join(project_root, 'data', 'processed')
+   
+    dataframes = []
+
+    if os.path.exists(folder):
+        for archivo in os.listdir(folder):
+            if archivo.endswith('.csv'):
+                path_archivo = os.path.join(folder, archivo)
+                df = pd.read_csv(path_archivo, index_col=0)
+                df['ciudad'] = localidades[archivo.split(".")[0]] # columna con nombre de la ciudad
+                dataframes.append(df)
+    print(len(dataframes))
+    df_final = pd.concat(dataframes)
+    df_final["fecha"] = pd.to_datetime(df["fecha"])
+    path = os.path.join(folder, 'galicia')
+    archivo = "galicia.csv"
+    df_final.to_csv(os.path.join(path, archivo))
+    return df_final 
     
 for file in ['santiago', 'coruna', 'lugo', 'pontevedra', 'ourense', 'vigo']:
     clean_weather_data(file)
+
+localidades = {
+    "santiago": "Santiago de Compostela",
+    "coruna": "Coruña",
+    "lugo": "Lugo",
+    "ourense": "Ourense",
+    "pontevedra": "Pontevedra",
+    "vigo": "Vigo"}
+
+df = df_galicia(localidades)
