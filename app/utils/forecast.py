@@ -122,5 +122,5 @@ def forecast_main(localidades):
     # Llamar esta función al inicio para eliminar archivos antiguos
 
     # Si ya existe, lo carga
-    if os.path.exists(file_path):
-        return pd.read_csv(file_path, parse_dates=["time"])
+    #if os.path.exists(file_path):
+    #    return pd.read_csv(file_path, parse_dates=["time"])

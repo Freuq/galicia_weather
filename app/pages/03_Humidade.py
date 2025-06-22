@@ -36,7 +36,7 @@ df_grouped, df_conteo = df_grouped_conteo(df_filtrado)
 # DÍA MÁS HUMEDO
 # DÍA MÁS SECO
 
-df_gal = df_galicia(localidades)
+df_gal = df_galicia()
 df_kpi = df_gal.groupby("ciudad")
 
 

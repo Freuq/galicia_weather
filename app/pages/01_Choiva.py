@@ -26,14 +26,14 @@ st.markdown("<br>", unsafe_allow_html=True)
 st.title(f"☔ Choiva en Galicia")
 
 df_filtrado, año, mes = aplicar_filtros(df)
-df_grouped, df_conteo = df_grouped_conteo(df_filtrado)
+df_grouped, df_conteo = df_grouped_conteo(df_filtrado) # df_grouped para los valores de localización y df_conteo para el pie_plot
 
 ################# MÉTRICAS PARA TODA GALICIA
 # CIUDAD CON MÁS DÍAS LLOVIENDO, CIUDAD CON MÁS LLUVIA MEDIA
 # CIUDAD CON MENOS DÍAS LLOVIENDO, CIUDAD CON MÁS MENOS LLUVIA MEDIA
 # DÍA MÁS LLUVIOSO
-# Agrupamos por ciudad
-df_gal = df_galicia(localidades)
+# Utilizamos el df original para toda Galicia
+df_gal = df.copy()
 # Agrupamos por ciudad
 df_kpi = df_gal.groupby("ciudad")
 
@@ -78,6 +78,8 @@ with col3:
 
 
 st.markdown("---")
+
+######### METRICAS UTILIZANDO FILTROS 
 st.subheader(f"📍 Localización: {localizacion}")
 # PIE PLOT: DÍAS CON LLUVIA
 fig_pie = lluvia_pie(df_conteo, localizacion)

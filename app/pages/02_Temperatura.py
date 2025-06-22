@@ -37,7 +37,7 @@ df_grouped, df_conteo = df_grouped_conteo(df_filtrado)
 # DÍA MÁS CÁLIDO
 # Agrupamos por ciudad
 # Asegurarse de que la columna 'fecha' es datetime
-df_gal = df_galicia(localidades)
+df_gal = df.copy()
 df_gal["mes"] = df_gal["fecha"].dt.to_period("M")
 # Agrupamos por ciudad
 df_kpi = df_gal.groupby("ciudad")
