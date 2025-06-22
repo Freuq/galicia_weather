@@ -2,24 +2,25 @@ import pandas as pd
 import os
 
 def cargar_df(localizacion, localidades):
-    if localizacion.lower() == 'galicia':
-        df = df_galicia(localidades)
-    else:
-        df = pd.read_csv(f"data/processed/{localizacion.lower()}.csv", parse_dates=["fecha"])
+    df = df_galicia()
+    if localizacion.lower() != 'galicia':
+        df = df[df["ciudad"] == localidades[localizacion]]
+
     return df
 
-def df_galicia(localidades):
+
+def df_galicia():
     # Ruta absoluta desde el archivo actual
     base_path = os.path.dirname(os.path.abspath(__file__))  # directorio del script actual
     project_root = os.path.abspath(os.path.join(base_path, '..', '..'))  # sube hasta 'galizia_weather'
     folder = os.path.join(project_root, 'data', 'processed', 'galicia')
 
-    dataframes = []
+    #dataframes = []
 
     if os.path.exists(folder):
         for archivo in os.listdir(folder):
             path_archivo = os.path.join(folder, archivo)
-            df = pd.read_csv(path_archivo, index_col=0)
+            df = pd.read_csv(path_archivo, index_col=0, parse_dates=["fecha"])
             #df['ciudad'] = localidades[archivo.split(".")[0]] # columna con nombre de la ciudad
             #dataframes.append(df)
     #df_final = pd.concat(dataframes)
