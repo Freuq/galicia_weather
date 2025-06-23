@@ -138,7 +138,7 @@ st.plotly_chart(fig_rain_monthly)
 fig_rain = plot_lluvia_bar(df_filtrado, localizacion)
 st.plotly_chart(fig_rain, use_container_width=True)
 
-with st.expander(f"📊 Análisis de KPIs de Choiva en {localizacion}"):
+with st.expander(f"📊 Análisis de gráficas de Choiva en {localizacion}"):
     st.markdown(f"""
     Estas dos gráficas presentan similitudes, ya que hablamos de la misma medida pero con un cambio de granularidad. En una es representado a nivel mensual, mientras que la otra a nivel diario. Si se utiliza la variable Galicia estas son de barras apiladas, para que se pueda observar la representación de cada ciudad en la gráfica.
     A groso modo podemos observar que el mes donde más llovio fue en Oct del 2023 y a lo largo de todos los meses se observa que los dos meses donde más suele llover es en Enero y en Octubre. Por su contraparte tenemos a Julio y Agosto, que son en los que menos suele llover, con una que otra excepción.
