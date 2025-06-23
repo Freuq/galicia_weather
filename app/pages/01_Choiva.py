@@ -67,16 +67,21 @@ lluvia_total_mes = precipitacion_por_mes.max()
 col1, col2, col3 = st.columns(3)
 with col1:
     st.metric("🌧️ Ciudad con más días de lluvia", ciudad_mas_dias_lluvia, f"{dias_lluvia.max()} días", delta_color="off")
-    st.metric("🌂 Ciudad con más lluvia media", ciudad_mas_lluvia_media, f"{precipitacion_media.max():.2f} L/m²", delta_color="off")
-
-with col2:
     st.metric("🌤️ Ciudad con menos días de lluvia", ciudad_menos_dias_lluvia, f"{dias_lluvia.min()} días", delta_color="off")
+with col2:
+    st.metric("🌂 Ciudad con más lluvia media", ciudad_mas_lluvia_media, f"{precipitacion_media.max():.2f} L/m²", delta_color="off")
     st.metric("🌵 Ciudad con menos lluvia media", ciudad_menos_lluvia_media, f"{precipitacion_media.min():.2f} L/m²", delta_color="off")
 with col3:
     st.metric("📆 Día más lluvioso", pd.to_datetime(fecha_mas_lluviosa).strftime("%d %b %Y"), f"{lluvia_maxima:.2f} L/m²", delta_color="off")
     st.metric("📅 Mes más lluvioso", mes_mas_lluvioso.strftime("%B %Y"), f"{lluvia_total_mes:.2f} L/m²", delta_color="off")
 
-
+with st.expander("📊 Análisis KPIs de Choiva en Galicia"):
+    st.markdown("""
+    Estos primeros KPIs son estáticos en base a Galicia, tomando en cuenta todas las ciudades. Donde podemos observar la primera fila relacionado a lo más lluvioso y la segunda fila relacionado a lo menos lluvioso.  
+    Por un lado vemos que Santiago de Compostela es la ciudad donde más días llueve y donde más lluvia media hay, mientras que Ourense es la ciudad donde menos lluvia, tanto en cantidad de días como en lluvia media.
+    
+    Por último vemos en la última columna el día más lluvioso de todo el dataset (26 de Octubre 2023), el cual fue el mes donde más llovio en todos los datos que se tiene (Octubre 2023) junto con sus respectivos valores en L/m², sólo el día 26 llovió 
+    """)
 st.markdown("---")
 
 ######### METRICAS UTILIZANDO FILTROS 
@@ -115,6 +120,16 @@ with col2:
         st.markdown("<div class='custom-container'><h5 style='padding-bottom: 0.1px;';'>Más lluvioso</h5><h2 >{}</h2></div>".format(mes_mas_lluvioso), unsafe_allow_html=True)
         st.markdown("<div class='custom-container'><h5 style='padding-bottom: 0.1px;';'>Menos lluvioso</h5><h2 >{}</h2></div>".format(mes_menos_lluvioso), unsafe_allow_html=True)
 
+with st.expander(f"📊 Explicación de KPIs de Choiva en {localizacion}"):
+    st.markdown(f"""
+    En esta parte se plantean ya KPIs en base a filtros aplicados en clima, año y mes. Por lo que este análisis se hace automático.
+    
+    Podemos observar primero una gráfica de pie que representa los días con lluvia y sin lluvia, donde podemos ver su total de "{df_conteo["Tipo de día"][1]}" igual a {df_conteo["Cantidad"][1]} en color amarillo, mientras que los "{df_conteo["Tipo de día"][0]}"
+    fueron un total de {df_conteo["Cantidad"][0]} en color azul. Hay que tomar en cuenta que esto equivale para cualquier lluvia, no importa la cantidad que fue.  
+    
+    Luego tenemos todos los KPIs, desde la división en días, en lluvia y por meses. De esta sección lo más relevante es los meses más y menos lluviosos, estos en la mayoría de los casos es extremo, ya que hay medio año entre ellos, lo que representa el ciclo climático anual.
+    """)
+
 # lluvia mensual
 fig_rain_monthly = plot_lluvia_mes(df_filtrado, localizacion)
 st.plotly_chart(fig_rain_monthly)
@@ -123,4 +138,15 @@ st.plotly_chart(fig_rain_monthly)
 fig_rain = plot_lluvia_bar(df_filtrado, localizacion)
 st.plotly_chart(fig_rain, use_container_width=True)
 
-
+with st.expander(f"📊 Análisis de KPIs de Choiva en {localizacion}"):
+    st.markdown(f"""
+    Estas dos gráficas presentan similitudes, ya que hablamos de la misma medida pero con un cambio de granularidad. En una es representado a nivel mensual, mientras que la otra a nivel diario. Si se utiliza la variable Galicia estas son de barras apiladas, para que se pueda observar la representación de cada ciudad en la gráfica.
+    A groso modo podemos observar que el mes donde más llovio fue en Oct del 2023 y a lo largo de todos los meses se observa que los dos meses donde más suele llover es en Enero y en Octubre. Por su contraparte tenemos a Julio y Agosto, que son en los que menos suele llover, con una que otra excepción.
+    
+    Al ver este gráfico en días puede ser un poco más confuso, pero es importante para visualizar si las conclusiones dadas en meses no son por días sueltos que cambian la tendencia. Una de las características más llamativas de las gráficas de Plotly es que son interactivas y permiten hacer zoom si se selecciona una parte de la gráfica.
+    Esto lo usamos para acercarnos a las zonas de interés. Y se puede destacar que la tendencia suele dividirse en dos meses, ya que por ejemplo en Oct 2023, es cierto que Octubre es el mes con más lluvia, pero muchos de estos días siguen cayendo en Noviembre, sólo que a menor densidad de lluvia. Tanto así que vemos que para los primeros 10 días del mes siquiera hubo lluvia.
+    
+    La tendencia de lluvia se repite en Octubre del 2024 que es cierto que no fue el mes con más lluvia, pero se puede observar que sí es el mes con más días juntos de lluvia. Lo que nos lleva a decir que la temporada Octubre-Noviembre es posible en la que más suele llover en el suelo gallego, obviamente en base a esta pequeña muestra de dos años y medio.
+    
+    Este gráfico se podría desmenusar más a fondo, pero es cierto que para visualizar patrones con seguridad habría que obtener una cantidad de datos histórica mayor.
+    """)

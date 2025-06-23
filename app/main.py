@@ -39,11 +39,6 @@ st.subheader(f"📍 Localización: {localizacion}")
 
 # Aplicar filtros desde el archivo utils/filters.py
 df_filtrado, año, mes = aplicar_filtros(df)
-#localizacion, localizacion_var = local(page_name='main')
-# Cargar datos
-#df = cargar_df(localizacion_var, localidades)
-#if "df_climatico" not in st.session_state:
-#    st.session_state["df_climatico"] = df
 
 # MAPA
 map_html = map_local(localizacion_var)
@@ -182,7 +177,7 @@ with col2:
 
 with st.expander("📊 Análisis de Humidade en Galicia"):
     st.markdown("""
-    Aquí se presenta una clasificación de Humedad Relativa, es impresionante observar como la humedad es un parámetro que siempre está muy presente en el clima gallego,
+    Se presenta una clasificación de Humedad Relativa, es impresionante observar como la humedad es un parámetro que siempre está muy presente en el clima gallego,
     Llegando a tener un promedio (75.43 %) para la zona que ya es considerado húmedo (>75%). Estando todas ellas por menos de diez días Secos en los datos presentados (2023 a 2025)
     
     Estos datos hacen ver lo representativa que llega a ser la humedad para Galicia, que inclusive en días de más calor, puede haber sensaciones de más frío o inclusive "bochorno".
