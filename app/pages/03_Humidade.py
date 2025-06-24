@@ -83,6 +83,16 @@ with col3:
     st.metric("📅🔼 Mes más húmedo", str(mes_mas_humedo.strftime("%B %Y")), f"{mes_mas_humedo_valor:.2f} %", delta_color="off")
     st.metric("📅🔽 Mes menos húmedo", str(mes_menos_humedo.strftime("%B %Y")), f"{mes_menos_humedo_valor:.2f} %", delta_color="off")
 
+with st.expander("📊 Análisis KPIs de Humidade en Galicia"):
+    st.markdown("""
+    Estos primeros KPIs son estáticos en base a Galicia, tomando en cuenta todas las ciudades. Donde podemos observar la primera fila relacionado a lo más húmedo y la segunda fila relacionado a lo menos húmedo.  
+    Por un lado vemos que la ciudad más húmeda es Coruña y la menos húmeda es Ourense, esto tiene todo el sentido en base a la ubicación geográfica de Coruña y de Ourense, al una estar tan cerca del mar es más húmeda y la otra al estar tan lejos es menos húmeda. 
+    
+    Luego de estos tenemos los días más húmedos que concuerdan con los meses más humedos, estos equivalen a Otoño (temporada más húmeda) y el inicio de la primavera (temporada menos húmeda). Podría ser raro que Abril sea el mes con menos humedad, ya que no es el mes más seco, pero al estar en esta transición de invierno a primavera suelen darse climas con poca humedad, se está saliendo de un inverno posiblemente lluvioso como es el de las tierras gallegas y no han comenzado las lluvias convectivas más frecuentes de primavera/verano, lo que favorece a esta baja humedad.
+    
+    Estos KPIs referentes a fecha son difíciles de explicar ya que vienen dados por la estacionalidad y complementados por todo el entorno de la región de Galicia, tomando en cuenta todo el ambiente de la Peninsula, la cordillera y el Atlántico, por lo que para dar conclusiones con mayor propiedad se deberían tomar todas estas variables en cuenta. Por eso, esto es simplemente una pequeña explicación y razonamiento propio sobre los datos mostrados.
+    """)
+
 ############################################################################
 st.markdown("---")
 st.subheader(f"📍 Localización: {localizacion}")
@@ -112,6 +122,14 @@ with col2:
     st.markdown("<div class='custom-container'><h5 style='padding-bottom: 0.1px;';'>➖ Humedad promedio</h5><h2 >{} %</h2></div>".format(round(df_grouped['humedad'].mean(), 2)), unsafe_allow_html=True)
     st.markdown("<div class='custom-container'><h5 style='padding-bottom: 0.1px;';'>🔽 Humedad mínima</h5><h2 >{:.1f} %</h2></div>".format(df_grouped['humedad'].min()), unsafe_allow_html=True)
 
+with st.expander("📊 Explicación KPIs de Humidade en {localizacion}"):
+    st.markdown("""
+    Para la humedad vemos primero una gráfica de barras donde se creó una variable categórica para dividir el rango de humedad, es destacable mencionar que estas divisiones no son muy propias en una literatura, ya que un clima "seco" no llega hasta 50% de humedad, pero al estar tratando de Galicia, una región muy húmeda, se tuvo que alterar para poder tener algunos valores dentro de esta variable.
+    El comportamiento es igual para todas las ciudades y obviamente la región en general, predominando un clima bastante húmedo. Varia la cuenta de los días dependiendo de la ciudad, pero siempre es más o menos similar.
+    
+    Por otra parte, los KPIs son explicitos. Aquí lo más relevante es que los valores de humedad "promedio" entran dentro de un clima húmedo, reforzando así el tipo de clima presente en las tierras del noroeste de España. Lo mismo se puede visualizar en las otras dos, donde el mínimo entra por muy poco como clima "seco".
+    """)
+
 # LINEA DE HUMEDAD MENSUAL
 fig_hume_mes = plot_hum_mes(df_filtrado, localizacion)
 st.plotly_chart(fig_hume_mes, use_container_width=True)
@@ -124,7 +142,24 @@ st.plotly_chart(fig_humidity_kde_clean, use_container_width=True)
 fig_humidity_line = plot_humidity_line(df_filtrado, localizacion)
 st.plotly_chart(fig_humidity_line, use_container_width=True)
 
+with st.expander("📊 Análisis de gráficas de Humidade en {localizacion}"):
+    st.markdown("""
+    Aquí se presentan tres gráficas de lineas, un poco diferentes entre ellas. Dos son similares, donde representan el valor medio de humedad, en una mensualmente y el otro de forma diario. Esto se realizó simplemente para ver en detalle alguna parte del tiempo de ser necesario. Pero las conclusiones se generan a partir de la humedad mensual.
+    Podemos ver en esta que los valores de humedad tanto para Coruña como para Ourense son ajenos al resto de ciudades gallegas. Por una parte Coruña se comporta muy húmeda en comparación al resto en la mayoría del tiempo,
+    mientras que Ourense todo lo contrario, normalmente suele bajar mucho la Humedad a lo largo del verano. 
+    Otra cosa a destacar es un "pico en bajada", este se encuentra entre Enero y Abril y se presenta básicamente en todas las ciudades. En el 2023 estuvo en enero y se repitió en menor cantidad en Mayo, para el 2024 fue en Abril y para el 2025 se nota ya en Marzo.
+    
+    Luego tenemos la distribución suavizada, esto sería como ver un histograma del porcentaje de humedad en la totalidad de los datos. Aquí podemos ver donde se concentran la mayor cantidad de datos de cada ciudad. Lo más llamativo sigue siendo Ourense y Coruña. Donde Ourense tiene una distribución bimodal, a los 60 y 80%, al igual que Coruña, pero esta a los a los 80% en menor cantidad y a los 95% el otro pico.
+    """)
+
 # MAPA DE CALOR (HEATMAP): Muy visual para ver tendencias, anomalías o días con humedad alta/baja
 if localizacion_var == "galicia":
     fig_humidity_heatmap = plot_humidity_heatmap(df_filtrado, localizacion)
     st.plotly_chart(fig_humidity_heatmap, use_container_width=True)
+    
+with st.expander("📊 Análisis de gráficas de Humidade en {localizacion}"):
+    st.markdown("""
+    Esta última gráfica sólo está presente si estamos viendo a Galicia, ya que presenta a todas las ciudades. Esta muestra el procentaje de humedad por ciudad a lo largo del tiempo, asemejando un heatmap, pero entre fecha y ciudad.
+    Esto representa la variabilidad tanto en tiempo como en ciudad. Donde se puede observar una gran mancha azul entre Octubre y Enero, pero en Coruña del 2023 fue bastante extensa, en más de medio año, esto puede significar que quizás fue algo anómalo para la ciudad.
+    Mientras que vemos que Ourense si se nota la estacionalidad, donde a penas pisa Abril se empiezan ver valores blancos (cercanos a 60%) y el resto más tonalidades azules.
+    """)
