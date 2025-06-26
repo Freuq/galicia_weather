@@ -144,11 +144,11 @@ def plot_temp_line(df, localizacion):
 def plot_temp_mes(df, localizacion):
     # Agrupamos por mes (y ciudad si hay varias)
     if 'ciudad' in df.columns:
-            df_mensual = df.groupby(['mes_anyo', 'ciudad'], as_index=False)['temperatura'].sum()
+            df_mensual = df.groupby(['mes_anyo', 'ciudad'], as_index=False)['temperatura'].median()
             fig = px.line(df_mensual, x="mes_anyo", y="temperatura", color="ciudad",
                         title=f"         Temperatura mensual en {localizacion}")
     else:
-        df_mensual = df.groupby('mes_anyo', as_index=False)['temperatura'].sum()
+        df_mensual = df.groupby('mes_anyo', as_index=False)['temperatura'].median()
         fig = px.line(df_mensual, x="mes_anyo", y="temperatura",
                     title=f"         Temperatura mensual en {localizacion}")
 
