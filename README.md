@@ -1,5 +1,6 @@
 # ⛅Morriña en Galicia o Galicia Weather  
 Este proyecto es sobre el clima de Galicia y sus seis ciudades, en particular sobre tres variables: La temperatura, las precipitaciones y la humedad relativa. Realizado netamente en Python.  
+Se presentó un primer reporte detallado en [Kaggle]()
 ## Motivo  
 Estuve poco más de dos años viviendo en Galicia y siempre me dijeron que en esta zona llovía mucho y que antes inclusive más, que "el frío de galicia es diferente, se te mete a los huesos".  
 Esto siempre despertó curiosidad en mi, preguntandome ¿cuántos días llovian al año?, ¿cuánto frío habrá?, ¿será que este "frío en los huesos" es por la humedad"? y muchas otras preguntas que no sabía cómo contestar.  
